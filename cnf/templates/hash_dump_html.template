@@ -1,0 +1,8 @@
+<html>
+<title>WFS response CTPP hash dump</title>
+<body>
+<pre>
+<TMPL_var HTMLESCAPE(OBJ_DUMP())>
+</pre>
+</body>
+</html>

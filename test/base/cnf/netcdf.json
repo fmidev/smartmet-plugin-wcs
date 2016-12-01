@@ -1,0 +1,50 @@
+[
+    // ??? aggregate (mean)/period ???
+    //
+    // Total peak wave period (s), QD: 166 SigWavePeriod
+    // 	grib: 140232;166;mwp;0;1
+    //
+    {
+	"newbaseid" : 166,
+	"name" : "sea_surface_wind_wave_period",
+	"standardname" : "sea_surface_wind_wave_period",
+	"longname" : "Peak wave period",
+	"unit" : "s"
+    },
+    // ??? period ???
+    //
+    // 140230 Mean direction of wind waves (degrees)
+    // 	grib: 140230;167;mwd;0;1 //;heightAboveGround;0 //;surface;0
+    //
+    {
+	"newbaseid" : 167,
+	"name" : "sea_surface_wave_from_direction",
+	"standardname" : "sea_surface_wave_from_direction",
+	"longname" : "Wave direction of wind waves",
+	"unit" : "degree",
+	"aggregatetype" : "mean"
+    },
+    // Sea Surface Temperature
+    // 	grib: 150129;61;ocpt;0;1 //;heightAboveGroundes;0 //;surface;0
+    //
+    {
+	"newbaseid" : 61,
+	"name" : "sea_surface_temperature",
+	"standardname" : "sea_surface_temperature",
+	"longname" : "Sea surface temperature",
+	"offset" : 273.15,
+	"unit" : "K"
+    },
+    // Sea water salinity
+    //
+    // Ocean Salinity
+    // 	grib: 150130;62;s;0;1
+    //
+    {
+	"newbaseid" : 62,
+	"name" : "sea_water_salinity",
+	"standardname" : "sea_water_salinity",
+	"longname" : "Sea water salinity",
+	"unit" : "psu"
+    }
+]

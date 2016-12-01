@@ -1,0 +1,4 @@
+GET /wcs?service=WCS&request=GetCapabilities&AcceptVersions=2.0.0,2.0.1& HTTP/1.1
+Host: data.fmi.fi
+fmi-apikey: foobar
+

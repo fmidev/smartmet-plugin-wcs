@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wcs:CoverageDescriptions xmlns:wcs="http://www.opengis.net/wcs/2.0" xmlns:ows="http://www.opengis.net/ows/2.0" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" xmlns:swe="http://www.opengis.net/swe/2.0" xsi:schemaLocation="http://www.opengis.net/wcs/2.0 http://schemas.opengis.net/wcs/2.0/wcsAll.xsd "><TMPL_foreach coverageList as cov>
+  <wcs:CoverageDescription gml:id="covdesc<TMPL_var CONCAT("-",cov.__index__ + 1)>-<TMPL_var cov.id>">
+    <gml:boundedBy>
+      <gml:EnvelopeWithTimePeriod<TMPL_if DEFINED(cov.srsNamePressEpoch)> srsName="<TMPL_var cov.srsNamePressEpoch>"</TMPL_if><TMPL_if DEFINED(cov.srsLabels)> axisLabels="<TMPL_var cov.srsLabels>"</TMPL_if><TMPL_if DEFINED(cov.uomLabels)> uomLabels="<TMPL_var cov.uomLabels>"</TMPL_if><TMPL_if DEFINED(cov.srsDimension)> srsDimension="<TMPL_var cov.srsDimension>"</TMPL_if>>
+        <gml:lowerCorner><TMPL_var cov.bbox_bl[0]> <TMPL_var cov.bbox_bl[1]><TMPL_if DEFINED(cov.grid_offset_z)> <TMPL_var cov.elevation[0]></TMPL_if><TMPL_if DEFINED(cov.grid_size[3])> <TMPL_var cov.epoch_time[0]></TMPL_if></gml:lowerCorner>
+        <gml:upperCorner><TMPL_var cov.bbox_tr[0]> <TMPL_var cov.bbox_tr[1]><TMPL_if DEFINED(cov.grid_offset_z)> <TMPL_var cov.elevation[1]></TMPL_if><TMPL_if DEFINED(cov.grid_size[3])> <TMPL_var cov.epoch_time[1]></TMPL_if></gml:upperCorner>
+        <gml:beginPosition><TMPL_var cov.bbox_time[0]></gml:beginPosition>
+        <gml:endPosition><TMPL_var cov.bbox_time[1]></gml:endPosition>
+      </gml:EnvelopeWithTimePeriod>
+    </gml:boundedBy>
+    <wcs:CoverageId><TMPL_var cov.id></wcs:CoverageId>
+    <gml:domainSet>
+     <gml:MultiGeometry gml:id="cd<TMPL_var CONCAT("-",cov.__index__ + 1)>-mg-0-<TMPL_var cov.id>">
+       <gml:geometryMembers><TMPL_foreach cov.gm as gm>
+         <gml:RectifiedGrid gml:id="cd<TMPL_var CONCAT("-",cov.__index__ + 1)>-mg-0-rg<TMPL_var CONCAT("-",gm.__index__ + 1)>-<TMPL_var cov.id>-<TMPL_var gm.level>"<TMPL_if DEFINED(cov.srsDimension)> dimension="<TMPL_var cov.srsDimension>"</TMPL_if>>
+           <gml:limits>
+             <gml:GridEnvelope>
+               <gml:low>0 0<TMPL_if DEFINED(cov.grid_offset_z)> 0</TMPL_if><TMPL_if DEFINED(cov.grid_size[3])> 0</TMPL_if></gml:low>
+               <gml:high><TMPL_var cov.grid_size[0]> <TMPL_var cov.grid_size[1]><TMPL_if DEFINED(cov.grid_offset_z)> <TMPL_var cov.grid_size[2]></TMPL_if><TMPL_if DEFINED(cov.grid_size[3])> <TMPL_var cov.grid_size[3]></TMPL_if></gml:high>
+             </gml:GridEnvelope>
+           </gml:limits>
+           <gml:axisLabels><TMPL_var cov.axisLabels></gml:axisLabels>
+           <gml:origin>
+             <gml:Point gml:id="cd<TMPL_var CONCAT("-",cov.__index__ + 1)>-mg-0-rg<TMPL_var CONCAT("-",gm.__index__ + 1)>-origin-<TMPL_var cov.id>-<TMPL_var gm.level>"<TMPL_if DEFINED(cov.srsNamePressEpoch)> srsName="<TMPL_var cov.srsNamePressEpoch>"</TMPL_if><TMPL_if DEFINED(cov.srsLabels)> axisLabels="<TMPL_var cov.srsLabels>"</TMPL_if><TMPL_if DEFINED(cov.uomLabels)> uomLabels="<TMPL_var cov.uomLabels>"</TMPL_if><TMPL_if DEFINED(cov.srsDimension)> srsDimension="<TMPL_var cov.srsDimension>"</TMPL_if>>
+               <gml:pos><TMPL_var cov.bottom_left[0]> <TMPL_var cov.bottom_left[1]><TMPL_if DEFINED(cov.grid_offset_z)> <TMPL_var gm.level></TMPL_if><TMPL_if DEFINED(cov.grid_size[3])> <TMPL_var cov.epoch_time[0]></TMPL_if></gml:pos>
+             </gml:Point>
+           </gml:origin>
+           <gml:offsetVector<TMPL_if DEFINED(cov.srsNamePressEpoch)> srsName="<TMPL_var cov.srsNamePressEpoch>"</TMPL_if><TMPL_if DEFINED(cov.srsLabels)> axisLabels="<TMPL_var cov.srsLabels>"</TMPL_if><TMPL_if DEFINED(cov.uomLabels)> uomLabels="<TMPL_var cov.uomLabels>"</TMPL_if><TMPL_if DEFINED(cov.srsDimension)> srsDimension="<TMPL_var cov.srsDimension>"</TMPL_if>><TMPL_var cov.grid_offset_x[0]> <TMPL_var cov.grid_offset_x[1]><TMPL_if DEFINED(cov.grid_offset_z)> <TMPL_var cov.grid_offset_z></TMPL_if><TMPL_if DEFINED(cov.grid_offset_t)> 0</TMPL_if></gml:offsetVector>
+           <gml:offsetVector<TMPL_if DEFINED(cov.srsNamePressEpoch)> srsName="<TMPL_var cov.srsNamePressEpoch>"</TMPL_if><TMPL_if DEFINED(cov.srsLabels)> axisLabels="<TMPL_var cov.srsLabels>"</TMPL_if><TMPL_if DEFINED(cov.uomLabels)> uomLabels="<TMPL_var cov.uomLabels>"</TMPL_if><TMPL_if DEFINED(cov.srsDimension)> srsDimension="<TMPL_var cov.srsDimension>"</TMPL_if>><TMPL_var cov.grid_offset_y[0]> <TMPL_var cov.grid_offset_y[1]><TMPL_if DEFINED(cov.grid_offset_z)> <TMPL_var cov.grid_offset_z></TMPL_if><TMPL_if DEFINED(cov.grid_offset_t)> 0</TMPL_if></gml:offsetVector><TMPL_if DEFINED(cov.grid_offset_z)>
+           <gml:offsetVector<TMPL_if DEFINED(cov.srsNamePressEpoch)> srsName="<TMPL_var cov.srsNamePressEpoch>"</TMPL_if><TMPL_if DEFINED(cov.srsLabels)> axisLabels="<TMPL_var cov.srsLabels>"</TMPL_if><TMPL_if DEFINED(cov.uomLabels)> uomLabels="<TMPL_var cov.uomLabels>"</TMPL_if><TMPL_if DEFINED(cov.srsDimension)> srsDimension="<TMPL_var cov.srsDimension>"</TMPL_if>>0 0<TMPL_if DEFINED(cov.grid_offset_z)> 0</TMPL_if><TMPL_if DEFINED(cov.grid_offset_t)> 0</TMPL_if></gml:offsetVector></TMPL_if><TMPL_if DEFINED(cov.grid_offset_t)>
+           <gml:offsetVector<TMPL_if DEFINED(cov.srsNamePressEpoch)> srsName="<TMPL_var cov.srsNamePressEpoch>"</TMPL_if><TMPL_if DEFINED(cov.srsLabels)> axisLabels="<TMPL_var cov.srsLabels>"</TMPL_if><TMPL_if DEFINED(cov.uomLabels)> uomLabels="<TMPL_var cov.uomLabels>"</TMPL_if><TMPL_if DEFINED(cov.srsDimension)> srsDimension="<TMPL_var cov.srsDimension>"</TMPL_if>>0 0<TMPL_if DEFINED(cov.grid_offset_z)> 0</TMPL_if><TMPL_if DEFINED(cov.grid_offset_t)> <TMPL_var cov.grid_offset_t></TMPL_if></gml:offsetVector></TMPL_if>
+         </gml:RectifiedGrid></TMPL_foreach>
+       </gml:geometryMembers>
+     </gml:MultiGeometry>
+    </gml:domainSet>
+    <gmlcov:rangeType>
+      <swe:DataRecord>
+        <swe:field name="<TMPL_var fieldName>" xlink:href="http://<TMPL_var hostname><TMPL_var fmi_apikey_prefix><TMPL_var fmi_apikey>/meta?observableProperty=forecast&amp;param=<TMPL_var fieldName>&amp;language=<TMPL_var language>"/>
+      </swe:DataRecord>
+    </gmlcov:rangeType>
+    <wcs:ServiceParameters>
+      <wcs:CoverageSubtype>RectifiedGridCoverage</wcs:CoverageSubtype>
+      <wcs:nativeFormat></wcs:nativeFormat>
+    </wcs:ServiceParameters>
+  </wcs:CoverageDescription></TMPL_foreach>
+</wcs:CoverageDescriptions>

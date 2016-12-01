@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wcs:Capabilities xmlns:wcs="http://www.opengis.net/wcs/2.0"
+  xmlns:wcscrs="http://www.opengis.net/wcs/crs/1.0"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:ows="http://www.opengis.net/ows/2.0"
+  xmlns:inspire_dls="http://inspire.ec.europa.eu/schemas/inspire_dls/1.0"
+  xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  version="2.0.0"
+  xsi:schemaLocation="http://www.opengis.net/wcs/2.0 http://schemas.opengis.net/wcs/2.0/wcsAll.xsd
+  http://www.opengis.net/wcs/crs/1.0 http://schemas.opengis.net/wcs/crs/1.0/wcsCrs.xsd
+  http://www.opengis.net/ows/2.0 http://schemas.opengis.net/ows/2.0/owsAll.xsd
+  http://inspire.ec.europa.eu/schemas/inspire_dls/1.0 http://inspire.ec.europa.eu/schemas/inspire_dls/1.0/inspire_dls.xsd
+  http://inspire.ec.europa.eu/schemas/common/1.0 http://inspire.ec.europa.eu/schemas/common/1.0/common.xsd">
+
+  <ows:ServiceIdentification>
+    <ows:Title>Finnish Meteorological Institute's Open Data Download Service</ows:Title>
+    <ows:Abstract>
+      Finnish Meteorological Institute's Open Data Download Service provides data
+      free-of-charge for public use. The producer of open data is the Finnish
+      Meteorological Institute.
+    </ows:Abstract>
+    <ows:Keywords>
+      <ows:Keyword>Forecast</ows:Keyword>
+      <ows:Keyword>Model</ows:Keyword>
+      <ows:Keyword>Hirlam</ows:Keyword>
+      <ows:Type>String</ows:Type>
+    </ows:Keywords>
+    <ows:ServiceType>WCS</ows:ServiceType>
+    <ows:ServiceTypeVersion>2.0.0</ows:ServiceTypeVersion>
+    <ows:Fees>
+      The use of this service and the returned data is free-of-charge, but users must
+      register and agree to the terms of service to gain access to the data.
+    </ows:Fees>
+    <ows:AccessConstraints>
+
+
+1.7.2014
+
+1. General
+The use of the material is governed by the terms and conditions specified in this licence.
+
+The following are regarded as the producer of open data and the holders of copyright or database rights: the Finnish Meteorological Institute, the Finnish Transport Agency and other data producers as specified in Annex 1 (hereinafter the licensors).
+
+When used, the material or the service including or utilising the material must be accompanied by information on the original source and the date of the current version as follows:
+- the producer of the material and the retrieval date;
+- a note if the data have been adapted.
+
+The licensee refers to a natural or legal person who takes the material covered by this licence into use.
+
+The licensor does not charge a fee for using the material subject to this licence.
+
+By receiving the material, the licensee accepts the terms of this licence.
+
+2. Terms of use
+
+2.1. The right to use the material
+This licence grants a worldwide, free of charge, perpetual, non-exclusive right, under which the material received by the licensee can be freely:
+- copied, distributed and published;
+- adapted and utilised commercially and non-commercially;
+- combined with other products; and
+- used as part of an application or a service.
+
+2.2. The licensee's obligations and responsibilities
+When using and transmitting the material or products made of the material, the licensee must:
+
+- mention the original source of the material in accordance with Section 1. General;
+- present a copy of this licence or a link to it;
+- require that the attribution practice specified under Section 1. General of this licence is followed when the licensee grants licenses to a product or service that uses some or all of the material subject to this licence;
+remove the note of the original source if so required explicitly by the licensor.
+- Special additional terms as stated in Annex 2 apply to aviation weather reports (METAR).
+
+This licence does not create any cooperation or business relationship between the licensee and the licensor. In connection with the material, the licensee must not indicate that the licensor endorses or recommends the licensee's use of the material.
+
+Malicious use of the download service maintained by the licensor is prohibited.
+
+2.3. The licensor's obligations and responsibilities
+The licensor is responsible for ensuring that it has the right to grant a licence to the material specified in Section 1. General.
+
+The material is licensed ‘as is' and the licensor is not liable for decisions made on the basis of the material, for any errors in the material, or for direct or indirect damage caused by the use of the material. The licensor does not grant any warranty for the material and does not guarantee that the material is accurate and up-to-date.
+
+The licensor does not guarantee that the material is constantly available, and the licensor may terminate the distribution of the material without prior notice. The licensor may also change the interface for downloading the material without prior notice.
+
+3. Applicable law
+This licence is governed by Finnish law.
+
+4. Changes to this licence
+At any time, the licensor may change the licence terms or may apply a different licence to the material. However, the terms of this licence continue to be applied to individual materials that had already been downloaded when the licence changed.
+
+ANNEX 1
+
+Other data producers
+(No other data producers.)
+
+ANNEX 2
+
+Additional terms for aviation weather reports (METAR)
+
+GENERAL ASPECTS
+
+The airports produce two different kinds of weather reports: aviation weather reports (METAR) and weather observations. Aviation weather reports (METAR) are generally compiled from the data collected by the airport's various observation equipment in compliance with the regulations in ICAO Annex 3*. Weather observations refer to data collected by certain observation equipment at an airport. Due to different calculation methods and deduction chains, the differences between an aviation weather report (METAR) and a weather observation at an aerodrome can be quite large.
+
+The Finnish Meteorological Institute has been appointed as the designated producer of aviation weather reports in the Finnish Flight Information Region until 31 January 2010 (Decision of the Finnish Ministry of Transport and Communications, 5 March 2013, record number LVM/1185/02/2012).
+
+ICAO Annex 3* establishes specific formal and material requirements for METAR weather reports.
+
+RECOMMENDED DISCLAIMER
+Applications containing aviation weather reports (METAR) should contain the following disclaimer: "METAR reports may be missing or available later than in the Aeronautical Fixed Telecommunication Network (AFTN)"
+
+*Annex 3 to the Convention on International Civil Aviation – Meteorological Service for International Service for International Air Navigation
+
+
+    </ows:AccessConstraints>
+  </ows:ServiceIdentification>
+  <ows:ServiceProvider>
+    <ows:ProviderName>Finnish Meteorological Institute</ows:ProviderName>
+    <ows:ProviderSite xlink:href="http://en.ilmatieteenlaitos.fi"/>
+    <ows:ServiceContact>
+      <ows:ContactInfo>
+        <ows:Phone>
+          <ows:Voice>+358 29 539 1000</ows:Voice>
+          <ows:Facsimile>+358 29 539 2303</ows:Facsimile>
+        </ows:Phone>
+        <ows:Address>
+          <ows:DeliveryPoint>P.O. BOX 503</ows:DeliveryPoint>
+          <ows:City>Helsinki</ows:City>
+          <ows:AdministrativeArea>Uusimaa</ows:AdministrativeArea>
+          <ows:PostalCode>00101</ows:PostalCode>
+          <ows:Country>Finland</ows:Country>
+          <ows:ElectronicMailAddress>avoin-data@fmi.fi</ows:ElectronicMailAddress>
+        </ows:Address>
+
+        <ows:OnlineResource xlink:href="http://en.ilmatieteenlaitos.fi/open-data"/>
+        <ows:ContactInstructions>
+
+          For technical help or error reports considering FMI Open Data Web Services, please consult our web page http://en.ilmatieteenlaitos.fi/open-data
+
+        </ows:ContactInstructions>
+      </ows:ContactInfo>
+      <ows:Role>PointOfContact</ows:Role>
+    </ows:ServiceContact>
+  </ows:ServiceProvider>
+  <ows:OperationsMetadata>
+    <ows:Operation name="GetCapabilities">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:href="http://data.fmi.fi/fmi-apikey/foobar/wcs"/>
+          <ows:Post xlink:href="http://data.fmi.fi/fmi-apikey/foobar/wcs"/>
+        </ows:HTTP>
+      </ows:DCP>
+      <ows:Parameter name="AcceptVersions">
+        <ows:AllowedValues>
+          <ows:Value>2.0.0</ows:Value>
+          <ows:Value>2.0.1</ows:Value>
+        </ows:AllowedValues>
+      </ows:Parameter>
+      <ows:Parameter name="AcceptLanguages">
+        <ows:AllowedValues>
+          <ows:Value>eng</ows:Value>
+          <ows:Value>fin</ows:Value>
+        </ows:AllowedValues>
+      </ows:Parameter>
+    </ows:Operation>
+    <ows:Operation name="DescribeCoverage">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:href="http://data.fmi.fi/fmi-apikey/foobar/wcs"/>
+          <ows:Post xlink:href="http://data.fmi.fi/fmi-apikey/foobar/wcs"/>
+        </ows:HTTP>
+      </ows:DCP>
+    </ows:Operation>
+    <ows:Operation name="GetCoverage">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:href="http://data.fmi.fi/fmi-apikey/foobar/wcs"/>
+          <ows:Post xlink:href="http://data.fmi.fi/fmi-apikey/foobar/wcs"/>
+        </ows:HTTP>
+      </ows:DCP>
+    </ows:Operation>
+    <ows:ExtendedCapabilities>
+      <inspire_dls:ExtendedCapabilities>
+        <inspire_common:MetadataUrl>
+          <inspire_common:URL>http://catalog.fmi.fi/geonetwork/srv/fin/csw?SERVICE=CSW&amp;VERSION=2.0.2&amp;REQUEST=GetRecordById&amp;ID=9fec2667-ccdd-431b-99e0-fd2ed5de4ca1&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full</inspire_common:URL>
+          <inspire_common:MediaType>application/gml+xml</inspire_common:MediaType>
+        </inspire_common:MetadataUrl>
+        <!-- Language support -->
+        <inspire_common:SupportedLanguages>
+          <inspire_common:DefaultLanguage>
+            <inspire_common:Language>fin</inspire_common:Language>
+          </inspire_common:DefaultLanguage>
+          <inspire_common:SupportedLanguage>
+            <inspire_common:Language>fin</inspire_common:Language>
+          </inspire_common:SupportedLanguage>
+          <inspire_common:SupportedLanguage>
+            <inspire_common:Language>eng</inspire_common:Language>
+          </inspire_common:SupportedLanguage>
+        </inspire_common:SupportedLanguages>
+        <!-- The language of this response document: -->
+        <inspire_common:ResponseLanguage>
+          <inspire_common:Language>eng</inspire_common:Language>
+        </inspire_common:ResponseLanguage>
+        <inspire_dls:SpatialDataSetIdentifier  metadataURL="http://catalog.fmi.fi/geonetwork/srv/fin/csw?SERVICE=CSW&amp;VERSION=2.0.2&amp;REQUEST=GetRecordById&amp;&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;ID=6667f5d8-041f-4b00-a55b-62980f6f78ef">
+          <inspire_common:Code>1000567</inspire_common:Code>
+          <inspire_common:Namespace>FI</inspire_common:Namespace>
+        </inspire_dls:SpatialDataSetIdentifier>
+      </inspire_dls:ExtendedCapabilities>
+    </ows:ExtendedCapabilities>
+  </ows:OperationsMetadata>
+  <ows:Languages>
+    <ows:Language>eng</ows:Language>
+  <ows:Language>fin</ows:Language>
+  
+  </ows:Languages>
+  <wcs:ServiceMetadata>
+    <wcs:formatSupported>application/netcdf</wcs:formatSupported>
+    <wcs:Extension>
+      <wcscrs:supportedCrs>http://www.opengis.net/def/crs/EPSG/0/4258</wcscrs:supportedCrs>
+      <wcscrs:supportedCrs>http://www.opengis.net/def/crs/EPSG/0/4326</wcscrs:supportedCrs>
+    </wcs:Extension>
+  </wcs:ServiceMetadata>
+  <wcs:Contents>
+    <wcs:CoverageSummary>
+      <ows:Title>HBM forecast</ows:Title>
+      <ows:Abstract>HBM numerical ocean model forecast.</ows:Abstract>
+      <ows:Keywords>
+        <ows:Keyword>ocean</ows:Keyword>
+        <ows:Keyword>forecast</ows:Keyword>
+        <ows:Type>string</ows:Type>
+      </ows:Keywords>
+      <wcs:WGS84BoundingBox crs="http://www.opengis.net/def/crs/EPSG/0/4326" dimension="2">
+        <ows:LowerCorner>53.025 9.041</ows:LowerCorner>
+        <ows:UpperCorner>65.875 30.291</ows:UpperCorner>
+      </wcs:WGS84BoundingBox>
+      <wcs:CoverageId>hbm-salinity</wcs:CoverageId>
+      <wcs:CoverageSubtype>RectifiedGridCoverage</wcs:CoverageSubtype>
+    </wcs:CoverageSummary>
+    <wcs:CoverageSummary>
+      <ows:Title>HBM forecast</ows:Title>
+      <ows:Abstract>HBM numerical ocean model forecast.</ows:Abstract>
+      <ows:Keywords>
+        <ows:Keyword>ocean</ows:Keyword>
+        <ows:Keyword>forecast</ows:Keyword>
+        <ows:Type>string</ows:Type>
+      </ows:Keywords>
+      <wcs:WGS84BoundingBox crs="http://www.opengis.net/def/crs/EPSG/0/4326" dimension="2">
+        <ows:LowerCorner>53.025 9.041</ows:LowerCorner>
+        <ows:UpperCorner>65.875 30.291</ows:UpperCorner>
+      </wcs:WGS84BoundingBox>
+      <wcs:CoverageId>hbm-temperaturesea</wcs:CoverageId>
+      <wcs:CoverageSubtype>RectifiedGridCoverage</wcs:CoverageSubtype>
+    </wcs:CoverageSummary>
+  </wcs:Contents>
+</wcs:Capabilities>

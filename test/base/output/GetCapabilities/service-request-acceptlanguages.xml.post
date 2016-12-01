@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wcs:Capabilities xmlns:wcs="http://www.opengis.net/wcs/2.0"
+  xmlns:wcscrs="http://www.opengis.net/wcs/crs/1.0"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:ows="http://www.opengis.net/ows/2.0"
+  xmlns:inspire_dls="http://inspire.ec.europa.eu/schemas/inspire_dls/1.0"
+  xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  version="2.0.1"
+  xsi:schemaLocation="http://www.opengis.net/wcs/2.0 http://schemas.opengis.net/wcs/2.0/wcsAll.xsd
+  http://www.opengis.net/wcs/crs/1.0 http://schemas.opengis.net/wcs/crs/1.0/wcsCrs.xsd
+  http://www.opengis.net/ows/2.0 http://schemas.opengis.net/ows/2.0/owsAll.xsd
+  http://inspire.ec.europa.eu/schemas/inspire_dls/1.0 http://inspire.ec.europa.eu/schemas/inspire_dls/1.0/inspire_dls.xsd
+  http://inspire.ec.europa.eu/schemas/common/1.0 http://inspire.ec.europa.eu/schemas/common/1.0/common.xsd">
+
+  <ows:ServiceIdentification>
+    <ows:Title>Ilmatieteen laitoksen avoimen datan latauspalvelu</ows:Title>
+    <ows:Abstract>
+      Ilmatieteen laitoksen avoimen datan latauspalvelussa on saatavilla tietoaineistoja
+      maksutta julkisen käyttöön. Tietoaineistoja latauspalveluun tuottavat Ilmatieteen
+      laitos.
+    </ows:Abstract>
+    <ows:Keywords>
+      <ows:Keyword>Ennuste</ows:Keyword>
+      <ows:Keyword>Ennustemalli</ows:Keyword>
+      <ows:Keyword>Hirlam</ows:Keyword>
+      <ows:Type>String</ows:Type>
+    </ows:Keywords>
+    <ows:ServiceType>WCS</ows:ServiceType>
+    <ows:ServiceTypeVersion>2.0.1</ows:ServiceTypeVersion>
+    <ows:Fees>
+      Tämän palvelun käyttö sekä palvelusta ladattu data on maksutonta, mutta käyttäjien
+      tulee rekisteröityä palveluun sekä hyväksyä käyttöehdot saadakseen pääsyn palveluun.
+    </ows:Fees>
+    <ows:AccessConstraints>
+
+
+1.7.2014
+
+1. Yleistä
+Aineiston käyttöoikeutta rajoittavat tämän lisenssin mukaiset käyttöehdot:
+
+Avoin data -aineiston tuottaja ja tekijänoikeuden tai tietokantasuojan haltijat ovat kukin oman aineistonsa osalta seuraavat: Ilmatieteen laitos, Liikennevirasto ja muut tiedontuottajat (jäljempänä lisenssin myöntäjä). Muut tiedontuottajat on lueteltu liitteessä 1.
+
+Aineistoa käyttäessä on aineiston tai sitä sisältävän tai hyödyntävän palvelun yhteyteen liitettävä maininta alkuperäislähteestä ja aineistoversion ajankohdasta seuraavasti:
+- aineiston tuottaja ja hakuajankohdan päiväys
+- ilmoitus mikäli aineistoa on muokattu
+
+
+Lisenssin saajalla tarkoitetaan luonnollista tai juridista henkilöä, joka ottaa tämän lisenssin alaisen aineiston käyttöön.
+
+Lisenssin myöntäjä ei peri lisenssin alaisen aineiston käytöstä maksua.
+
+Vastaanottamalla aineistoa lisenssin saaja hyväksyy tämän lisenssin ehdot.
+
+2. Lisenssin ehdot
+2.1. Käyttöoikeudet
+Tämä on maailmanlaajuisen, maksuttoman, peruuttamattoman rinnakkaisen käyttöoikeuden myöntävä lisenssi, jonka mukaan lisenssin saajan vastaanottamaa aineistoa voi vapaasti:
+- kopioida, levittää ja julkaista,
+- muokata ja hyödyntää kaupallisesti ja ei-kaupallisesti,
+- yhdistellä muihin tuotteisiin ja
+- käyttää osana sovellusta tai palvelua.
+
+2.2. Lisenssin saajan velvollisuudet ja vastuut
+Lisenssin saajan on aineistoa tai siitä tehtyjä tuotteita käyttäessään ja edelleen luovuttaessaan:
+- mainittava aineiston alkuperäislähde kohdan 1. Yleistä mukaisesti.
+- esitettävä tämän lisenssin kopio tai linkki siihen.
+- vaadittava tämän lisenssin kohdan 1. Yleistä mukaista nimeämiskäytännön noudattamista myöntäessään lisenssejä tuotteeseen tai palveluun, jossa käyttää tämän lisenssin alaista aineistoa tai sen osaa.
+poistettava maininta alkuperäislähteestä, mikäli lisenssin myöntäjä sitä erikseen vaatii.
+- lentosäähavaintosanomiin (METAR) sovelletaan oheisen liitteen 2 mukaisia lisäehtoja.
+
+Lisenssin saajan ja lisenssin myöntäjän välille ei tämän lisenssin myötä synny yhteistyö- tai liikesuhdetta. Lisenssin saaja ei saa aineiston yhteydessä ilmaista, että lisenssin myöntäjä tukisi tai suosittelisi kyseistä aineiston käyttötapaa.
+
+Lisenssin myöntäjän ylläpitämän aineiston latauspalvelun häiriökäyttö on kielletty.
+
+2.3. Lisenssin myöntäjän velvollisuudet ja vastuut
+Lisenssin myöntäjä vastaa, että sillä on oikeus luovuttaa lisenssi kohdassa 1. Yleistä nimettyyn aineistoon.
+
+Aineisto on lisensoitu sellaisenaan eikä lisenssin myöntäjä vastaa aineiston perusteella tehdyistä päätöksistä, aineistossa mahdollisesti esiintyvistä virheistä eikä aineiston käytöstä aiheutuvista välittömistä tai välillisistä vahingoista. Lisenssin myöntäjä ei myönnä aineistolle tai siinä olevien tietojen oikeellisuudelle tai ajantasaisuudelle takuuta.
+
+Lisenssin myöntäjä ei takaa, että aineisto olisi jatkuvasti saatavilla, ja lisenssin myöntäjä voi lopettaa aineiston jakelun ennalta ilmoittamatta. Lisenssin myöntäjä voi myös muuttaa aineiston latausrajapintaa ennalta ilmoittamatta.
+
+3. Sovellettava laki
+Tähän lisenssiin sovelletaan Suomen lakia.
+
+4. Muutokset tähän lisenssiin
+Lisenssin myöntäjä voi milloin tahansa muuttaa lisenssin ehtoja tai soveltaa aineistoon eri lisenssiä. Tämän lisenssin ehtoja sovelletaan kuitenkin edelleen niihin yksittäisiin aineistoihin, jotka oli lisenssin muuttuessa jo ladattu.
+
+
+LIITE 1
+
+Muut tiedontuottajat
+(Toistaiseksi ei muita tiedontuottajia.)
+
+LIITE 2
+
+Lentosäähavaintosanomat (METAR) -aineistoon liittyvät lisäehdot
+
+YLEISTÄ
+Lentokentillä tuotetaan kahta eri säähavaintoaineistoa: lentosäähavaintosanomia (METAReita) ja hetkellisiä säähavaintoja. Lentosäähavaintosanomat (METARit) koostetaan yleensä lentokentän eri havaintolaitteiden datasta noudattaen ICAO Annex 3:n* määräyksiä. Hetkelliset säähavainnot ovat puolestaan lentokentän tiettyjen havaintolaitteiden havaintoja. Lentosäähavaintosanoman (METARin) ja lentopaikan hetkellisen säähavainnon välillä voi olla suuriakin eroja johtuen erilaisista laskentamenetelmistä ja päättelyketjuista.
+
+Ilmatieteen laitos on nimetty yksinoikeudella lentosäähavaintopalveluiden tarjoajaksi Suomen lentotiedotusalueelle 31.1.2020 asti. (LVM päätös 5.3.2013 dnro LVM/1185/02/2012)
+
+ICAO Annex 3:n* mukaan METAR tulee esittää määritetyn muotoisena ja sisältöisenä säähavaintosanomana.
+
+DISCLAIMER -SUOSITUS
+Sovelluksissa, joissa käytetään lentosäähavaintosanomia (METAReita), tulisi esittää disclaimer "Palvelussa esitetyt METAR-sanomat voivat puuttua tai olla käytettävissä myöhemmin kuin ilmailun viestiverkossa."
+
+*Annex 3 to the Convention on International Civil Aviation – Meteorological Service for International Service for International Air Navigation
+
+
+    </ows:AccessConstraints>
+  </ows:ServiceIdentification>
+  <ows:ServiceProvider>
+    <ows:ProviderName>Ilmatieteen laitos</ows:ProviderName>
+    <ows:ProviderSite xlink:href="http://ilmatieteenlaitos.fi"/>
+    <ows:ServiceContact>
+      <ows:ContactInfo>
+        <ows:Phone>
+          <ows:Voice>+358 29 539 1000</ows:Voice>
+          <ows:Facsimile>+358 29 539 2303</ows:Facsimile>
+        </ows:Phone>
+        <ows:Address>
+          <ows:DeliveryPoint>PL 503</ows:DeliveryPoint>
+          <ows:City>Helsinki</ows:City>
+          <ows:AdministrativeArea>Uusimaa</ows:AdministrativeArea>
+          <ows:PostalCode>00101</ows:PostalCode>
+          <ows:Country>Suomi</ows:Country>
+          <ows:ElectronicMailAddress>avoin-data@fmi.fi</ows:ElectronicMailAddress>
+        </ows:Address>
+
+        <ows:OnlineResource xlink:href="http://ilmatieteenlaitos.fi/avoin-data"/>
+        <ows:ContactInstructions>
+
+          Saadaksesi teknistä apua tai antaaksesi palvelua koskevia virheilmoituksia, ole hyvä ja ota yhteyttä www-sivun http://ilmatieteenlaitos.fi/avoin-data kautta.
+
+        </ows:ContactInstructions>
+      </ows:ContactInfo>
+      <ows:Role>PointOfContact</ows:Role>
+    </ows:ServiceContact>
+  </ows:ServiceProvider>
+  <ows:OperationsMetadata>
+    <ows:Operation name="GetCapabilities">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:href="http://data.fmi.fi/fmi-apikey/foobar/wcs"/>
+          <ows:Post xlink:href="http://data.fmi.fi/fmi-apikey/foobar/wcs"/>
+        </ows:HTTP>
+      </ows:DCP>
+      <ows:Parameter name="AcceptVersions">
+        <ows:AllowedValues>
+          <ows:Value>2.0.0</ows:Value>
+          <ows:Value>2.0.1</ows:Value>
+        </ows:AllowedValues>
+      </ows:Parameter>
+      <ows:Parameter name="AcceptLanguages">
+        <ows:AllowedValues>
+          <ows:Value>fin</ows:Value>
+          <ows:Value>eng</ows:Value>
+        </ows:AllowedValues>
+      </ows:Parameter>
+    </ows:Operation>
+    <ows:Operation name="DescribeCoverage">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:href="http://data.fmi.fi/fmi-apikey/foobar/wcs"/>
+          <ows:Post xlink:href="http://data.fmi.fi/fmi-apikey/foobar/wcs"/>
+        </ows:HTTP>
+      </ows:DCP>
+    </ows:Operation>
+    <ows:Operation name="GetCoverage">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:href="http://data.fmi.fi/fmi-apikey/foobar/wcs"/>
+          <ows:Post xlink:href="http://data.fmi.fi/fmi-apikey/foobar/wcs"/>
+        </ows:HTTP>
+      </ows:DCP>
+    </ows:Operation>
+    <ows:ExtendedCapabilities>
+      <inspire_dls:ExtendedCapabilities>
+        <inspire_common:MetadataUrl>
+          <inspire_common:URL>http://catalog.fmi.fi/geonetwork/srv/fin/csw?SERVICE=CSW&amp;VERSION=2.0.2&amp;REQUEST=GetRecordById&amp;ID=9fec2667-ccdd-431b-99e0-fd2ed5de4ca1&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full</inspire_common:URL>
+          <inspire_common:MediaType>application/gml+xml</inspire_common:MediaType>
+        </inspire_common:MetadataUrl>
+        <!-- Language support -->
+        <inspire_common:SupportedLanguages>
+          <inspire_common:DefaultLanguage>
+            <inspire_common:Language>fin</inspire_common:Language>
+          </inspire_common:DefaultLanguage>
+          <inspire_common:SupportedLanguage>
+            <inspire_common:Language>fin</inspire_common:Language>
+          </inspire_common:SupportedLanguage>
+          <inspire_common:SupportedLanguage>
+            <inspire_common:Language>eng</inspire_common:Language>
+          </inspire_common:SupportedLanguage>
+        </inspire_common:SupportedLanguages>
+        <!-- The language of this response document: -->
+        <inspire_common:ResponseLanguage>
+          <inspire_common:Language>fin</inspire_common:Language>
+        </inspire_common:ResponseLanguage>
+        <inspire_dls:SpatialDataSetIdentifier  metadataURL="http://catalog.fmi.fi/geonetwork/srv/fin/csw?SERVICE=CSW&amp;VERSION=2.0.2&amp;REQUEST=GetRecordById&amp;&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;ID=6667f5d8-041f-4b00-a55b-62980f6f78ef">
+          <inspire_common:Code>1000567</inspire_common:Code>
+          <inspire_common:Namespace>FI</inspire_common:Namespace>
+        </inspire_dls:SpatialDataSetIdentifier>
+      </inspire_dls:ExtendedCapabilities>
+    </ows:ExtendedCapabilities>
+  </ows:OperationsMetadata>
+  <ows:Languages>
+    <ows:Language>fin</ows:Language>
+  <ows:Language>eng</ows:Language>
+  
+  </ows:Languages>
+  <wcs:ServiceMetadata>
+    <wcs:formatSupported>application/netcdf</wcs:formatSupported>
+    <wcs:Extension>
+      <wcscrs:supportedCrs>http://www.opengis.net/def/crs/EPSG/0/4258</wcscrs:supportedCrs>
+      <wcscrs:supportedCrs>http://www.opengis.net/def/crs/EPSG/0/4326</wcscrs:supportedCrs>
+    </wcs:Extension>
+  </wcs:ServiceMetadata>
+  <wcs:Contents>
+    <wcs:CoverageSummary>
+      <ows:Title>hbm</ows:Title>
+      <ows:Abstract>HBM model</ows:Abstract>
+      <wcs:WGS84BoundingBox crs="http://www.opengis.net/def/crs/EPSG/0/4326" dimension="2">
+        <ows:LowerCorner>53.025 9.041</ows:LowerCorner>
+        <ows:UpperCorner>65.875 30.291</ows:UpperCorner>
+      </wcs:WGS84BoundingBox>
+      <wcs:CoverageId>hbm-salinity</wcs:CoverageId>
+      <wcs:CoverageSubtype>RectifiedGridCoverage</wcs:CoverageSubtype>
+    </wcs:CoverageSummary>
+    <wcs:CoverageSummary>
+      <ows:Title>hbm</ows:Title>
+      <ows:Abstract>HBM model</ows:Abstract>
+      <wcs:WGS84BoundingBox crs="http://www.opengis.net/def/crs/EPSG/0/4326" dimension="2">
+        <ows:LowerCorner>53.025 9.041</ows:LowerCorner>
+        <ows:UpperCorner>65.875 30.291</ows:UpperCorner>
+      </wcs:WGS84BoundingBox>
+      <wcs:CoverageId>hbm-temperaturesea</wcs:CoverageId>
+      <wcs:CoverageSubtype>RectifiedGridCoverage</wcs:CoverageSubtype>
+    </wcs:CoverageSummary>
+  </wcs:Contents>
+</wcs:Capabilities>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExceptionReport xmlns="http://www.opengis.net/ows/2.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/ows/2.0 http://schemas.opengis.net/ows/2.0/owsExceptionReport.xsd"
+  version="2.0.0" xml:lang="eng">
+
+
+  <Exception exceptionCode="NoApplicableCode">
+    <ExceptionText>Failed to parse incoming XML request: XML parser failed
+</ExceptionText>
+    <ExceptionText>ERROR: empty content is not valid for content model &apos;(Extension?,CoverageId,DimensionSubset*,format?,mediaType?)&apos; at 7:19, publicId=&apos;&apos;, systemId=&apos;WCS&apos;</ExceptionText>
+    
+  </Exception>
+
+</ExceptionReport>

@@ -1,0 +1,4 @@
+GET /wcs?service=WXS&request=GetCapabilities& HTTP/1.1
+Host: data.fmi.fi
+fmi-apikey: foobar
+

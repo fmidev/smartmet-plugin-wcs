@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmlcov:RectifiedGridCoverage xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+xmlns:gml='http://www.opengis.net/gml/3.2'
+xmlns='http://www.opengis.net/gml/3.2'
+xmlns:swe='http://www.opengis.net/swe/2.0'
+xmlns:gmlcov='http://www.opengis.net/gmlcov/1.0'
+xsi:schemaLocation='http://www.opengis.net/swe/2.0
+http://schemas.opengis.net/sweCommon/2.0/swe.xsd
+http://www.opengis.net/gmlcov/1.0 http://schemas.opengis.net/gmlcov/1.0/gmlcovAll.xsd'
+gml:id="C0001">
+  <gml:boundedBy>
+    <gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/4326"
+                axisLabels="Lat Long" uomLabels="deg deg" srsDimension="2">
+      <gml:lowerCorner>1 1</gml:lowerCorner>
+      <gml:upperCorner>5 3</gml:upperCorner>
+    </gml:Envelope>
+  </gml:boundedBy>
+  <domainSet>
+    <Grid gml:id="gr0001_C0001" dimension="2">
+      <limits>
+        <GridEnvelope>
+          <low>1 1</low>
+          <high>5 3</high>
+        </GridEnvelope>
+      </limits>
+      <axisLabels>Lat Long</axisLabels>
+    </Grid>
+  </domainSet>
+  <gml:rangeSet>
+    <DataBlock>
+      <rangeParameters/>
+      <tupleList>
+1 2 3 4 5
+6 7 8 9 10
+11 12 13 14 15
+      </tupleList>
+    </DataBlock>
+  </gml:rangeSet>
+  <gmlcov:rangeType>
+    <swe:DataRecord>
+      <swe:field name="singleBand">
+        <swe:Quantity definition="http://opengis.net/def/property/OGC/0/Radiance">
+        <swe:description>Panchromatic Channel</swe:description>
+          <swe:uom code="W/cm2"/>
+          <swe:constraint>
+          <swe:AllowedValues>
+            <swe:interval>0 255</swe:interval>
+            <swe:significantFigures>3</swe:significantFigures>
+          </swe:AllowedValues>
+        </swe:constraint>
+      </swe:Quantity>
+    </swe:field>
+   </swe:DataRecord>
+  </gmlcov:rangeType>
+</gmlcov:RectifiedGridCoverage>

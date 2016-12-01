@@ -1,0 +1,4 @@
+GET /wcs?service=WCS&request=DescribeCoverage&CoverageId=hbm-temperaturesea& HTTP/1.1
+Host: data.fmi.fi
+fmi-apikey: foobar
+
