@@ -79,8 +79,8 @@ TEST_TARGETS = PluginTest
 
 LIBS = -L$(libdir) \
 	-lsmartmet-spine \
-	-lsmartmet_newbase \
-	-lsmartmet_macgyver \
+	-lsmartmet-newbase \
+	-lsmartmet-macgyver \
 	-lpqxx \
 	-lboost_serialization \
 	-lboost_date_time \
