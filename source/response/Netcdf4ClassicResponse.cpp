@@ -3,6 +3,7 @@
 #include "Options.h"
 #include "ParamConfig.h"
 #include "WcsConvenience.h"
+#include "UniqueTemporaryPath.h"
 #include <spine/ParameterFactory.h>
 #include <macgyver/String.h>
 
@@ -233,10 +234,6 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
               << "\nGridSizeY: " << q->grid().YNumber() << "\n";
   }
 
-  // Temporary file name
-  std::string name1 = std::tmpnam(NULL);
-  name1.append("-filename.nc");
-
   boost::shared_ptr<float[]> xc(new float[xDelta * yDelta]);
   boost::shared_ptr<float[]> yc(new float[xDelta * yDelta]);
   boost::shared_ptr<float[]> z(new float[zDelta]);
@@ -321,6 +318,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
     }
   }
 
+  UniqueTemporaryPath name1;
   NcFile dataFile(name1.c_str(), NcFile::FileMode::Replace, NULL, 0, NcFile::Netcdf4Classic);
 
   dataFile.add_att("Conventions", "CF-1.6");

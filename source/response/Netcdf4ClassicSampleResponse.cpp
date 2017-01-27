@@ -1,4 +1,5 @@
 #include "Netcdf4ClassicSampleResponse.h"
+#include "UniqueTemporaryPath.h"
 
 namespace SmartMet
 {
@@ -17,10 +18,6 @@ void Netcdf4ClassicSampleResponse::get(std::ostream& output)
   {
     throw std::runtime_error("Response query options is not set.");
   }
-
-  // Temporary file name
-  std::string name1 = std::tmpnam(NULL);
-  name1.append("-filename.nc");
 
   // We are writing 2D data, a 6 x 12 grid.
 
@@ -45,6 +42,7 @@ void Netcdf4ClassicSampleResponse::get(std::ostream& output)
     for (int j = 0; j < NY; j++)
       dataOut[i][j] = 0.1 * i * NY + j;
 
+  UniqueTemporaryPath name1;
   NcFile dataFile(name1.c_str(), NcFile::FileMode::Replace, NULL, 0, NcFile::Netcdf4Classic);
 
   dataFile.add_att("Conventions", "CF-1.6");
