@@ -243,13 +243,13 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
 
   // XY coordinates
   bool swapCoord = opt->getSwap();
-  const checkedVector<NFmiPoint>& llCache = q->latLonCache();
+  auto llCache = q->latLonCache();
   unsigned long coordBase = 0;
-  checkedVector<NFmiPoint>::const_iterator it = llCache.begin();
-  checkedVector<NFmiPoint>::const_iterator itEnd = it;
+  auto it = llCache->cbegin();
+  auto itEnd = it;
   for (unsigned long yId = minYId; yId <= maxYId; yId++)
   {
-    it = llCache.begin() + yId * NX + minXId;
+    it = llCache->cbegin() + yId * NX + minXId;
     itEnd = it + xDelta;
     while (it < itEnd)
     {
