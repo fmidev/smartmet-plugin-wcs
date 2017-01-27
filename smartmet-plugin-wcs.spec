@@ -2,7 +2,7 @@
 %define LIBNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{LIBNAME}
-Version: 17.1.4
+Version: 17.1.27
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -86,6 +86,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Fri Jan 27 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.1.27-1.fmi
+- Changed to use the new type of NFmiQueryData latlon-cache
+
 * Wed Jan  4 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.1.4-1.fmi
 - Changed to use renamed SmartMet base libraries
 
