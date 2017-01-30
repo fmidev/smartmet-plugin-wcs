@@ -2,7 +2,7 @@
 %define LIBNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{LIBNAME}
-Version: 17.1.27
+Version: 17.1.30
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -17,13 +17,13 @@ BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: libpqxx-devel
 BuildRequires: jsoncpp-devel
-BuildRequires: smartmet-library-spine-devel >= 17.1.4
-BuildRequires: smartmet-library-gis-devel >= 16.12.20
+BuildRequires: smartmet-library-spine-devel >= 17.1.24
+BuildRequires: smartmet-library-gis-devel >= 17.1.18
 BuildRequires: smartmet-library-locus-devel >= 16.12.20
-BuildRequires: smartmet-library-macgyver-devel >= 16.12.20
-BuildRequires: smartmet-engine-geonames-devel >= 17.1.4
+BuildRequires: smartmet-library-macgyver-devel >= 17.1.18
+BuildRequires: smartmet-engine-geonames-devel >= 17.1.27
 BuildRequires: smartmet-engine-gis-devel >= 17.1.4
-BuildRequires: smartmet-engine-querydata-devel >= 17.1.4
+BuildRequires: smartmet-engine-querydata-devel >= 17.1.26
 BuildRequires: postgresql93-libs
 Requires: ctpp2
 Requires: libconfig
@@ -31,13 +31,13 @@ Requires: libcurl
 Requires: libpqxx
 Requires: jsoncpp
 Requires: smartmet-library-locus >= 16.12.20
-Requires: smartmet-library-macgyver >= 16.12.20
-Requires: smartmet-library-spine >= 17.1.4
+Requires: smartmet-library-macgyver >= 17.1.18
+Requires: smartmet-library-spine >= 17.1.24
 Requires: smartmet-engine-gis >= 17.1.4
-Requires: smartmet-engine-geonames >= 17.1.4
+Requires: smartmet-engine-geonames >= 17.1.27
 Requires: smartmet-engine-gis >= 17.1.4
-Requires: smartmet-engine-querydata >= 17.1.4
-Requires: smartmet-server >= 17.1.4
+Requires: smartmet-engine-querydata >= 17.1.26
+Requires: smartmet-server >= 17.1.25
 Requires: xerces-c
 Requires: xqilla
 %if 0%{rhel} >= 7
@@ -86,6 +86,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Mon Jan 30 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.1.30-1.fmi
+- Fixes to NetCDF filename generation, the length limit is 36 characters
+
 * Fri Jan 27 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.1.27-1.fmi
 - Changed to use the new type of NFmiQueryData latlon-cache
 
