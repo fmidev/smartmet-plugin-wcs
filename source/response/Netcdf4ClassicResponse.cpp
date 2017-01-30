@@ -320,6 +320,13 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
 
   UniqueTemporaryPath::Unique name1(new UniqueTemporaryPath());
   NcFile dataFile(name1->c_str(), NcFile::FileMode::Replace, NULL, 0, NcFile::Netcdf4Classic);
+  if (not dataFile.is_valid())
+  {
+    std::ostringstream msg;
+    msg << "Cannot create or open temporary path passed to NcFile object: '" << name1->c_str()
+        << "'.";
+    throw WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
+  }
 
   dataFile.add_att("Conventions", "CF-1.6");
   dataFile.add_att(
