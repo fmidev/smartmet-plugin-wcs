@@ -318,8 +318,8 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
     }
   }
 
-  UniqueTemporaryPath name1;
-  NcFile dataFile(name1.c_str(), NcFile::FileMode::Replace, NULL, 0, NcFile::Netcdf4Classic);
+  UniqueTemporaryPath::Unique name1(new UniqueTemporaryPath());
+  NcFile dataFile(name1->c_str(), NcFile::FileMode::Replace, NULL, 0, NcFile::Netcdf4Classic);
 
   dataFile.add_att("Conventions", "CF-1.6");
   dataFile.add_att(
@@ -406,7 +406,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   dataFile.close();
 
   std::ifstream ifs;
-  ifs.open(name1.c_str(), std::ifstream::in);
+  ifs.open(name1->c_str(), std::ifstream::in);
   if (ifs.is_open())
   {
     output << ifs.rdbuf();
@@ -416,7 +416,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
     output << "";
 
   // Delete file
-  std::remove(name1.c_str());
+  std::remove(name1->c_str());
 }
 }
 }
