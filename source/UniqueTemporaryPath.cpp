@@ -14,7 +14,7 @@ UniqueTemporaryPath::UniqueTemporaryPath()
     mTempDirectoryPath = boost::filesystem::temp_directory_path();
 
     // Each replacement '%' hexadecimal digit adds four bits of randomness.
-    mUniquePath = boost::filesystem::unique_path("%%%%-%%%%-%%%%-%%%%-%%%%-%%%%-%%%%-%%%%");
+    mUniquePath = boost::filesystem::unique_path("%%%%%%%%%%%%%%%%-%%%%%%%%%%%%%%%%");
   }
   catch (const boost::filesystem::filesystem_error& err)
   {
