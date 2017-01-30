@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <boost/filesystem.hpp>
 
 namespace SmartMet
@@ -21,6 +22,8 @@ namespace WCS
 class UniqueTemporaryPath
 {
  public:
+  using Shared = std::shared_ptr<UniqueTemporaryPath>;
+  using Unique = std::unique_ptr<UniqueTemporaryPath>;
   explicit UniqueTemporaryPath();
   virtual ~UniqueTemporaryPath();
 
