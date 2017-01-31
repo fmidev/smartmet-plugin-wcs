@@ -15,6 +15,7 @@
 #include <xercesc/util/PlatformUtils.hpp>
 #include <ctpp2/CDT.hpp>
 #include <spine/Convenience.h>
+#include <spine/FmiApiKey.h>
 #include <spine/Location.h>
 #include <spine/TableFormatterOptions.h>
 #include <macgyver/TypeName.h>
@@ -491,28 +492,7 @@ void Plugin::maybeValidateOutput(const SmartMet::Spine::HTTP::Request& req,
 boost::optional<std::string> Plugin::getFmiApikey(
     const SmartMet::Spine::HTTP::Request& request) const
 {
-  const char* KEY_NAME = "fmi-apikey";
-  const char* KEY_NAME_2 = "access-token";
-
-  boost::optional<std::string> fmiApikey;
-  for (int i = 0; i < 3 and not fmiApikey; i++)
-  {
-    switch (i)
-    {
-      case 0:
-        fmiApikey = request.getHeader(KEY_NAME);
-        break;
-      case 1:
-        fmiApikey = request.getParameter(KEY_NAME);
-        break;
-      case 2:
-        fmiApikey = request.getParameter(KEY_NAME_2);
-        break;
-      default:;
-    }
-  }
-
-  return fmiApikey;
+  return SmartMet::Spine::FmiApiKey::getFmiApiKey(request, true);
 }
 
 Xml::Parser* Plugin::getXmlParser() const
