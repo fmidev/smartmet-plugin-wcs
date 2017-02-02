@@ -22,7 +22,7 @@ UniqueTemporaryPath::UniqueTemporaryPath()
   }
   catch (...)
   {
-    throw Spine::Exception(BCP, "Operation failed!", NULL);
+    throw Spine::Exception(BCP, "Construction of UniqueTemporaryPath object failed.", NULL);
   }
 }
 
@@ -46,7 +46,7 @@ std::string UniqueTemporaryPath::get() const
   }
   catch (...)
   {
-    throw Spine::Exception(BCP, "Operation failed!", NULL);
+    throw Spine::Exception(BCP, "Return of UniqueTemporaryPath as a string failed.", NULL);
   }
 }
 
@@ -58,7 +58,7 @@ const char* UniqueTemporaryPath::c_str() const
   }
   catch (...)
   {
-    throw Spine::Exception(BCP, "Operation failed!", NULL);
+    throw Spine::Exception(BCP, "Return of UniqueTemporaryPath as a char array failed.", NULL);
   }
 }
 }
