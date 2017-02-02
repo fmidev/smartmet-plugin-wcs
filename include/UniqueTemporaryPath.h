@@ -10,13 +10,13 @@ namespace Plugin
 namespace WCS
 {
 /**
- *  \brief An unique temporary file path generator
+ *  \brief Unique temporary file path generator
  *
- *  The class creates an unique file path to temporary
+ *  The class creates a unique file path to temporary
  *  directory with 128 bits of randomness.
- *  e.g. /tmp/7020-4754-9334-c328-363a-b378-1287-9283
+ *  e.g. /tmp/702047549334c327-8363ab3781287928
  *
- *  The class thows SmartMet::Spine::Exception
+ *  The class throws SmartMet::Spine::Exception
  *  exception when temporary path generation fails.
  */
 class UniqueTemporaryPath
