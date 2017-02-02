@@ -2,7 +2,7 @@
 %define LIBNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{LIBNAME}
-Version: 17.1.30
+Version: 17.2.2
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -17,7 +17,7 @@ BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: libpqxx-devel
 BuildRequires: jsoncpp-devel
-BuildRequires: smartmet-library-spine-devel >= 17.1.24
+BuildRequires: smartmet-library-spine-devel >= 17.2.1
 BuildRequires: smartmet-library-gis-devel >= 17.1.18
 BuildRequires: smartmet-library-locus-devel >= 16.12.20
 BuildRequires: smartmet-library-macgyver-devel >= 17.1.18
@@ -32,7 +32,7 @@ Requires: libpqxx
 Requires: jsoncpp
 Requires: smartmet-library-locus >= 16.12.20
 Requires: smartmet-library-macgyver >= 17.1.18
-Requires: smartmet-library-spine >= 17.1.24
+Requires: smartmet-library-spine >= 17.2.1
 Requires: smartmet-engine-gis >= 17.1.4
 Requires: smartmet-engine-geonames >= 17.1.27
 Requires: smartmet-engine-gis >= 17.1.4
@@ -86,6 +86,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Thu Feb  2 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.2.2-1.fmi
+- Unified handling of apikeys
+
 * Mon Jan 30 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.1.30-1.fmi
 - Fixes to NetCDF filename generation, the length limit is 36 characters
 
