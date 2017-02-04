@@ -103,15 +103,6 @@ INCLUDES += -I$(TOP)/include \
 	-isystem
 
 
-# rpm variables
-
-rpmsourcedir = /tmp/$(shell whoami)/rpmbuild
-
-rpmerr = "There's no spec file ($(SPEC).spec). RPM wasn't created. Please make a spec file or copy and rename it into $(SPEC).spec"
-
-rpmversion := $(shell grep "^Version:" $(SPEC).spec  | cut -d\  -f 2 | tr . _)
-rpmrelease := $(shell grep "^Release:" $(SPEC).spec  | cut -d\  -f 2 | tr . _)
-
 # What to install
 
 LIBFILE = $(SUBNAME).so
@@ -191,13 +182,12 @@ objdir:
 rpm: clean file-list
 	if [ -e $(SPEC).spec ]; \
 	then \
-	  mkdir -p $(rpmsourcedir); \
-	  tar -czvf $(rpmsourcedir)/$(SPEC).tar.gz \
+	  tar -czvf $(SPEC).tar.gz \
 		--transform "s,^,plugins/$(SPEC)/," $(shell cat files.list) ; \
-	  rpmbuild -ta $(rpmsourcedir)/$(SPEC).tar.gz ; \
-	  rm -f $(rpmsourcedir)/$(SPEC).tar.gz ; \
+	  rpmbuild -ta $(SPEC).tar.gz ; \
+	  rm -f $(SPEC).tar.gz ; \
 	else \
-	  echo $(rpmerr); \
+	  echo $(SPEC).spec missing; \
 	fi;
 
 file-list:	cnf/XMLGrammarPool.dump
