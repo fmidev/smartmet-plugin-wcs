@@ -1,7 +1,7 @@
 %define DIRNAME wcs
-%define LIBNAME smartmet-plugin-%{DIRNAME}
+%define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
-Name: %{LIBNAME}
+Name: %{SPECNAME}
 Version: 17.2.2
 Release: 1%{?dist}.fmi
 License: FMI
@@ -50,7 +50,7 @@ Requires: boost-serialization
 Requires: boost-system
 Requires: boost-thread
 %endif
-Provides: %{LIBNAME}
+Provides: %{SPECNAME}
 
 %description
 SmartMet WCS plugin
@@ -58,9 +58,9 @@ SmartMet WCS plugin
 %prep
 rm -rf $RPM_BUILD_ROOT
 
-%setup -q -n %{DIRNAME}
+%setup -q -n plugins/%{SPECNAME}
 
-%build
+%build -n plugins/%{SPECNAME}
 make %{_smp_mflags}
 
 %install

@@ -192,10 +192,10 @@ rpm: clean file-list
 	if [ -e $(SPEC).spec ]; \
 	then \
 	  mkdir -p $(rpmsourcedir); \
-	  tar -C ../ -cf $(rpmsourcedir)/$(SPEC).tar \
-		$(shell printf " $(SUBNAME)/%s" $(shell cat files.list)) ; \
-	  gzip -f $(rpmsourcedir)/$(SPEC).tar ; \
-	  TAR_OPTIONS=--wildcards rpmbuild -v -ta $(rpmsourcedir)/$(SPEC).tar.gz ; \
+	  tar -czvf $(rpmsourcedir)/$(SPEC).tar.gz \
+		--transform "s,^,plugins/$(SPEC)/," $(shell cat files.list) ; \
+	  rpmbuild -ta $(rpmsourcedir)/$(SPEC).tar.gz ; \
+	  rm -f $(rpmsourcedir)/$(SPEC).tar.gz ; \
 	else \
 	  echo $(rpmerr); \
 	fi;
