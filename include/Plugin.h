@@ -77,13 +77,13 @@ class Plugin : public SmartMetPlugin, virtual private boost::noncopyable, privat
  private:
   const std::string mModuleName;
 
-  boost::scoped_ptr<PluginData> mPluginData;
-  boost::scoped_ptr<QueryResponseCache> mQueryCache;
+  std::unique_ptr<PluginData> mPluginData;
+  std::unique_ptr<QueryResponseCache> mQueryCache;
 
   /**
    *   @brief An object that reads actual requests and creates request objects
    */
-  boost::scoped_ptr<RequestFactory> mRequestFactory;
+  std::unique_ptr<RequestFactory> mRequestFactory;
 
   SmartMet::Spine::Reactor* mReactor;
 

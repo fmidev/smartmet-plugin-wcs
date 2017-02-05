@@ -3,7 +3,6 @@
 #include <engines/gis/CRSRegistry.h>
 #include <spine/ConfigBase.h>
 #include <libconfig.h++>
-#include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/utility.hpp>
 #include <string>
@@ -55,7 +54,7 @@ class Config : private boost::noncopyable, public SmartMet::Spine::ConfigBase
   std::vector<std::string> mCswLanguages;
   std::string mCswUri;
   std::string mCompoundcrsUri;
-  boost::scoped_ptr<Fmi::TemplateDirectory> mTemplateDirectory;
+  std::unique_ptr<Fmi::TemplateDirectory> mTemplateDirectory;
   std::string mXmlGrammarPoolDump;
   bool mValidateOutput;
 };

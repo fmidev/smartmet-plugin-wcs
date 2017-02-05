@@ -96,7 +96,7 @@ class PluginData : public boost::noncopyable
   boost::shared_ptr<Fmi::TemplateFormatterMT> mExceptionFormatter;
   boost::shared_ptr<Fmi::TemplateFormatterMT> mCtppDumpFormatter;
   boost::shared_ptr<Xml::ParserMT> mXmlParser;
-  boost::scoped_ptr<WcsCapabilities> mWcsCapabilities;
+  std::unique_ptr<WcsCapabilities> mWcsCapabilities;
   std::shared_ptr<NetcdfParamConfig> mNetcdfParamConfig;
 
   /**

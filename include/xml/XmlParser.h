@@ -4,7 +4,6 @@
 #include <stdexcept>
 #include <string>
 #include <boost/function.hpp>
-#include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/thread.hpp>
 #include <xercesc/parsers/XercesDOMParser.hpp>
@@ -79,7 +78,7 @@ class Parser : public xercesc::XercesDOMParser
                             const bool isRoot);
 
  private:
-  boost::scoped_ptr<SmartMet::Plugin::WCS::Xml::XmlErrorHandler> error_handler;
+  std::unique_ptr<SmartMet::Plugin::WCS::Xml::XmlErrorHandler> error_handler;
 
   /**
    *  @brief Root element callback for the current parse
@@ -103,8 +102,8 @@ class ParserMT : public boost::noncopyable
 
   const std::string grammar_pool_file_name;
   const bool stop_on_error;
-  boost::scoped_ptr<EntityResolver> entity_resolver;
-  boost::scoped_ptr<xercesc::XMLGrammarPool> grammar_pool;
+  std::unique_ptr<EntityResolver> entity_resolver;
+  std::unique_ptr<xercesc::XMLGrammarPool> grammar_pool;
   boost::thread_specific_ptr<Parser> t_parser;
 };
 
