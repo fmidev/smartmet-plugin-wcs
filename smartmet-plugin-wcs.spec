@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 17.2.2
+Version: 17.2.11
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -17,26 +17,26 @@ BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: libpqxx-devel
 BuildRequires: jsoncpp-devel
-BuildRequires: smartmet-library-spine-devel >= 17.2.1
+BuildRequires: smartmet-library-spine-devel >= 17.2.3
 BuildRequires: smartmet-library-gis-devel >= 17.1.18
-BuildRequires: smartmet-library-locus-devel >= 16.12.20
+BuildRequires: smartmet-library-locus-devel >= 17.2.3
 BuildRequires: smartmet-library-macgyver-devel >= 17.1.18
-BuildRequires: smartmet-engine-geonames-devel >= 17.1.27
+BuildRequires: smartmet-engine-geonames-devel >= 17.2.3
 BuildRequires: smartmet-engine-gis-devel >= 17.1.4
-BuildRequires: smartmet-engine-querydata-devel >= 17.1.26
+BuildRequires: smartmet-engine-querydata-devel >= 17.2.11
 BuildRequires: postgresql93-libs
 Requires: ctpp2
 Requires: libconfig
 Requires: libcurl
 Requires: libpqxx
 Requires: jsoncpp
-Requires: smartmet-library-locus >= 16.12.20
+Requires: smartmet-library-locus >= 17.2.3
 Requires: smartmet-library-macgyver >= 17.1.18
-Requires: smartmet-library-spine >= 17.2.1
+Requires: smartmet-library-spine >= 17.2.3
 Requires: smartmet-engine-gis >= 17.1.4
-Requires: smartmet-engine-geonames >= 17.1.27
+Requires: smartmet-engine-geonames >= 17.2.3
 Requires: smartmet-engine-gis >= 17.1.4
-Requires: smartmet-engine-querydata >= 17.1.26
+Requires: smartmet-engine-querydata >= 17.2.11
 Requires: smartmet-server >= 17.1.25
 Requires: xerces-c
 Requires: xqilla
@@ -86,6 +86,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Sat Feb 11 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.2.11-1.fmi
+- Repackaged due to newbase API changes
+
 * Thu Feb  2 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.2.2-1.fmi
 - Unified handling of apikeys
 
