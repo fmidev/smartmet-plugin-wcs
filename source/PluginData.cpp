@@ -1,5 +1,5 @@
 #include "PluginData.h"
-#include <macgyver/String.h>
+#include <macgyver/StringConversion.h>
 #include <macgyver/TimeParser.h>
 
 namespace SmartMet

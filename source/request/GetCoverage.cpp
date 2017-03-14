@@ -11,7 +11,7 @@
 #include <xercesc/util/Janitor.hpp>
 #include <xercesc/framework/MemBufInputSource.hpp>
 #include <spine/Convenience.h>
-#include <macgyver/String.h>
+#include <macgyver/StringConversion.h>
 #include <macgyver/TypeName.h>
 #include "ErrorResponseGenerator.h"
 #include "WcsConst.h"

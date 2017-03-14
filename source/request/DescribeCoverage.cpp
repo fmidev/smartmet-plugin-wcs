@@ -2,7 +2,7 @@
 #include "WcsConvenience.h"
 #include <boost/algorithm/string.hpp>
 #include <ctpp2/CDT.hpp>
-#include <macgyver/String.h>
+#include <macgyver/StringConversion.h>
 #include <macgyver/TypeName.h>
 #include "WcsConst.h"
 #include "WcsException.h"

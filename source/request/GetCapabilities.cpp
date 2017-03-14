@@ -2,7 +2,7 @@
 #include <boost/algorithm/string.hpp>
 #include <ctpp2/CDT.hpp>
 #include <macgyver/TypeName.h>
-#include <macgyver/String.h>
+#include <macgyver/StringConversion.h>
 #include "WcsConst.h"
 #include "WcsException.h"
 #include "QueryBase.h"

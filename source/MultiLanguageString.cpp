@@ -1,5 +1,5 @@
 #include "MultiLanguageString.h"
-#include <macgyver/String.h>
+#include <macgyver/StringConversion.h>
 #include <macgyver/TypeName.h>
 #include <boost/algorithm/string.hpp>
 #include <spine/Exception.h>

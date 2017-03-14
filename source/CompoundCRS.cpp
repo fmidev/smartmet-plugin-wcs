@@ -1,5 +1,5 @@
 #include "CompoundCRS.h"
-#include <macgyver/String.h>
+#include <macgyver/StringConversion.h>
 
 namespace SmartMet
 {

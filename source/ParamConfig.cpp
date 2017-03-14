@@ -8,7 +8,7 @@
 
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
-#include <macgyver/String.h>
+#include <macgyver/StringConversion.h>
 
 #include <fstream>
 

@@ -5,7 +5,7 @@
 #include "WcsConvenience.h"
 #include "UniqueTemporaryPath.h"
 #include <spine/ParameterFactory.h>
-#include <macgyver/String.h>
+#include <macgyver/StringConversion.h>
 
 namespace SmartMet
 {
