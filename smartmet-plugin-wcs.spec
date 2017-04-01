@@ -11,36 +11,21 @@ Source0: %{name}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: boost-devel
 BuildRequires: ctpp2-devel
+BuildRequires: jsoncpp-devel
 BuildRequires: libconfig-devel
 BuildRequires: libcurl-devel
-BuildRequires: xerces-c-devel
-BuildRequires: xqilla-devel
 BuildRequires: libpqxx-devel
-BuildRequires: jsoncpp-devel
-BuildRequires: smartmet-library-spine-devel >= 17.2.3
-BuildRequires: smartmet-library-gis-devel >= 17.1.18
-BuildRequires: smartmet-library-locus-devel >= 17.2.3
-BuildRequires: smartmet-library-macgyver-devel >= 17.1.18
+BuildRequires: netcdf-cxx-devel
+BuildRequires: postgresql93-libs
 BuildRequires: smartmet-engine-geonames-devel >= 17.2.3
 BuildRequires: smartmet-engine-gis-devel >= 17.1.4
 BuildRequires: smartmet-engine-querydata-devel >= 17.2.11
-BuildRequires: postgresql93-libs
-Requires: ctpp2
-Requires: libconfig
-Requires: libcurl
-Requires: libpqxx
-Requires: jsoncpp
-Requires: smartmet-library-locus >= 17.2.3
-Requires: smartmet-library-macgyver >= 17.1.18
-Requires: smartmet-library-spine >= 17.2.3
-Requires: smartmet-engine-gis >= 17.1.4
-Requires: smartmet-engine-geonames >= 17.2.3
-Requires: smartmet-engine-gis >= 17.1.4
-Requires: smartmet-engine-querydata >= 17.2.11
-Requires: smartmet-server >= 17.1.25
-Requires: xerces-c
-Requires: xqilla
-%if 0%{rhel} >= 7
+BuildRequires: smartmet-library-gis-devel >= 17.1.18
+BuildRequires: smartmet-library-locus-devel >= 17.2.3
+BuildRequires: smartmet-library-macgyver-devel >= 17.1.18
+BuildRequires: smartmet-library-spine-devel >= 17.2.3
+BuildRequires: xerces-c-devel
+BuildRequires: xqilla-devel
 Requires: boost-chrono
 Requires: boost-date-time
 Requires: boost-filesystem
@@ -49,7 +34,22 @@ Requires: boost-regex
 Requires: boost-serialization
 Requires: boost-system
 Requires: boost-thread
-%endif
+Requires: ctpp2
+Requires: jsoncpp
+Requires: libconfig
+Requires: libcurl
+Requires: libpqxx
+Requires: netcdf-cxx
+Requires: smartmet-engine-geonames >= 17.2.3
+Requires: smartmet-engine-gis >= 17.1.4
+Requires: smartmet-engine-gis >= 17.1.4
+Requires: smartmet-engine-querydata >= 17.2.11
+Requires: smartmet-library-locus >= 17.2.3
+Requires: smartmet-library-macgyver >= 17.1.18
+Requires: smartmet-library-spine >= 17.2.3
+Requires: smartmet-server >= 17.1.25
+Requires: xerces-c
+Requires: xqilla
 Provides: %{SPECNAME}
 
 %description
