@@ -102,7 +102,7 @@ std::pair<unsigned long, double> NetcdfResponse::solveNearestX(
     boost::shared_ptr<Engine::Querydata::QImpl> q, const double& xValue)
 {
   if (not q->isGrid())
-    WcsException(WcsException::NO_APPLICABLE_CODE, "Missing Grid.");
+    throw WcsException(WcsException::NO_APPLICABLE_CODE, "Missing Grid.");
 
   std::shared_ptr<Options> opt = std::dynamic_pointer_cast<Options>(ResponseBase::getOptions());
   if (not opt)
@@ -153,7 +153,7 @@ std::pair<unsigned long, double> NetcdfResponse::solveNearestY(
     boost::shared_ptr<Engine::Querydata::QImpl> q, const double& yValue)
 {
   if (not q->isGrid())
-    WcsException(WcsException::NO_APPLICABLE_CODE, "Missing Grid.");
+    throw WcsException(WcsException::NO_APPLICABLE_CODE, "Missing Grid.");
 
   std::shared_ptr<Options> opt = std::dynamic_pointer_cast<Options>(ResponseBase::getOptions());
   if (not opt)

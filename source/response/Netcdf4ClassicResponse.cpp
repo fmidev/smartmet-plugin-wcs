@@ -32,25 +32,25 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   {
     std::ostringstream msg;
     msg << "Data not found: '" << opt->getProducer() + "'.";
-    WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
+    throw WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
   }
 
   if (not q->firstLevel())
   {
     std::ostringstream msg;
     msg << "Level data not found: '" << opt->getProducer() + "'.";
-    WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
+    throw WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
   }
 
   if (not q->firstTime())
   {
     std::ostringstream msg;
     msg << "Time dimension not found: '" << opt->getProducer() + "'.";
-    WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
+    throw WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
   }
 
   if (not q->isGrid())
-    WcsException(WcsException::NO_APPLICABLE_CODE, "Missing Grid.");
+    throw WcsException(WcsException::NO_APPLICABLE_CODE, "Missing Grid.");
 
   boost::optional<Spine::Parameter> parameter =
       Spine::ParameterFactory::instance().parse(opt->getParameterName());
@@ -59,7 +59,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
     std::ostringstream msg;
     msg << "ParameterFactory can not parse '" << opt->getParameterName() << "' parameter of '"
         << opt->getProducer() << "' producer.";
-    WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
+    throw WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
   }
 
   if (not q->param(parameter->number()))
@@ -67,7 +67,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
     std::ostringstream msg;
     msg << "Producer '" << opt->getProducer() << "' data not found for '" << opt->getParameterName()
         << "' parameter\n";
-    WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
+    throw WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
   }
 
   std::vector<unsigned long> levelIds;
@@ -282,7 +282,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   {
     std::ostringstream msg;
     msg << "Parameter '" << parameterId << "' meta data configuration is missing";
-    WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
+    throw WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
   }
 
   for (unsigned long tId = 0; tId < timeIds.size(); tId++)
@@ -302,7 +302,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
       q->values(dataMatrix, dem, flags);
 
       if (dataMatrix.NX() != NX or dataMatrix.NY() != NY)
-        WcsException(WcsException::NO_APPLICABLE_CODE, "Data size error.");
+        throw WcsException(WcsException::NO_APPLICABLE_CODE, "Data size error.");
 
       for (unsigned long yId = minYId; yId <= maxYId; yId++)
       {
