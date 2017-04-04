@@ -49,18 +49,6 @@ std::string UniqueTemporaryPath::get() const
     throw Spine::Exception(BCP, "Return of UniqueTemporaryPath as a string failed.", NULL);
   }
 }
-
-const char* UniqueTemporaryPath::c_str() const
-{
-  try
-  {
-    return get().c_str();
-  }
-  catch (...)
-  {
-    throw Spine::Exception(BCP, "Return of UniqueTemporaryPath as a char array failed.", NULL);
-  }
-}
 }
 }
 }

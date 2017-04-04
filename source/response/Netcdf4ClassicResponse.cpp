@@ -319,11 +319,11 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   }
 
   UniqueTemporaryPath::Unique name1(new UniqueTemporaryPath());
-  NcFile dataFile(name1->c_str(), NcFile::FileMode::Replace, NULL, 0, NcFile::Netcdf4Classic);
+  NcFile dataFile(name1->get().c_str(), NcFile::FileMode::Replace, NULL, 0, NcFile::Netcdf4Classic);
   if (not dataFile.is_valid())
   {
     std::ostringstream msg;
-    msg << "Cannot create or open temporary path passed to NcFile object: '" << name1->c_str()
+    msg << "Cannot create or open temporary path passed to NcFile object: '" << name1->get().c_str()
         << "'.";
     throw WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
   }
@@ -413,7 +413,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   dataFile.close();
 
   std::ifstream ifs;
-  ifs.open(name1->c_str(), std::ifstream::in);
+  ifs.open(name1->get().c_str(), std::ifstream::in);
   if (ifs.is_open())
   {
     output << ifs.rdbuf();
@@ -423,7 +423,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
     output << "";
 
   // Delete file
-  std::remove(name1->c_str());
+  std::remove(name1->get().c_str());
 }
 }
 }

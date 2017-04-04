@@ -28,7 +28,6 @@ class UniqueTemporaryPath
   virtual ~UniqueTemporaryPath();
 
   std::string get() const;
-  const char* c_str() const;
 
  private:
   boost::filesystem::path mTempDirectoryPath;

@@ -43,7 +43,7 @@ void Netcdf4ClassicSampleResponse::get(std::ostream& output)
       dataOut[i][j] = 0.1 * i * NY + j;
 
   UniqueTemporaryPath::Unique name1(new UniqueTemporaryPath());
-  NcFile dataFile(name1->c_str(), NcFile::FileMode::Replace, NULL, 0, NcFile::Netcdf4Classic);
+  NcFile dataFile(name1->get().c_str(), NcFile::FileMode::Replace, NULL, 0, NcFile::Netcdf4Classic);
 
   dataFile.add_att("Conventions", "CF-1.6");
   dataFile.add_att("title", "Dummy data file");
@@ -100,7 +100,7 @@ void Netcdf4ClassicSampleResponse::get(std::ostream& output)
   dataFile.close();
 
   std::ifstream ifs;
-  ifs.open(name1->c_str(), std::ifstream::in);
+  ifs.open(name1->get().c_str(), std::ifstream::in);
   if (ifs.is_open())
   {
     output << ifs.rdbuf();
@@ -110,7 +110,7 @@ void Netcdf4ClassicSampleResponse::get(std::ostream& output)
     output << "";
 
   // Delete file
-  std::remove(name1->c_str());
+  std::remove(name1->get().c_str());
 }
 }
 }
