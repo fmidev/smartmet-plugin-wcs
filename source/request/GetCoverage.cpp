@@ -1,24 +1,24 @@
 #include "request/GetCoverage.h"
-#include <set>
+#include "ErrorResponseGenerator.h"
+#include "Options.h"
+#include "WcsConst.h"
+#include "WcsException.h"
+#include "response/Netcdf4ClassicResponse.h"
+#include "xml/XmlUtils.h"
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
+#include <macgyver/StringConversion.h>
+#include <macgyver/TypeName.h>
+#include <spine/Convenience.h>
 #include <xercesc/dom/DOM.hpp>
 #include <xercesc/dom/DOMException.hpp>
 #include <xercesc/dom/DOMXPathNSResolver.hpp>
 #include <xercesc/dom/DOMXPathResult.hpp>
-#include <xqilla/xqilla-dom3.hpp>
-#include <xercesc/util/Janitor.hpp>
 #include <xercesc/framework/MemBufInputSource.hpp>
-#include <spine/Convenience.h>
-#include <macgyver/StringConversion.h>
-#include <macgyver/TypeName.h>
-#include "ErrorResponseGenerator.h"
-#include "WcsConst.h"
-#include "WcsException.h"
-#include "xml/XmlUtils.h"
-#include "response/Netcdf4ClassicResponse.h"
-#include "Options.h"
+#include <xercesc/util/Janitor.hpp>
+#include <xqilla/xqilla-dom3.hpp>
+#include <set>
 
 namespace SmartMet
 {

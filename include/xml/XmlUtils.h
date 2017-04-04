@@ -1,15 +1,15 @@
 #pragma once
 
-#include <set>
-#include <string>
-#include <vector>
-#include <utility>
 #include <boost/shared_ptr.hpp>
 #include <xercesc/dom/DOMDocument.hpp>
 #include <xercesc/dom/DOMElement.hpp>
-#include <xercesc/dom/DOMNode.hpp>
 #include <xercesc/dom/DOMLSSerializer.hpp>
+#include <xercesc/dom/DOMNode.hpp>
 #include <xercesc/util/XMLString.hpp>
+#include <set>
+#include <string>
+#include <utility>
+#include <vector>
 
 namespace SmartMet
 {

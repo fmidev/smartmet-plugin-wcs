@@ -1,10 +1,10 @@
 #pragma once
 
-#include <list>
-#include <string>
+#include "XmlError.h"
 #include <xercesc/sax/ErrorHandler.hpp>
 #include <xercesc/sax/SAXParseException.hpp>
-#include "XmlError.h"
+#include <list>
+#include <string>
 
 namespace SmartMet
 {

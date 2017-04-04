@@ -1,10 +1,10 @@
 #include "ErrorResponseGenerator.h"
-#include <boost/algorithm/string.hpp>
-#include <boost/format.hpp>
-#include <boost/date_time/posix_time/posix_time.hpp>
-#include <spine/Convenience.h>
-#include <macgyver/TypeName.h>
 #include "PluginData.h"
+#include <boost/algorithm/string.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/format.hpp>
+#include <macgyver/TypeName.h>
+#include <spine/Convenience.h>
 
 namespace SmartMet
 {

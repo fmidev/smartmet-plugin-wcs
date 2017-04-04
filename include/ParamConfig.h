@@ -12,9 +12,9 @@
 #include <boost/filesystem.hpp>
 #include <boost/optional.hpp>
 
+#include <map>
 #include <string>
 #include <vector>
-#include <map>
 
 namespace SmartMet
 {
@@ -68,6 +68,7 @@ class ParamConfig
  protected:
   void addParamMetaItem(const ParamMetaItemType& paramItem);
   const FilePathType& getFilePath() const { return mFilePath; }
+
  private:
   ParamConfig(const ParamConfig&) = delete;
   ParamConfig& operator=(const ParamConfig& other) = delete;

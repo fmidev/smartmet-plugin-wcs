@@ -1,9 +1,9 @@
 #pragma once
 
+#include "PluginData.h"
+#include "RequestBase.h"
 #include <boost/shared_ptr.hpp>
 #include <macgyver/TemplateFormatterMT.h>
-#include "RequestBase.h"
-#include "PluginData.h"
 
 namespace SmartMet
 {
@@ -39,6 +39,7 @@ class GetCapabilities : public RequestBase
   void checkKvpAttributes(const SmartMet::Spine::HTTP::Request& httpRequest);
 
   const SupportedFormatsType& getSupportedFormats() const { return mSupportedFormats; }
+
  private:
   void checkVersions(const std::vector<std::string>& versions);
 

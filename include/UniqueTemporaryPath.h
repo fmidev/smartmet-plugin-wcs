@@ -1,7 +1,7 @@
 #pragma once
 
-#include <memory>
 #include <boost/filesystem.hpp>
+#include <memory>
 
 namespace SmartMet
 {

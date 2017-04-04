@@ -1,7 +1,7 @@
 #pragma once
 
-#include <boost/shared_ptr.hpp>
 #include <boost/optional.hpp>
+#include <boost/shared_ptr.hpp>
 #include <spine/ConfigBase.h>
 #include <set>
 
@@ -38,6 +38,7 @@ class CRSBase
   virtual ~CRSBase() {}
   inline const Abbrev& getAbbrev() const { return mAbbrev; }
   inline const Identifier& getIdentifier() const { return mIdentifier; }
+
  protected:
   void parse(boost::shared_ptr<SmartMet::Spine::ConfigBase> config, libconfig::Setting& setting);
   void setAbbrev(const Abbrev& abbrev);
@@ -53,6 +54,7 @@ class TemporalCRS : public CRSBase
  public:
   TemporalCRS(boost::shared_ptr<SmartMet::Spine::ConfigBase> config, libconfig::Setting& setting);
   virtual ~TemporalCRS() {}
+
  private:
   using ValidIdentifiers = std::set<CRSBase::Identifier>;
   ValidIdentifiers mValidIdentifiers = {
@@ -67,6 +69,7 @@ class VerticalCRS : public CRSBase
  public:
   VerticalCRS(boost::shared_ptr<SmartMet::Spine::ConfigBase> config, libconfig::Setting& setting);
   virtual ~VerticalCRS() {}
+
  private:
   using ValidIdentifiers = std::set<CRSBase::Identifier>;
   ValidIdentifiers mValidIdentifiers = {"http://www.opengis.net/def/crs/EPSG/0/5730",
@@ -86,6 +89,7 @@ class CompoundCRS
   inline const CRSType& getCrs() const { return mCrs; }
   inline const boost::optional<VerticalCRS>& getVerticalCRS() const { return mVerticalCRS; }
   inline const boost::optional<TemporalCRS>& getTemporalCRS() const { return mTemporalCRS; }
+
  private:
   std::string mCrs;
   boost::optional<VerticalCRS> mVerticalCRS;

@@ -1,11 +1,11 @@
 #include "Netcdf4ClassicResponse.h"
-#include "WcsException.h"
 #include "Options.h"
 #include "ParamConfig.h"
-#include "WcsConvenience.h"
 #include "UniqueTemporaryPath.h"
-#include <spine/ParameterFactory.h>
+#include "WcsConvenience.h"
+#include "WcsException.h"
 #include <macgyver/StringConversion.h>
+#include <spine/ParameterFactory.h>
 
 namespace SmartMet
 {

@@ -1,10 +1,10 @@
 #pragma once
 
-#include <exception>
+#include "WcsException.h"
 #include <boost/variant.hpp>
 #include <ctpp2/CDT.hpp>
 #include <spine/HTTP.h>
-#include "WcsException.h"
+#include <exception>
 
 namespace SmartMet
 {

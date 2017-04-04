@@ -1,13 +1,13 @@
 #include "RequestFactory.h"
-#include <sstream>
-#include <stdexcept>
+#include "DescribeCoverage.h"
+#include "GetCapabilities.h"
+#include "GetCoverage.h"
+#include "WcsException.h"
 #include <boost/algorithm/string.hpp>
 #include <macgyver/StringConversion.h>
 #include <macgyver/TypeName.h>
-#include "WcsException.h"
-#include "GetCapabilities.h"
-#include "DescribeCoverage.h"
-#include "GetCoverage.h"
+#include <sstream>
+#include <stdexcept>
 
 namespace SmartMet
 {

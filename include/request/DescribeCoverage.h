@@ -1,10 +1,10 @@
 #pragma once
 
+#include "PluginData.h"
+#include "RequestBase.h"
 #include <boost/shared_ptr.hpp>
 #include <engines/querydata/Engine.h>
 #include <macgyver/TemplateFormatterMT.h>
-#include "RequestBase.h"
-#include "PluginData.h"
 
 namespace SmartMet
 {
@@ -39,6 +39,7 @@ class DescribeCoverage : public RequestBase
   virtual int getResponseExpiresSeconds() const;
 
   const SupportedFormatsType& getSupportedFormats() const { return mSupportedFormats; }
+
  protected:
   void checkKvpAttributes(const SmartMet::Spine::HTTP::Request& request);
   void checkKvpAcceptLanguages(const SmartMet::Spine::HTTP::Request& httpRequest);

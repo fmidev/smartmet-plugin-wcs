@@ -1,9 +1,9 @@
 #pragma once
 
 #include "OptionsBase.h"
-#include <ostream>
-#include <memory>
 #include <spine/SmartMetEngine.h>
+#include <memory>
+#include <ostream>
 
 namespace SmartMet
 {
@@ -22,6 +22,7 @@ class ResponseBase
 
  protected:
   virtual std::shared_ptr<OptionsBase> getOptions() const { return mOptionsBase; }
+
  private:
   std::shared_ptr<OptionsBase> mOptionsBase;
 };

@@ -1,9 +1,9 @@
 #include "WcsCapabilities.h"
+#include <macgyver/TypeName.h>
+#include <spine/Convenience.h>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-#include <spine/Convenience.h>
-#include <macgyver/TypeName.h>
 
 namespace SmartMet
 {

@@ -263,8 +263,8 @@ ParamChangeTable readParamConfig(const boost::filesystem::path& configFilePath, 
   content.assign(std::istreambuf_iterator<char>(in), std::istreambuf_iterator<char>());
 
   if (!reader.parse(content, theJson))
-    throw std::runtime_error("Failed to parse '" + configFilePath.string() + "': " +
-                             reader.getFormattedErrorMessages());
+    throw std::runtime_error("Failed to parse '" + configFilePath.string() +
+                             "': " + reader.getFormattedErrorMessages());
 
   if (!theJson.isArray())
     throw std::runtime_error("Parameter configuration must contain an array of JSON objects");

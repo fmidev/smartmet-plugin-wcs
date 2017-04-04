@@ -1,13 +1,13 @@
 #pragma once
 
-#include <map>
-#include <string>
-#include <boost/function.hpp>
-#include <boost/shared_ptr.hpp>
-#include <xercesc/dom/DOMDocument.hpp>
-#include <spine/HTTP.h>
 #include "PluginData.h"
 #include "RequestBase.h"
+#include <boost/function.hpp>
+#include <boost/shared_ptr.hpp>
+#include <spine/HTTP.h>
+#include <xercesc/dom/DOMDocument.hpp>
+#include <map>
+#include <string>
 
 namespace SmartMet
 {

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "OptionsBase.h"
 #include "DimensionSubset.h"
-#include <xercesc/dom/DOMDocument.hpp>
-#include <engines/querydata/Producer.h>
+#include "OptionsBase.h"
 #include <engines/gis/CRSRegistry.h>
+#include <engines/querydata/Producer.h>
 #include <spine/Value.h>
+#include <xercesc/dom/DOMDocument.hpp>
 
 namespace SmartMet
 {
@@ -43,6 +43,7 @@ class Options : public OptionsBase
   const ParameterNameType& getParameterName() const { return mParameterName; }
   boost::shared_ptr<Transformation> getTransformation() const { return mTransformation; }
   SwapType getSwap() const { return mSwap; }
+
  protected:
  private:
   Options(const Options& other) = delete;

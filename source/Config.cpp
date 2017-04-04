@@ -1,10 +1,10 @@
 #include "Config.h"
-#include <sstream>
-#include <stdexcept>
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/format.hpp>
 #include <spine/Convenience.h>
+#include <sstream>
+#include <stdexcept>
 
 using namespace std;
 

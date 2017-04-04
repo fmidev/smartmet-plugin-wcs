@@ -1,10 +1,10 @@
 #include "xml/XmlEnvInit.h"
-#include <sstream>
-#include <stdexcept>
+#include <macgyver/TypeName.h>
+#include <xercesc/util/PlatformUtils.hpp>
 #include <xqilla/utils/UTF8Str.hpp>
 #include <xqilla/utils/XQillaPlatformUtils.hpp>
-#include <xercesc/util/PlatformUtils.hpp>
-#include <macgyver/TypeName.h>
+#include <sstream>
+#include <stdexcept>
 
 namespace SmartMet
 {

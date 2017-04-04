@@ -1,12 +1,12 @@
 #include "RequestBase.h"
-#include <sstream>
-#include <boost/algorithm/string.hpp>
-#include <macgyver/StringConversion.h>
-#include <macgyver/TypeName.h>
 #include "QueryBase.h"
 #include "WcsConst.h"
 #include "WcsException.h"
 #include "xml/XmlUtils.h"
+#include <boost/algorithm/string.hpp>
+#include <macgyver/StringConversion.h>
+#include <macgyver/TypeName.h>
+#include <sstream>
 
 namespace SmartMet
 {

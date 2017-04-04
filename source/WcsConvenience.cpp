@@ -1,12 +1,12 @@
 #include "WcsConvenience.h"
-#include <cctype>
-#include <sstream>
+#include "WcsException.h"
 #include <boost/algorithm/string.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/lambda/lambda.hpp>
-#include <macgyver/TimeParser.h>
 #include <boost/spirit/include/qi.hpp>
-#include "WcsException.h"
+#include <macgyver/TimeParser.h>
+#include <cctype>
+#include <sstream>
 
 namespace SmartMet
 {

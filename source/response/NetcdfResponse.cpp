@@ -1,9 +1,9 @@
 #include "NetcdfResponse.h"
-#include "WcsException.h"
-#include "WcsConvenience.h"
 #include "Options.h"
-#include <fstream>
+#include "WcsConvenience.h"
+#include "WcsException.h"
 #include <exception>
+#include <fstream>
 
 namespace SmartMet
 {

@@ -1,7 +1,5 @@
 
 #include "xml/XmlUtils.h"
-#include <sstream>
-#include <stdexcept>
 #include <boost/algorithm/string.hpp>
 #include <xercesc/dom/DOMImplementation.hpp>
 #include <xercesc/dom/DOMImplementationLS.hpp>
@@ -9,6 +7,8 @@
 #include <xercesc/dom/DOMText.hpp>
 #include <xercesc/util/Janitor.hpp>
 #include <xercesc/util/XMLUni.hpp>
+#include <sstream>
+#include <stdexcept>
 
 namespace SmartMet
 {

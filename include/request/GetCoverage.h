@@ -1,11 +1,11 @@
 #pragma once
 
-#include <xercesc/dom/DOMDocument.hpp>
-#include <macgyver/Cache.h>
+#include "Options.h"
+#include "PluginData.h"
 #include "QueryBase.h"
 #include "RequestBase.h"
-#include "PluginData.h"
-#include "Options.h"
+#include <macgyver/Cache.h>
+#include <xercesc/dom/DOMDocument.hpp>
 
 namespace SmartMet
 {
@@ -42,6 +42,7 @@ class GetCoverage : public RequestBase
 
   void setQueryCache(QueryResponseCache& queryCache) { mQueryCache = queryCache; }
   const SupportedFormatsType& getSupportedFormats() const { return mSupportedFormats; }
+
  protected:
   void checkXmlAttributes(const xercesc::DOMDocument& document);
   void checkKvpAttributes(const SmartMet::Spine::HTTP::Request& request);

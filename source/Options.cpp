@@ -1,18 +1,18 @@
-#include "WcsException.h"
 #include "Options.h"
 #include "WcsConst.h"
 #include "WcsConvenience.h"
+#include "WcsException.h"
 #include "xml/XmlUtils.h"
-#include <cmath>
-#include <typeindex>
-#include <boost/config/warning_disable.hpp>
 #include <boost/algorithm/string.hpp>
-#include <boost/spirit/include/qi.hpp>
+#include <boost/config/warning_disable.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/spirit/include/classic_ref_value_actor.hpp>
 #include <boost/spirit/include/phoenix_core.hpp>
 #include <boost/spirit/include/phoenix_operator.hpp>
 #include <boost/spirit/include/phoenix_stl.hpp>
-#include <boost/spirit/include/classic_ref_value_actor.hpp>
-#include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/spirit/include/qi.hpp>
+#include <cmath>
+#include <typeindex>
 
 namespace SmartMet
 {

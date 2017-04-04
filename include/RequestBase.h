@@ -1,11 +1,11 @@
 #pragma once
 
 #include "RequestType.h"
-#include <string>
-#include <set>
+#include <spine/HTTP.h>
 #include <xercesc/dom/DOMDocument.hpp>
 #include <xercesc/dom/DOMElement.hpp>
-#include <spine/HTTP.h>
+#include <set>
+#include <string>
 
 namespace SmartMet
 {
@@ -107,6 +107,7 @@ class RequestBase
   void setHttpStatus(SmartMet::Spine::HTTP::Status status) const;
 
   inline SmartMet::Spine::HTTP::Status getHttpStatus() const { return mStatus; }
+
  protected:
   /**
    *   @brief Verifies that a parameter name from HTTP request is correct

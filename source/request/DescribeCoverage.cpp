@@ -1,13 +1,13 @@
 #include "request/DescribeCoverage.h"
+#include "QueryBase.h"
+#include "WcsConst.h"
 #include "WcsConvenience.h"
+#include "WcsException.h"
+#include "xml/XmlUtils.h"
 #include <boost/algorithm/string.hpp>
 #include <ctpp2/CDT.hpp>
 #include <macgyver/StringConversion.h>
 #include <macgyver/TypeName.h>
-#include "WcsConst.h"
-#include "WcsException.h"
-#include "QueryBase.h"
-#include "xml/XmlUtils.h"
 
 namespace SmartMet
 {

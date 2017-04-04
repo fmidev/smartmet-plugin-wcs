@@ -1,9 +1,13 @@
 #include "Plugin.h"
-#include <memory>
-#include <iostream>
-#include <stdexcept>
-#include <typeinfo>
-#include <cxxabi.h>
+#include "ErrorResponseGenerator.h"
+#include "WcsConst.h"
+#include "WcsConvenience.h"
+#include "WcsException.h"
+#include "request/DescribeCoverage.h"
+#include "request/GetCapabilities.h"
+#include "request/GetCoverage.h"
+#include "xml/XmlParser.h"
+#include "xml/XmlUtils.h"
 #include <boost/algorithm/string.hpp>
 #include <boost/bind.hpp>
 #include <boost/date_time/gregorian/gregorian.hpp>
@@ -12,27 +16,22 @@
 #include <boost/format.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/ref.hpp>
-#include <xercesc/util/PlatformUtils.hpp>
 #include <ctpp2/CDT.hpp>
+#include <macgyver/TimeFormatter.h>
+#include <macgyver/TypeName.h>
 #include <spine/Convenience.h>
 #include <spine/FmiApiKey.h>
 #include <spine/Location.h>
-#include <spine/TableFormatterOptions.h>
-#include <macgyver/TypeName.h>
-#include <spine/SmartMet.h>
 #include <spine/Reactor.h>
-#include <macgyver/TimeFormatter.h>
+#include <spine/SmartMet.h>
 #include <spine/TableFormatterFactory.h>
-#include <macgyver/TypeName.h>
-#include "ErrorResponseGenerator.h"
-#include "request/GetCapabilities.h"
-#include "request/GetCoverage.h"
-#include "request/DescribeCoverage.h"
-#include "WcsConst.h"
-#include "WcsConvenience.h"
-#include "WcsException.h"
-#include "xml/XmlParser.h"
-#include "xml/XmlUtils.h"
+#include <spine/TableFormatterOptions.h>
+#include <xercesc/util/PlatformUtils.hpp>
+#include <cxxabi.h>
+#include <iostream>
+#include <memory>
+#include <stdexcept>
+#include <typeinfo>
 
 using namespace std;
 using namespace boost::posix_time;
@@ -73,11 +72,11 @@ void Plugin::init()
       throw std::runtime_error(msg.str());
     }
 
-    mRequestFactory->registerRequestType(
-                       "GetCapabilities",
-                       RequestType::GET_CAPABILITIES,
-                       boost::bind(&Plugin::parseKvpGetCapabilitiesRequest, this, _1),
-                       boost::bind(&Plugin::parseXmlGetCapabilitiesRequest, this, _1, _2))
+    mRequestFactory
+        ->registerRequestType("GetCapabilities",
+                              RequestType::GET_CAPABILITIES,
+                              boost::bind(&Plugin::parseKvpGetCapabilitiesRequest, this, _1),
+                              boost::bind(&Plugin::parseXmlGetCapabilitiesRequest, this, _1, _2))
         .registerRequestType("DescribeCoverage",
                              RequestType::DESCRIBE_COVERAGE,
                              boost::bind(&Plugin::parseKvpDescribeCoverageRequest, this, _1),
@@ -169,6 +168,7 @@ class Plugin::RequestResult : public Spine::HTTP::ContentStreamer
   std::stringstream& getOutput() { return mOutput; }
   void setResultStatus(const SmartMet::Spine::HTTP::Status& status) { mStatus = status; }
   inline const SmartMet::Spine::HTTP::Status& getResultStatus() const { return mStatus; }
+
  private:
   std::stringstream mOutput;
   boost::optional<int> mExpiresSeconds;

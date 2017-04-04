@@ -1,8 +1,8 @@
 #include "xml/XmlErrorHandler.h"
-#include <sstream>
-#include <boost/format.hpp>
 #include "xml/XmlError.h"
 #include "xml/XmlUtils.h"
+#include <boost/format.hpp>
+#include <sstream>
 
 namespace SmartMet
 {

@@ -1,5 +1,5 @@
-#include <string>
 #include "DataSetDef.h"
+#include <string>
 namespace SmartMet
 {
 namespace Plugin
@@ -38,6 +38,7 @@ class CoverageDescription : protected AbstractGeometry
   void setProducer(const ProducerType& producer) { mProducer = producer; };
   void setParameterName(const ParameterNameType& name) { mParameterName = name; }
   void setDataSetDef(const boost::shared_ptr<DataSetDef> dataSetDef) { mDataSetDef = dataSetDef; }
+
  private:
   ProducerType mProducer;
   ParameterNameType mParameterName;

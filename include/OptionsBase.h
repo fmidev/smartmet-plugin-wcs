@@ -11,6 +11,7 @@ class OptionsBase
  public:
   OptionsBase() {}
   virtual ~OptionsBase() {}
+
  protected:
  private:
   OptionsBase(const OptionsBase& other) = delete;

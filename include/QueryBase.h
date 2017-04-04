@@ -1,8 +1,8 @@
 #pragma once
 
+#include <boost/optional/optional.hpp>
 #include <ostream>
 #include <string>
-#include <boost/optional/optional.hpp>
 
 namespace SmartMet
 {

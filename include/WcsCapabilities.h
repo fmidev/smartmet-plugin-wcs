@@ -1,13 +1,13 @@
 #pragma once
 
+#include "Coverage.h"
+#include "RequestType.h"
+#include <boost/date_time/posix_time/posix_time.hpp>
+#include <spine/Thread.h>
 #include <map>
 #include <set>
 #include <string>
 #include <vector>
-#include <spine/Thread.h>
-#include <boost/date_time/posix_time/posix_time.hpp>
-#include "Coverage.h"
-#include "RequestType.h"
 
 namespace SmartMet
 {

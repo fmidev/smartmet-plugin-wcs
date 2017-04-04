@@ -1,22 +1,22 @@
 #pragma once
 
-#include <spine/HTTP.h>
-#include <spine/Parameter.h>
-#include <spine/SmartMet.h>
-#include <spine/Reactor.h>
-#include <spine/Value.h>
-#include <newbase/NFmiParameterName.h>
-#include <newbase/NFmiPoint.h>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/optional.hpp>
-#include <libconfig.h++>
+#include <gdal/ogr_spatialref.h>
+#include <newbase/NFmiParameterName.h>
+#include <newbase/NFmiPoint.h>
+#include <spine/HTTP.h>
+#include <spine/Parameter.h>
+#include <spine/Reactor.h>
+#include <spine/SmartMet.h>
+#include <spine/Value.h>
 #include <iostream>
+#include <libconfig.h++>
 #include <limits>
 #include <stdexcept>
 #include <string>
 #include <vector>
-#include <gdal/ogr_spatialref.h>
 
 // FIXME: update compiler versions for which we need __attribute__((__may_alias__)) as needed.
 #if defined(__GNUC__)

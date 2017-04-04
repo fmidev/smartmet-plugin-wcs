@@ -2,11 +2,11 @@
 
 #include "CompoundCRS.h"
 #include "MultiLanguageString.h"
-#include <boost/shared_ptr.hpp>
 #include <boost/optional.hpp>
-#include <spine/ConfigBase.h>
-#include <engines/querydata/Engine.h>
+#include <boost/shared_ptr.hpp>
 #include <engines/gis/Engine.h>
+#include <engines/querydata/Engine.h>
+#include <spine/ConfigBase.h>
 
 namespace SmartMet
 {
@@ -48,6 +48,7 @@ class Dataset
   inline const Id& getId() const { return mId; }
   inline const boost::optional<Uuid>& getUuid() const { return mUuid; }
   inline const boost::optional<Ns>& getIdNs() const { return mIdNs; }
+
  private:
   Id mId;
   boost::optional<Ns> mIdNs;

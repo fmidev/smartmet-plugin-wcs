@@ -1,14 +1,14 @@
 #pragma once
 
-#include <list>
-#include <stdexcept>
-#include <string>
+#include "XmlError.h"
+#include "XmlErrorHandler.h"
 #include <boost/function.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/thread.hpp>
 #include <xercesc/parsers/XercesDOMParser.hpp>
-#include "XmlError.h"
-#include "XmlErrorHandler.h"
+#include <list>
+#include <stdexcept>
+#include <string>
 
 namespace SmartMet
 {

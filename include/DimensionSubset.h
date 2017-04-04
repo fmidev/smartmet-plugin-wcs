@@ -1,9 +1,9 @@
 #pragma once
 
-#include <xercesc/dom/DOMDocument.hpp>
-#include <engines/querydata/Producer.h>
 #include <engines/gis/CRSRegistry.h>
+#include <engines/querydata/Producer.h>
 #include <spine/Value.h>
+#include <xercesc/dom/DOMDocument.hpp>
 
 namespace SmartMet
 {
@@ -21,6 +21,7 @@ class Element
   virtual ~Element() {}
   const Value& getValue() const { return mValue; }
   const NameType& getName() const { return mName; }
+
  private:
   Value mValue;
   NameType mName;

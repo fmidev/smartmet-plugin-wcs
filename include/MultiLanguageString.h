@@ -1,9 +1,9 @@
 #pragma once
 
-#include <map>
-#include <string>
-#include <memory>
 #include <spine/ConfigBase.h>
+#include <map>
+#include <memory>
+#include <string>
 
 namespace SmartMet
 {
@@ -31,6 +31,7 @@ class MultiLanguageString
   const Message& get(const Language& language) const;
   inline Language getDefaultLanguage() const { return mDefaultLanguage; }
   inline const Content& getContent() const { return mData; }
+
  private:
   const Language mDefaultLanguage;
   Content mData;
