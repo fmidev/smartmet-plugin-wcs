@@ -33,7 +33,7 @@ void NetcdfResponse::setEngine(const Spine::SmartMetEngine* engine)
   }
 }
 
-void NetcdfResponse::setParamConfig(const std::shared_ptr<ParamConfig> paramConfig)
+void NetcdfResponse::setParamConfig(const ParamConfig::Shared paramConfig)
 {
   mParamConfig = std::dynamic_pointer_cast<NetcdfParamConfig>(paramConfig);
   if (not mParamConfig)
@@ -44,17 +44,17 @@ void NetcdfResponse::setParamConfig(const std::shared_ptr<ParamConfig> paramConf
   }
 }
 
-std::pair<unsigned long, float> NetcdfResponse::solveNearestLevel(
-    boost::shared_ptr<Engine::Querydata::QImpl> q, const float& levelValue)
+NetcdfResponse::IdValueZPair NetcdfResponse::solveNearestLevel(QdataShared q,
+                                                               const ValueZ& levelValue)
 {
   q->firstLevel();
-  unsigned long nearestLevelIndex = q->levelIndex();
-  float nearestLevelValue = q->levelValue();
-  float distanceToNearestLevel = std::fabs(nearestLevelValue - levelValue);
+  Id nearestLevelIndex = q->levelIndex();
+  ValueZ nearestLevelValue = q->levelValue();
+  ValueZ distanceToNearestLevel = std::fabs(nearestLevelValue - levelValue);
   q->resetLevel();
   while (q->nextLevel())
   {
-    float distanceCandidate = std::fabs(q->levelValue() - levelValue);
+    ValueZ distanceCandidate = std::fabs(q->levelValue() - levelValue);
     if (distanceCandidate < distanceToNearestLevel)
     {
       distanceToNearestLevel = distanceCandidate;
@@ -69,13 +69,13 @@ std::pair<unsigned long, float> NetcdfResponse::solveNearestLevel(
   return std::make_pair(nearestLevelIndex, nearestLevelValue);
 }
 
-std::pair<unsigned long, boost::posix_time::ptime> NetcdfResponse::solveNearestTime(
-    boost::shared_ptr<Engine::Querydata::QImpl> q, const boost::posix_time::ptime& timeValue)
+NetcdfResponse::IdValueTPair NetcdfResponse::solveNearestTime(QdataShared q,
+                                                              const ValueT& timeValue)
 {
   q->firstTime();
-  auto nearestTimeIndex = q->timeIndex();
-  auto nearestTimeValue = q->validTime();
-  boost::posix_time::ptime t = q->validTime();
+  Id nearestTimeIndex = q->timeIndex();
+  ValueT nearestTimeValue = q->validTime();
+  ValueT t = q->validTime();
   unsigned long distanceToNearestTime =
       std::abs(boost::posix_time::time_duration(t - timeValue).total_seconds());
   q->resetTime();
@@ -98,13 +98,12 @@ std::pair<unsigned long, boost::posix_time::ptime> NetcdfResponse::solveNearestT
   return std::make_pair(nearestTimeIndex, nearestTimeValue);
 }
 
-std::pair<unsigned long, double> NetcdfResponse::solveNearestX(
-    boost::shared_ptr<Engine::Querydata::QImpl> q, const double& xValue)
+NetcdfResponse::IdValueXPair NetcdfResponse::solveNearestX(QdataShared q, const ValueX& xValue)
 {
   if (not q->isGrid())
     throw WcsException(WcsException::NO_APPLICABLE_CODE, "Missing Grid.");
 
-  std::shared_ptr<Options> opt = std::dynamic_pointer_cast<Options>(ResponseBase::getOptions());
+  Options::Shared opt = std::dynamic_pointer_cast<Options>(ResponseBase::getOptions());
   if (not opt)
     throw std::runtime_error("Cannot cast query options object from OptionsBase to Options.");
 
@@ -121,18 +120,18 @@ std::pair<unsigned long, double> NetcdfResponse::solveNearestX(
   auto yNumber = q->grid().YNumber();
 
   // Choose a line in the midle of grid (y-direction).
-  unsigned long startId = yNumber / 2 * xNumber;
-  unsigned long id = startId;
+  Id startId = yNumber / 2 * xNumber;
+  Id id = startId;
 
   auto nearestLocIndex = startId;
   auto nearestLocValue = q->latLon(startId);
   NFmiPoint tLoc = swap(transformation->transform(swap(nearestLocValue, true)), swapCoord);
-  double distanceToNearestLoc = std::abs(tLoc.X() - xValue);
+  ValueX distanceToNearestLoc = std::abs(tLoc.X() - xValue);
 
   while (id < startId + xNumber)
   {
     tLoc = swap(transformation->transform(swap(q->latLon(id), true)), swapCoord);
-    double distanceCandidate = std::abs(tLoc.X() - xValue);
+    ValueX distanceCandidate = std::abs(tLoc.X() - xValue);
     if (distanceCandidate < distanceToNearestLoc)
     {
       distanceToNearestLoc = distanceCandidate;
@@ -149,13 +148,12 @@ std::pair<unsigned long, double> NetcdfResponse::solveNearestX(
   return std::make_pair(nearestLocIndex - startId, nearestLocValue.X());
 }
 
-std::pair<unsigned long, double> NetcdfResponse::solveNearestY(
-    boost::shared_ptr<Engine::Querydata::QImpl> q, const double& yValue)
+NetcdfResponse::IdValueYPair NetcdfResponse::solveNearestY(QdataShared q, const ValueY& yValue)
 {
   if (not q->isGrid())
     throw WcsException(WcsException::NO_APPLICABLE_CODE, "Missing Grid.");
 
-  std::shared_ptr<Options> opt = std::dynamic_pointer_cast<Options>(ResponseBase::getOptions());
+  Options::Shared opt = std::dynamic_pointer_cast<Options>(ResponseBase::getOptions());
   if (not opt)
     throw std::runtime_error("Cannot cast query options object from OptionsBase to Options.");
 
@@ -167,21 +165,21 @@ std::pair<unsigned long, double> NetcdfResponse::solveNearestY(
 
   q->firstTime();
   q->firstLevel();
-  auto xNumber = q->grid().XNumber();
-  auto yNumber = q->grid().YNumber();
-  auto maxNumber = xNumber * yNumber;
+  Id xNumber = q->grid().XNumber();
+  Id yNumber = q->grid().YNumber();
+  Id maxNumber = xNumber * yNumber;
 
-  unsigned long startId = xNumber / 2;
-  unsigned long id = startId;
+  Id startId = xNumber / 2;
+  Id id = startId;
 
-  auto nearestLocIndex = startId;
-  auto nearestLocValue = q->latLon(startId);
+  Id nearestLocIndex = startId;
+  NFmiPoint nearestLocValue = q->latLon(startId);
   NFmiPoint tLoc = swap(transformation->transform(swap(nearestLocValue, true)), swapCoord);
-  double distanceToNearestLoc = std::abs(tLoc.Y() - yValue);
+  ValueY distanceToNearestLoc = std::abs(tLoc.Y() - yValue);
   while (id < maxNumber)
   {
     tLoc = swap(transformation->transform(swap(q->latLon(id), true)), swapCoord);
-    double distanceCandidate = std::abs(tLoc.Y() - yValue);
+    ValueY distanceCandidate = std::abs(tLoc.Y() - yValue);
     if (distanceCandidate < distanceToNearestLoc)
     {
       distanceToNearestLoc = distanceCandidate;
@@ -198,11 +196,11 @@ std::pair<unsigned long, double> NetcdfResponse::solveNearestY(
   return std::make_pair((nearestLocIndex / xNumber), nearestLocValue.Y());
 }
 
-NetcdfResponse::RangeZ NetcdfResponse::solveRangeZ(boost::shared_ptr<Engine::Querydata::QImpl> q)
+NetcdfResponse::RangeZ NetcdfResponse::solveRangeZ(QdataShared q)
 {
   q->firstLevel();
-  double low = q->levelValue();
-  double high = low;
+  ValueZ low = q->levelValue();
+  ValueZ high = low;
   while (q->nextLevel())
     high = q->levelValue();
   if (low > high)
@@ -211,11 +209,11 @@ NetcdfResponse::RangeZ NetcdfResponse::solveRangeZ(boost::shared_ptr<Engine::Que
   return std::make_pair(low, high);
 }
 
-NetcdfResponse::RangeT NetcdfResponse::solveRangeT(boost::shared_ptr<Engine::Querydata::QImpl> q)
+NetcdfResponse::RangeT NetcdfResponse::solveRangeT(QdataShared q)
 {
   q->firstTime();
-  auto low = q->validTime();
-  auto high = q->validTime();
+  ValueT low = q->validTime();
+  ValueT high = q->validTime();
   q->resetTime();
   while (q->nextTime())
   {

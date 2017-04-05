@@ -15,15 +15,14 @@ namespace WCS
 {
 void Netcdf4ClassicResponse::get(std::ostream& output)
 {
-  const Engine::Querydata::Engine* querydata =
-      dynamic_cast<const Engine::Querydata::Engine*>(getEngine());
+  const auto querydata = dynamic_cast<const Engine::Querydata::Engine*>(getEngine());
   if (not querydata)
     throw std::runtime_error("Cast from SmartMetEngine to Querydata failded.");
 
   if (not getOptions())
     throw std::runtime_error("Options object is not set.");
 
-  std::shared_ptr<Options> opt = std::dynamic_pointer_cast<Options>(getOptions());
+  auto opt = std::dynamic_pointer_cast<Options>(getOptions());
   if (not opt)
     throw std::runtime_error("Cannot cast query options object from OptionsBase to Options.");
 
@@ -302,10 +301,12 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
               << "\nGridSizeY: " << q->grid().YNumber() << "\n";
   }
 
+  unsigned long tDelta = t.size();
+
   boost::shared_ptr<float[]> xc(new float[xDelta * yDelta]);
   boost::shared_ptr<float[]> yc(new float[xDelta * yDelta]);
   boost::shared_ptr<float[]> z(new float[zDelta]);
-  boost::shared_ptr<float[]> dataOut(new float[xDelta * yDelta * zDelta * t.size()]);
+  boost::shared_ptr<float[]> dataOut(new float[xDelta * yDelta * zDelta * tDelta]);
 
   auto transformation = opt->getTransformation();
 
@@ -424,7 +425,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
     throw std::runtime_error("NetCDF grid_mapping is not configured");
   }
 
-  const NcDim* timeDim = dataFile.add_dim("time", t.size());
+  const NcDim* timeDim = dataFile.add_dim("time", tDelta);
   var = dataFile.add_var("time", ncInt, timeDim);
   var->add_att("long_name", "time");
   var->add_att("calendar", "gregorian");
@@ -433,7 +434,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
                    .append(Fmi::to_iso_string(q->originTime().PosixTime()))
                    .append("Z")
                    .c_str());
-  var->put(t.data(), t.size());
+  var->put(t.data(), tDelta);
 
   const NcDim* levelDim = dataFile.add_dim("level", zDelta);
   var = dataFile.add_var("level", ncType, levelDim);
@@ -476,7 +477,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   if (paramMetaItem->mLongName)
     var->add_att("long_name", paramMetaItem->mLongName.get().c_str());
 
-  var->put(dataOut.get(), t.size(), zDelta, yDelta, xDelta);
+  var->put(dataOut.get(), tDelta, zDelta, yDelta, xDelta);
 
   dataFile.close();
 

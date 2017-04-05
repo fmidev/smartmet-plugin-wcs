@@ -56,6 +56,7 @@ ParamChangeTable readParamConfig(const boost::filesystem::path& configFilePath, 
 class ParamConfig
 {
  public:
+  using Shared = std::shared_ptr<ParamConfig>;
   using FilePathType = std::string;
   using ParamIdType = unsigned long;
   using ParamMetaItemType = ParamChangeItem;

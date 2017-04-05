@@ -16,6 +16,7 @@ namespace WCS
 class Options : public OptionsBase
 {
  public:
+  using Shared = std::shared_ptr<Options>;
   using NameType = std::string;
   using DimensionSliceMapType = std::map<NameType, DimensionSlice>;
   using DimensionTrimMapType = std::map<NameType, DimensionTrim>;
