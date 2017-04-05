@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExceptionReport xmlns="http://www.opengis.net/ows/2.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/ows/2.0 http://schemas.opengis.net/ows/2.0/owsExceptionReport.xsd"
+  version="2.0.0">
+
+
+  <Exception exceptionCode="InvalidParameterValue"
+                   locator="DimensionSlice">
+    <ExceptionText>SlicePoint &apos;2014-Jul-28 00:59:00&apos; is out of t range [2014-Jul-28 01:00:00,2014-Jul-28 03:00:00]</ExceptionText>
+    
+  </Exception>
+
+</ExceptionReport>

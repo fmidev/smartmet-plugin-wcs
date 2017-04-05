@@ -70,19 +70,43 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
     throw WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
   }
 
+  auto rangeZ = solveRangeZ(q);
+  q->firstLevel();
+
   std::vector<unsigned long> levelIds;
   boost::optional<DimensionTrim> trim;
   boost::optional<DimensionSlice> slice;
 
   if (slice = opt->getDimensionSlice("z"))
   {
-    auto nearestLevel = solveNearestLevel(q, slice->get("SlicePoint").get_double());
+    const double sPoint = slice->get("SlicePoint").get_double();
+    if (sPoint < rangeZ.first or sPoint > rangeZ.second)
+    {
+      std::ostringstream msg;
+      msg << "SlicePoint '" << sPoint << "' is out of z range [" << rangeZ.first << ","
+          << rangeZ.second << "]";
+      WcsException wcsException(WcsException::INVALID_PARAMETER_VALUE, msg.str());
+      wcsException.setLocation("DimensionSlice");
+      throw wcsException;
+    }
+    const auto nearestLevel = solveNearestLevel(q, sPoint);
     levelIds.push_back(nearestLevel.first);
   }
   else if (trim = opt->getDimensionTrim("z"))
   {
-    auto nearestLow = solveNearestLevel(q, trim->get("TrimLow").get_double());
-    auto nearesthigh = solveNearestLevel(q, trim->get("TrimHigh").get_double());
+    const auto low = trim->get("TrimLow").get_double();
+    const auto high = trim->get("TrimHigh").get_double();
+    if (high < rangeZ.first or low > rangeZ.second)
+    {
+      std::ostringstream msg;
+      msg << "DimensionTrim range '[" << low << "," << high << "]' is out of z range ["
+          << rangeZ.first << "," << rangeZ.second << "]";
+      WcsException wcsException(WcsException::INVALID_PARAMETER_VALUE, msg.str());
+      wcsException.setLocation("DimensionTrim");
+      throw wcsException;
+    }
+    auto nearestLow = solveNearestLevel(q, low);
+    auto nearesthigh = solveNearestLevel(q, high);
     for (auto id = nearestLow.first; id <= nearesthigh.first; ++id)
       levelIds.push_back(id);
   }
@@ -102,20 +126,28 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   unsigned long yDelta = NY;
   unsigned long zDelta = levelIds.size();
 
+  const auto& qWgs84Envelope = q->getWGS84Envelope();
+  const auto& rangeLon = qWgs84Envelope.getRangeLon();
+
   if (slice = opt->getDimensionSlice("x"))
   {
-    auto nearestLoc = solveNearestX(q, slice->get("SlicePoint").get_double());
+    const auto step = (rangeLon.getMax() - rangeLon.getMin()) / maxXId;
+    const Engine::Querydata::Range range(rangeLon.getMin() - step, rangeLon.getMax() + step);
+    const auto sPoint = slice->get("SlicePoint").get_double();
+    if (sPoint < range.getMin() or sPoint > range.getMax())
+    {
+      std::ostringstream msg;
+      msg << "SlicePoint '" << sPoint << "' is out of x range [" << range.getMin() << ","
+          << range.getMax() << "]";
+      WcsException wcsException(WcsException::INVALID_PARAMETER_VALUE, msg.str());
+      wcsException.setLocation("DimensionSlice");
+      throw wcsException;
+    }
+
+    auto nearestLoc = solveNearestX(q, sPoint);
     minXId = nearestLoc.first;
     maxXId = nearestLoc.first;
     xDelta = maxXId - minXId + 1;
-
-    if (getDebugLevel() > 2)
-    {
-      std::ostringstream msg;
-      msg << "\nDimensionSlice 'x' axis."
-          << " GridID=" << nearestLoc.first << " Value=" << nearestLoc.second << "\n";
-      std::cout << msg.str() << "\n";
-    }
   }
   else if (trim = opt->getDimensionTrim("x"))
   {
@@ -127,35 +159,45 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
       low = high;
       high = tmp;
     }
+
+    if (high < rangeLon.getMin() or low > rangeLon.getMax())
+    {
+      std::ostringstream msg;
+      msg << "DimensionTrim range '[" << low << "," << high << "]' is out of x range ["
+          << rangeLon.getMin() << "," << rangeLon.getMax() << "]";
+      WcsException wcsException(WcsException::INVALID_PARAMETER_VALUE, msg.str());
+      wcsException.setLocation("DimensionTrim");
+      throw wcsException;
+    }
+
     auto nearestLow = solveNearestX(q, low);
     auto nearestHigh = solveNearestX(q, high);
     minXId = nearestLow.first;
     maxXId = nearestHigh.first;
     xDelta = maxXId - minXId + 1;
-
-    if (getDebugLevel() > 2)
-    {
-      std::ostringstream msg;
-      msg << "\nDimensionTrim 'x' axis."
-          << " GridID=" << nearestLow.first << " Value=" << nearestLow.second
-          << " GridID=" << nearestHigh.first << " Value=" << nearestHigh.second << "\n";
-      std::cout << msg.str() << "\n";
-    }
   }
+
+  const auto& rangeLat = qWgs84Envelope.getRangeLat();
 
   if (slice = opt->getDimensionSlice("y"))
   {
-    auto nearestLoc = solveNearestY(q, slice->get("SlicePoint").get_double());
+    const auto step = (rangeLat.getMax() - rangeLat.getMin()) / maxYId;
+    const Engine::Querydata::Range range(rangeLat.getMin() - step, rangeLat.getMax() + step);
+    const auto sPoint = slice->get("SlicePoint").get_double();
+    if (sPoint < range.getMin() or sPoint > range.getMax())
+    {
+      std::ostringstream msg;
+      msg << "SlicePoint '" << sPoint << "' is out of y range [" << range.getMin() << ","
+          << range.getMax() << "]";
+      WcsException wcsException(WcsException::INVALID_PARAMETER_VALUE, msg.str());
+      wcsException.setLocation("DimensionSlice");
+      throw wcsException;
+    }
+
+    auto nearestLoc = solveNearestY(q, sPoint);
     minYId = nearestLoc.first;
     maxYId = nearestLoc.first;
     yDelta = maxYId - minYId + 1;
-    if (getDebugLevel() > 2)
-    {
-      std::ostringstream msg;
-      msg << "DimensionSlice 'y' axis."
-          << " GridID=" << nearestLoc.first << " Value=" << nearestLoc.second << "\n";
-      std::cout << msg.str() << "\n";
-    }
   }
   else if (trim = opt->getDimensionTrim("y"))
   {
@@ -167,28 +209,42 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
       low = high;
       high = tmp;
     }
+
+    if (high < rangeLat.getMin() or low > rangeLat.getMax())
+    {
+      std::ostringstream msg;
+      msg << "DimensionTrim range '[" << low << "," << high << "]' is out of y range ["
+          << rangeLat.getMin() << "," << rangeLat.getMax() << "]";
+      WcsException wcsException(WcsException::INVALID_PARAMETER_VALUE, msg.str());
+      wcsException.setLocation("DimensionTrim");
+      throw wcsException;
+    }
     auto nearestLow = solveNearestY(q, low);
     auto nearestHigh = solveNearestY(q, high);
     minYId = nearestLow.first;
     maxYId = nearestHigh.first;
     yDelta = maxYId - minYId + 1;
-
-    if (getDebugLevel() > 2)
-    {
-      std::ostringstream msg;
-      msg << "\nDimensionTrim 'y' axis."
-          << " GridID=" << nearestLow.first << " Value=" << nearestLow.second
-          << " GridID=" << nearestHigh.first << " Value=" << nearestHigh.second << "\n";
-      std::cout << msg.str() << "\n";
-    }
   }
+
+  std::pair<boost::posix_time::ptime, boost::posix_time::ptime> rangeT = solveRangeT(q);
 
   std::vector<long> t;
   std::vector<unsigned long> timeIds;
   if (slice = opt->getDimensionSlice("t"))
   {
+    const auto sPoint = slice->get("SlicePoint").get_ptime();
+    if (sPoint < rangeT.first or sPoint > rangeT.second)
+    {
+      std::ostringstream msg;
+      msg << "SlicePoint '" << sPoint << "' is out of t range [" << rangeT.first << ","
+          << rangeT.second << "]";
+      WcsException wcsException(WcsException::INVALID_PARAMETER_VALUE, msg.str());
+      wcsException.setLocation("DimensionSlice");
+      throw wcsException;
+    }
+
     // Return only the nearest time slice
-    auto nearestTime = solveNearestTime(q, slice->get("SlicePoint").get_ptime());
+    auto nearestTime = solveNearestTime(q, sPoint);
     q->firstLevel();
     q->resetTime();
     if (not q->timeIndex(nearestTime.first))
@@ -199,8 +255,20 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   }
   else if (trim = opt->getDimensionTrim("t"))
   {
-    auto nearestLow = solveNearestTime(q, trim->get("TrimLow").get_ptime());
-    auto nearestHigh = solveNearestTime(q, trim->get("TrimHigh").get_ptime());
+    auto low = trim->get("TrimLow").get_ptime();
+    auto high = trim->get("TrimHigh").get_ptime();
+    if (high < rangeT.first or low > rangeT.second)
+    {
+      std::ostringstream msg;
+      msg << "DimensionTrim range '[" << low << "," << high << "]' is out of t range ["
+          << rangeT.first << "," << rangeT.second << "]";
+      WcsException wcsException(WcsException::INVALID_PARAMETER_VALUE, msg.str());
+      wcsException.setLocation("DimensionTrim");
+      throw wcsException;
+    }
+
+    auto nearestLow = solveNearestTime(q, low);
+    auto nearestHigh = solveNearestTime(q, high);
     q->firstLevel();
     q->resetTime();
     for (unsigned long id = nearestLow.first; id <= nearestHigh.first; id++)

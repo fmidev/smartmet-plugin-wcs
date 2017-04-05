@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExceptionReport xmlns="http://www.opengis.net/ows/2.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/ows/2.0 http://schemas.opengis.net/ows/2.0/owsExceptionReport.xsd"
+  version="2.0.0">
+
+
+  <Exception exceptionCode="InvalidParameterValue"
+                   locator="DimensionTrim">
+    <ExceptionText>DimensionTrim range &apos;[-10,-5]&apos; is out of z range [0,400]</ExceptionText>
+    
+  </Exception>
+
+</ExceptionReport>

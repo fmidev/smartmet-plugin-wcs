@@ -20,6 +20,10 @@ class NetcdfResponse : public ResponseBase
 {
  public:
   using DebugLevelType = int;
+  using ValueZ = double;
+  using ValueT = boost::posix_time::ptime;
+  using RangeT = std::pair<ValueT, ValueT>;
+  using RangeZ = std::pair<ValueZ, ValueZ>;
 
   NetcdfResponse() : mEngine(NULL), mDebugLevel(0) {}
   virtual ~NetcdfResponse() {}
@@ -41,6 +45,8 @@ class NetcdfResponse : public ResponseBase
       boost::shared_ptr<SmartMet::Engine::Querydata::QImpl> q, const double& xValue);
   std::pair<unsigned long, double> solveNearestY(
       boost::shared_ptr<SmartMet::Engine::Querydata::QImpl> q, const double& yValue);
+  RangeZ solveRangeZ(boost::shared_ptr<Engine::Querydata::QImpl> q);
+  RangeT solveRangeT(boost::shared_ptr<Engine::Querydata::QImpl> q);
 
  private:
   const SmartMet::Spine::SmartMetEngine* mEngine;

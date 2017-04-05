@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wcs:GetCoverage xmlns:wcs="http://www.opengis.net/wcs/2.0"
+    service="WCS"
+    version="2.0.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.opengis.net/wcs/2.0 http://schemas.opengis.net/wcs/2.0/wcsAll.xsd">
+  <wcs:CoverageId>hbm-temperaturesea</wcs:CoverageId>
+  <wcs:DimensionTrim>
+    <wcs:Dimension>z</wcs:Dimension>
+    <wcs:TrimLow>-10</wcs:TrimLow>
+    <wcs:TrimHigh>-5</wcs:TrimHigh>
+  </wcs:DimensionTrim>
+  <wcs:format>application/netcdf</wcs:format>
+</wcs:GetCoverage>

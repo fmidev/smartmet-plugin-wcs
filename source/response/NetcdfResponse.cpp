@@ -197,6 +197,33 @@ std::pair<unsigned long, double> NetcdfResponse::solveNearestY(
 
   return std::make_pair((nearestLocIndex / xNumber), nearestLocValue.Y());
 }
+
+NetcdfResponse::RangeZ NetcdfResponse::solveRangeZ(boost::shared_ptr<Engine::Querydata::QImpl> q)
+{
+  q->firstLevel();
+  double low = q->levelValue();
+  double high = low;
+  while (q->nextLevel())
+    high = q->levelValue();
+  if (low > high)
+    std::swap(low, high);
+
+  return std::make_pair(low, high);
+}
+
+NetcdfResponse::RangeT NetcdfResponse::solveRangeT(boost::shared_ptr<Engine::Querydata::QImpl> q)
+{
+  q->firstTime();
+  auto low = q->validTime();
+  auto high = q->validTime();
+  q->resetTime();
+  while (q->nextTime())
+  {
+    high = q->validTime();
+  }
+
+  return std::make_pair(low, high);
+}
 }
 }
 }
