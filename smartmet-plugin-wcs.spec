@@ -86,6 +86,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Upcoming
+- Check that subsetting is placed to the correct region of a data.
+- Added multiple regression tests to test subsetting.
+- Fixed a bug in UniqueTemporaryPath class.
+
 * Sat Feb 11 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.2.11-1.fmi
 - Repackaged due to newbase API changes
 
