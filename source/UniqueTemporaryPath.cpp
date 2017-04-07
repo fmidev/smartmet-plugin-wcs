@@ -7,7 +7,7 @@ namespace Plugin
 {
 namespace WCS
 {
-UniqueTemporaryPath::UniqueTemporaryPath()
+UniqueTemporaryPath::UniqueTemporaryPath(const AutoRemove& autoRemove) : mAutoRemove(autoRemove)
 {
   try
   {
@@ -28,6 +28,8 @@ UniqueTemporaryPath::UniqueTemporaryPath()
 
 UniqueTemporaryPath::~UniqueTemporaryPath()
 {
+  if (mAutoRemove)
+    std::remove(get().c_str());
 }
 
 std::string UniqueTemporaryPath::get() const

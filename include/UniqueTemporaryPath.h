@@ -16,6 +16,9 @@ namespace WCS
  *  directory with 128 bits of randomness.
  *  e.g. /tmp/702047549334c327-8363ab3781287928
  *
+ *  The data in file path will be automatically removed
+ *  after lifesycle of an instance.
+ *
  *  The class throws SmartMet::Spine::Exception
  *  exception when temporary path generation fails.
  */
@@ -24,7 +27,8 @@ class UniqueTemporaryPath
  public:
   using Shared = std::shared_ptr<UniqueTemporaryPath>;
   using Unique = std::unique_ptr<UniqueTemporaryPath>;
-  explicit UniqueTemporaryPath();
+  using AutoRemove = bool;
+  explicit UniqueTemporaryPath(const AutoRemove& autoRemove = true);
   virtual ~UniqueTemporaryPath();
 
   std::string get() const;
@@ -32,6 +36,7 @@ class UniqueTemporaryPath
  private:
   boost::filesystem::path mTempDirectoryPath;
   boost::filesystem::path mUniquePath;
+  AutoRemove mAutoRemove;
 };
 }
 }

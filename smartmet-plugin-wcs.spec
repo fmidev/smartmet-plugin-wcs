@@ -87,6 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Upcoming
+- Autoremove data from the path of UniqueTemporaryPath after instance lifetime.
 - Check that subsetting is placed to the correct region of a data.
 - Added multiple regression tests to test subsetting.
 - Fixed a bug in UniqueTemporaryPath class.

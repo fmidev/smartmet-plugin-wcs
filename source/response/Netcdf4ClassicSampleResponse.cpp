@@ -108,9 +108,6 @@ void Netcdf4ClassicSampleResponse::get(std::ostream& output)
   }
   else
     output << "";
-
-  // Delete file
-  std::remove(name1->get().c_str());
 }
 }
 }
