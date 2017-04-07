@@ -1,5 +1,6 @@
 #pragma once
 
+#include "DataContainer.h"
 #include "ParamConfig.h"
 #include "ResponseBase.h"
 #include <boost/optional/optional.hpp>

@@ -1,4 +1,5 @@
 #include "Netcdf4ClassicResponse.h"
+#include "DataContainer.h"
 #include "Options.h"
 #include "ParamConfig.h"
 #include "UniqueTemporaryPath.h"
@@ -303,17 +304,16 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
 
   unsigned long tDelta = t.size();
 
-  boost::shared_ptr<float[]> xc(new float[xDelta * yDelta]);
-  boost::shared_ptr<float[]> yc(new float[xDelta * yDelta]);
-  boost::shared_ptr<float[]> z(new float[zDelta]);
-  boost::shared_ptr<float[]> dataOut(new float[xDelta * yDelta * zDelta * tDelta]);
+  DataContainer<float> xc(xDelta * yDelta, "X coordinates");
+  DataContainer<float> yc(xDelta * yDelta, "Y coordinates");
+  DataContainer<float> zc(zDelta, "Z coordinates");
+  DataContainer<float> dataOut(xDelta * yDelta * zDelta * tDelta, "Data values");
 
   auto transformation = opt->getTransformation();
 
   // XY coordinates
   bool swapCoord = opt->getSwap();
   auto llCache = q->latLonCache();
-  unsigned long coordBase = 0;
   auto it = llCache->cbegin();
   auto itEnd = it;
   for (unsigned long yId = minYId; yId <= maxYId; yId++)
@@ -323,22 +323,20 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
     while (it < itEnd)
     {
       NFmiPoint tP = swap(transformation->transform(swap(*it++, true)), swapCoord);
-      xc[coordBase] = tP.X();
-      yc[coordBase++] = tP.Y();
+      xc.add(tP.X());
+      yc.add(tP.Y());
     }
   }
-  for (unsigned long lId = 0; lId < zDelta; lId++)
+  for (const auto& lId : levelIds)
   {
-    if (not q->levelIndex(levelIds.at(lId)))
+    if (not q->levelIndex(lId))
       throw std::runtime_error("Cannot set a data level to get ");
-    z[lId] = q->levelValue();
+    zc.add(q->levelValue());
   }
 
   NFmiDataMatrix<float> dem;
   NFmiDataMatrix<bool> flags;
-  unsigned long tbase = 0;
 
-  q->resetLevel();
   q->resetLevel();
 
   ParamConfig::ParamIdType parameterId = parameter->number();
@@ -354,34 +352,34 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
     throw WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
   }
 
-  for (unsigned long tId = 0; tId < timeIds.size(); tId++)
+  for (const auto& tId : timeIds)
   {
-    if (not q->timeIndex(timeIds.at(tId)))
+    if (not q->timeIndex(tId))
     {
       std::ostringstream msg;
-      msg << "Error occured while setting time index: " << timeIds.at(tId);
+      msg << "Error occured while setting time index: " << tId;
       throw std::runtime_error(msg.str());
     }
 
-    for (unsigned long lId = 0; lId < levelIds.size(); lId++)
+    for (const auto& lId : levelIds)
     {
-      q->levelIndex(levelIds.at(lId));
+      q->levelIndex(lId);
 
       NFmiDataMatrix<float> dataMatrix;
-      q->values(dataMatrix, dem, flags);
+      q->croppedValues(dataMatrix, minXId, minYId, maxXId, maxYId, dem, flags);
 
-      if (dataMatrix.NX() != NX or dataMatrix.NY() != NY)
+      if (dataMatrix.NX() != xDelta or dataMatrix.NY() != yDelta)
         throw WcsException(WcsException::NO_APPLICABLE_CODE, "Data size error.");
 
-      for (unsigned long yId = minYId; yId <= maxYId; yId++)
+      for (unsigned long yId = 0; yId < yDelta; yId++)
       {
-        for (unsigned xId = minXId; xId <= maxXId; tbase++, xId++)
+        for (unsigned xId = 0; xId < xDelta; xId++)
         {
           float val = dataMatrix.At(xId, yId, missingValue);
           if (val == missingValue)
-            dataOut[tbase] = val;
+            dataOut.add(val);
           else
-            dataOut[tbase] = paramMetaItem->mConversionScale * val + paramMetaItem->mConversionBase;
+            dataOut.add(paramMetaItem->mConversionScale * val + paramMetaItem->mConversionBase);
         }
       }
     }
@@ -443,7 +441,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   var->add_att("axis", "Z");
   var->add_att("long_name", "height");
   var->add_att("positive", "up");
-  var->put(z.get(), zDelta);
+  var->put(zc.array().get(), zDelta);
 
   const NcDim* ycDim = dataFile.add_dim("yc", yDelta);
   const NcDim* xcDim = dataFile.add_dim("xc", xDelta);
@@ -453,14 +451,14 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   var->add_att("units", "degrees_north");
   var->add_att("axis", "Y");
   var->add_att("long_name", "latitude");
-  var->put(yc.get(), yDelta, xDelta);
+  var->put(yc.array().get(), yDelta, xDelta);
 
   var = dataFile.add_var("lon", ncType, ycDim, xcDim);
   var->add_att("standard_name", "longitude");
   var->add_att("units", "degrees_east");
   var->add_att("axis", "X");
   var->add_att("long_name", "longitude");
-  var->put(xc.get(), yDelta, xDelta);
+  var->put(xc.array().get(), yDelta, xDelta);
 
   std::string varName = Fmi::ascii_tolower_copy(parameter->name());
   varName.append("_").append(Fmi::to_string(parameterId));
@@ -477,7 +475,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   if (paramMetaItem->mLongName)
     var->add_att("long_name", paramMetaItem->mLongName.get().c_str());
 
-  var->put(dataOut.get(), tDelta, zDelta, yDelta, xDelta);
+  var->put(dataOut.array().get(), tDelta, zDelta, yDelta, xDelta);
 
   dataFile.close();
 
