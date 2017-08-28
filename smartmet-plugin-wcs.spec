@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 17.2.11
+Version: 17.8.28
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -19,13 +19,13 @@ BuildRequires: libcurl-devel
 BuildRequires: libpqxx-devel
 BuildRequires: netcdf-cxx-devel
 BuildRequires: postgresql93-libs
-BuildRequires: smartmet-engine-geonames-devel >= 17.2.3
-BuildRequires: smartmet-engine-gis-devel >= 17.1.4
-BuildRequires: smartmet-engine-querydata-devel >= 17.2.11
-BuildRequires: smartmet-library-gis-devel >= 17.1.18
-BuildRequires: smartmet-library-locus-devel >= 17.2.3
-BuildRequires: smartmet-library-macgyver-devel >= 17.1.18
-BuildRequires: smartmet-library-spine-devel >= 17.2.3
+BuildRequires: smartmet-engine-geonames-devel >= 17.8.28
+BuildRequires: smartmet-engine-gis-devel >= 17.8.28
+BuildRequires: smartmet-engine-querydata-devel >= 17.8.28
+BuildRequires: smartmet-library-gis-devel >= 17.8.28
+BuildRequires: smartmet-library-locus-devel >= 17.8.28
+BuildRequires: smartmet-library-macgyver-devel >= 17.8.28
+BuildRequires: smartmet-library-spine-devel >= 17.8.28
 BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 Requires: boost-chrono
@@ -42,14 +42,14 @@ Requires: libconfig
 Requires: libcurl
 Requires: libpqxx
 Requires: netcdf-cxx
-Requires: smartmet-engine-geonames >= 17.2.3
-Requires: smartmet-engine-gis >= 17.1.4
-Requires: smartmet-engine-gis >= 17.1.4
-Requires: smartmet-engine-querydata >= 17.2.11
-Requires: smartmet-library-locus >= 17.2.3
-Requires: smartmet-library-macgyver >= 17.1.18
-Requires: smartmet-library-spine >= 17.2.3
-Requires: smartmet-server >= 17.1.25
+Requires: smartmet-engine-geonames >= 17.8.28
+Requires: smartmet-engine-gis >= 17.8.28
+Requires: smartmet-engine-gis >= 17.8.28
+Requires: smartmet-engine-querydata >= 17.8.28
+Requires: smartmet-library-locus >= 17.8.28
+Requires: smartmet-library-macgyver >= 17.8.28
+Requires: smartmet-library-spine >= 17.8.28
+Requires: smartmet-server >= 17.8.28
 Requires: xerces-c
 Requires: xqilla
 Provides: %{SPECNAME}
@@ -88,7 +88,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
-* Upcoming
+* Mon Aug 28 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.8.28-1.fmi
+- Upgrade to boost 1.65
 - Autoremove data from the path of UniqueTemporaryPath after instance lifetime.
 - Check that subsetting is placed to the correct region of a data.
 - Added multiple regression tests to test subsetting.
