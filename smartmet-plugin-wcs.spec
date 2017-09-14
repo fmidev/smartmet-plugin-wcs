@@ -19,7 +19,6 @@ BuildRequires: libcurl-devel
 BuildRequires: libpqxx-devel
 BuildRequires: netcdf-cxx-devel
 BuildRequires: postgresql93-libs
-BuildRequires: smartmet-engine-geonames-devel >= 17.8.28
 BuildRequires: smartmet-engine-gis-devel >= 17.8.28
 BuildRequires: smartmet-engine-querydata-devel >= 17.8.28
 BuildRequires: smartmet-library-gis-devel >= 17.8.28
@@ -42,7 +41,6 @@ Requires: libconfig
 Requires: libcurl
 Requires: libpqxx
 Requires: netcdf-cxx
-Requires: smartmet-engine-geonames >= 17.8.28
 Requires: smartmet-engine-gis >= 17.8.28
 Requires: smartmet-engine-gis >= 17.8.28
 Requires: smartmet-engine-querydata >= 17.8.28
