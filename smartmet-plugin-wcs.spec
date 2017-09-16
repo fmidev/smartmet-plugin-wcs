@@ -22,7 +22,6 @@ BuildRequires: postgresql93-libs
 BuildRequires: smartmet-engine-gis-devel >= 17.8.28
 BuildRequires: smartmet-engine-querydata-devel >= 17.8.28
 BuildRequires: smartmet-library-gis-devel >= 17.8.28
-BuildRequires: smartmet-library-locus-devel >= 17.8.28
 BuildRequires: smartmet-library-macgyver-devel >= 17.8.28
 BuildRequires: smartmet-library-spine-devel >= 17.8.28
 BuildRequires: xerces-c-devel
@@ -44,7 +43,6 @@ Requires: netcdf-cxx
 Requires: smartmet-engine-gis >= 17.8.28
 Requires: smartmet-engine-gis >= 17.8.28
 Requires: smartmet-engine-querydata >= 17.8.28
-Requires: smartmet-library-locus >= 17.8.28
 Requires: smartmet-library-macgyver >= 17.8.28
 Requires: smartmet-library-spine >= 17.8.28
 Requires: smartmet-server >= 17.8.28
