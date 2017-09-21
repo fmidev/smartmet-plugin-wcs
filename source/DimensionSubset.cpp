@@ -23,33 +23,6 @@ namespace WCS
 namespace spirit = boost::spirit;
 namespace phoenix = boost::phoenix;
 
-Element::Element(const xercesc::DOMElement* element)
-{
-  std::pair<std::string, std::string> nameInfo = Xml::get_name_info(element);
-  auto value = boost::algorithm::trim_copy(Xml::extract_text(*element));
-  if (not value.empty())
-  {
-    mValue = Value(value);
-    mName = nameInfo.first;
-  }
-  else
-  {
-    std::ostringstream msg;
-    msg << "Empty value detected in '" << nameInfo.first << "'.";
-    throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
-  }
-}
-
-Element::Element(const Value& value, const NameType& name) : mValue(value), mName(name)
-{
-  if (mValue == Value())
-  {
-    std::ostringstream msg;
-    msg << "Empty value detected in '" << mName << "'.";
-    throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
-  }
-}
-
 DimensionSubset::DimensionSubset(const xercesc::DOMElement* element,
                                  const std::set<NameType>& allowedChildrens)
 {
