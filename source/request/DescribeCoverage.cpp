@@ -126,9 +126,8 @@ void DescribeCoverage::execute(std::ostream& output) const
     bool swapCoord = false;
 
     // Get target CRS information from GisEngine.
-    const boost::optional<CompoundCRS>& compoundcrs = it->second.getDataSetDef()->getCompoundcrs();
-    std::string crsName =
-        (compoundcrs ? compoundcrs->getCrs() : mPluginData.getConfig().getDefaultCrs());
+    const CompoundCRS& compoundcrs = it->second.getDataSetDef()->getCompoundcrs();
+    std::string crsName = compoundcrs.getCrs();
     crs_registry.get_attribute(crsName, "epsg", &crsCode);
     crs_registry.get_attribute(crsName, "showHeight", &showHeight);
     crs_registry.get_attribute(crsName, "projUri", &projUri);
@@ -144,9 +143,8 @@ void DescribeCoverage::execute(std::ostream& output) const
     if (showHeight)
       axisLabels.append(" z");
 
-    const bool showCompoundcrsHeight =
-        (compoundcrs and compoundcrs->getVerticalCRS() ? true : false);
-    const bool showCompoundcrsTime = (compoundcrs and compoundcrs->getTemporalCRS() ? true : false);
+    const bool showCompoundcrsHeight = (compoundcrs.getVerticalCRS() ? true : false);
+    const bool showCompoundcrsTime = (compoundcrs.getTemporalCRS() ? true : false);
 
     // Compound height is not allowed in the case of 3D.
     if (showHeight and showCompoundcrsHeight)
@@ -155,7 +153,7 @@ void DescribeCoverage::execute(std::ostream& output) const
       msg << "3D Coordinate Reference System and VerticalCRS of "
           << "compound CRS is not possible to use at the same time."
           << "Check coverageid '" << id << "'configuration. Vertical CRS is '"
-          << compoundcrs->getVerticalCRS()->getIdentifier() << "'.";
+          << compoundcrs.getVerticalCRS()->getIdentifier() << "'.";
       WcsException wcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
       throw wcsException;
     }
@@ -166,7 +164,7 @@ void DescribeCoverage::execute(std::ostream& output) const
     compoundcrsUri.append(Fmi::to_string(compoundAxisId++)).append("=").append(crsName);
     if (showCompoundcrsHeight)
     {
-      auto& verticalCRS = compoundcrs->getVerticalCRS();
+      auto& verticalCRS = compoundcrs.getVerticalCRS();
       compoundcrsUri.append("&amp;")
           .append(Fmi::to_string(compoundAxisId++))
           .append("=")
@@ -178,7 +176,7 @@ void DescribeCoverage::execute(std::ostream& output) const
     if (showCompoundcrsTime)
     {
       compoundcrsUri.append("&amp;").append(Fmi::to_string(compoundAxisId++)).append("=");
-      compoundcrsUri.append(compoundcrs->getTemporalCRS()->getIdentifier());
+      compoundcrsUri.append(compoundcrs.getTemporalCRS()->getIdentifier());
       projLabels.append(" t");
       axisLabels.append(" t");
       srsDimension++;

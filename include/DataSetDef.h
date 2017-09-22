@@ -77,7 +77,7 @@ class DataSetDef
   boost::optional<Keywords> getKeywords() const { return mKeywords; }
   inline const std::vector<std::string>& getParameters() const { return mParameters; }
   inline const std::string& getSubtype() const { return mSubtype; }
-  const boost::optional<CompoundCRS>& getCompoundcrs() const { return mCompoundcrs; }
+  const CompoundCRS& getCompoundcrs() const { return mCompoundcrs.get(); }
   const Dataset::Optional& getDataset() const { return mDataset; }
   const boost::optional<Envelope>& getWgs84BBox() const { return mWGS84BBox; }
   bool process(const Engine::Querydata::Engine& querydataEngine);
@@ -92,7 +92,7 @@ class DataSetDef
   boost::optional<Keywords> mKeywords;
   std::vector<std::string> mParameters;
   std::string mSubtype;
-  boost::optional<CompoundCRS> mCompoundcrs;
+  CompoundCRS::Optional mCompoundcrs;
   Dataset::Optional mDataset;
   boost::optional<Envelope> mWGS84BBox;
 };
