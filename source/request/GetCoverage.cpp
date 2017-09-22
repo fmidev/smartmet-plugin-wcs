@@ -348,8 +348,8 @@ void GetCoverage::setCoverageIds(const CoverageIdsType& ids)
 
   // Create SRS transformation
   auto& defaultCrs = mPluginData.getConfig().getDefaultCrs();
-  const boost::optional<CompoundCRS>& compoundcrs = it->second.getDataSetDef()->getCompoundcrs();
-  std::string crsName = (compoundcrs ? compoundcrs->getCrs() : defaultCrs);
+  const CompoundCRS& compoundcrs = it->second.getDataSetDef()->getCompoundcrs();
+  std::string crsName = compoundcrs.getCrs();
 
   if (auto outputCrs = mOptions->getOutputCrs())
     crsName = *outputCrs;

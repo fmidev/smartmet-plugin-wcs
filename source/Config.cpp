@@ -123,19 +123,17 @@ std::vector<boost::shared_ptr<DataSetDef> > Config::readDataSetDefs()
       {
         boost::shared_ptr<DataSetDef> dataSetDef(
             new DataSetDef(mLanguages.at(0), desc, desc->get_root()));
-        if (auto& compoundcrs = dataSetDef->getCompoundcrs())
+        const auto& compoundcrs = dataSetDef->getCompoundcrs();
+        if (std::find(mSupportedCrss.begin(), mSupportedCrss.end(), compoundcrs.getCrs()) ==
+            mSupportedCrss.end())
         {
-          if (std::find(mSupportedCrss.begin(), mSupportedCrss.end(), compoundcrs->getCrs()) ==
-              mSupportedCrss.end())
-          {
-            std::ostringstream msg;
-            msg << "Unsupported crs '" << compoundcrs->getCrs() << "' in '" << dataSetDef->getName()
-                << "' dataset configuration."
-                << " Supported values are:";
-            for (auto& crs : mSupportedCrss)
-              msg << " '" << crs << "'";
-            throw std::runtime_error(msg.str());
-          }
+          std::ostringstream msg;
+          msg << "Unsupported crs '" << compoundcrs.getCrs() << "' in '" << dataSetDef->getName()
+              << "' dataset configuration."
+              << " Supported values are:";
+          for (auto& crs : mSupportedCrss)
+            msg << " '" << crs << "'";
+          throw std::runtime_error(msg.str());
         }
 
         result.push_back(dataSetDef);

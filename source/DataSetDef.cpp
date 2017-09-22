@@ -53,6 +53,13 @@ DataSetDef::DataSetDef(const std::string& defaultLanguage,
   libconfig::Setting* compoundcrsSetting = config->find_setting(setting, "compoundcrs", false);
   if (compoundcrsSetting)
     mCompoundcrs = CompoundCRS(config, *compoundcrsSetting);
+
+  if (not mCompoundcrs)
+  {
+    std::ostringstream msg;
+    msg << "Compoundcrs must be defined in '" << mName << "' dataset configuration\n";
+    throw std::runtime_error(msg.str());
+  }
 }
 
 DataSetDef::~DataSetDef()
