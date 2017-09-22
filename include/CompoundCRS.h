@@ -52,6 +52,7 @@ class CRSBase
 class TemporalCRS : public CRSBase
 {
  public:
+  using Optional = boost::optional<TemporalCRS>;
   TemporalCRS(boost::shared_ptr<SmartMet::Spine::ConfigBase> config, libconfig::Setting& setting);
   virtual ~TemporalCRS() {}
 
@@ -67,6 +68,7 @@ class TemporalCRS : public CRSBase
 class VerticalCRS : public CRSBase
 {
  public:
+  using Optional = boost::optional<VerticalCRS>;
   VerticalCRS(boost::shared_ptr<SmartMet::Spine::ConfigBase> config, libconfig::Setting& setting);
   virtual ~VerticalCRS() {}
 
@@ -81,19 +83,20 @@ class VerticalCRS : public CRSBase
 class CompoundCRS
 {
  public:
+  using Optional = boost::optional<CompoundCRS>;
   using CRSType = std::string;
 
   CompoundCRS(boost::shared_ptr<SmartMet::Spine::ConfigBase> config, libconfig::Setting& setting);
   virtual ~CompoundCRS();
 
   inline const CRSType& getCrs() const { return mCrs; }
-  inline const boost::optional<VerticalCRS>& getVerticalCRS() const { return mVerticalCRS; }
-  inline const boost::optional<TemporalCRS>& getTemporalCRS() const { return mTemporalCRS; }
+  inline const VerticalCRS::Optional& getVerticalCRS() const { return mVerticalCRS; }
+  inline const TemporalCRS::Optional& getTemporalCRS() const { return mTemporalCRS; }
 
  private:
   std::string mCrs;
-  boost::optional<VerticalCRS> mVerticalCRS;
-  boost::optional<TemporalCRS> mTemporalCRS;
+  VerticalCRS::Optional mVerticalCRS;
+  TemporalCRS::Optional mTemporalCRS;
 };
 }
 }
