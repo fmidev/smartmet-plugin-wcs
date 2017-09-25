@@ -1,9 +1,7 @@
 #pragma once
 
-#include <boost/optional.hpp>
-#include <boost/shared_ptr.hpp>
-#include <spine/ConfigBase.h>
-#include <set>
+#include "TemporalCRS.h"
+#include "VerticalCRS.h"
 
 namespace SmartMet
 {
@@ -15,71 +13,15 @@ namespace WCS
 @verbatim
 {
   crs = "http://www.opengis.net/def/crs/EPSG/0/4258";
-  vertical_crs:
-  {
-    identifier="http://www.opengis.net/def/crs/EPSG/0/5715";
-    abbrev="Depth";
-  };
-  temporal_crs:
-  {
-    identifier="http://www.opengis.net/def/crs/OGC/0/UnixTime";
-    abbrev = "unix";
-  };
+
+  // Optional VerticalCRS configuration
+  vertical_crs: { };
+
+  // Optional TemporalCRS configuration
+  temporal_crs: { };
 };
 @endverbatim
  */
-
-class CRSBase
-{
- public:
-  using Identifier = std::string;
-  using Abbrev = std::string;
-  CRSBase() {}
-  virtual ~CRSBase() {}
-  inline const Abbrev& getAbbrev() const { return mAbbrev; }
-  inline const Identifier& getIdentifier() const { return mIdentifier; }
-
- protected:
-  void parse(boost::shared_ptr<SmartMet::Spine::ConfigBase> config, libconfig::Setting& setting);
-  void setAbbrev(const Abbrev& abbrev);
-  void setIdentifier(const Identifier& identifier);
-
- private:
-  Identifier mIdentifier;
-  Abbrev mAbbrev;
-};
-
-class TemporalCRS : public CRSBase
-{
- public:
-  using Optional = boost::optional<TemporalCRS>;
-  TemporalCRS(boost::shared_ptr<SmartMet::Spine::ConfigBase> config, libconfig::Setting& setting);
-  virtual ~TemporalCRS() {}
-
- private:
-  using ValidIdentifiers = std::set<CRSBase::Identifier>;
-  ValidIdentifiers mValidIdentifiers = {
-      "http://www.opengis.net/def/crs/OGC/0/AnsiDate",
-      "http://www.opengis.net/def/crs/OGC/0/ChronometricGeologicTime",
-      "http://www.opengis.net/def/crs/OGC/0/JulianDate",
-      "http://www.opengis.net/def/crs/OGC/0/UnixTime"};
-};
-
-class VerticalCRS : public CRSBase
-{
- public:
-  using Optional = boost::optional<VerticalCRS>;
-  VerticalCRS(boost::shared_ptr<SmartMet::Spine::ConfigBase> config, libconfig::Setting& setting);
-  virtual ~VerticalCRS() {}
-
- private:
-  using ValidIdentifiers = std::set<CRSBase::Identifier>;
-  ValidIdentifiers mValidIdentifiers = {"http://www.opengis.net/def/crs/EPSG/0/5730",
-                                        "http://www.opengis.net/def/crs/EPSG/0/5861",
-                                        "http://www.opengis.net/def/crs/EPSG/0/5715",
-                                        "pressure"};
-};
-
 class CompoundCRS
 {
  public:
