@@ -127,7 +127,7 @@ void DescribeCoverage::execute(std::ostream& output) const
 
     // Get target CRS information from GisEngine.
     const CompoundCRS& compoundcrs = it->second.getDataSetDef()->getCompoundcrs();
-    std::string crsName = compoundcrs.getCrs();
+    std::string crsName = compoundcrs.getIdentifier();
     crs_registry.get_attribute(crsName, "epsg", &crsCode);
     crs_registry.get_attribute(crsName, "showHeight", &showHeight);
     crs_registry.get_attribute(crsName, "projUri", &projUri);

@@ -11,7 +11,9 @@ CompoundCRS::CompoundCRS(boost::shared_ptr<SmartMet::Spine::ConfigBase> config,
                          libconfig::Setting& setting)
 {
   config->assert_is_group(setting);
-  mCrs = config->get_mandatory_config_param<std::string>(setting, "crs");
+
+  libconfig::Setting* crs = config->find_setting(setting, "crs", true);
+  CRSBase::parse(config, *crs);
 
   libconfig::Setting* verticalCRS = config->find_setting(setting, "vertical_crs", false);
   if (verticalCRS)
