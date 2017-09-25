@@ -23,21 +23,29 @@ namespace WCS
 namespace spirit = boost::spirit;
 namespace phoenix = boost::phoenix;
 
-DimensionSubset::DimensionSubset(const xercesc::DOMElement* element,
-                                 const std::set<NameType>& allowedChildrens)
+DimensionSubset::DimensionSubset(const std::set<NameType>& allowedChildrens)
+    : mAllowedChildrens(allowedChildrens)
+{
+}
+
+DimensionSubset::~DimensionSubset()
+{
+}
+
+void DimensionSubset::setSubset(const xercesc::DOMElement* element)
 {
   auto childrens = Xml::get_child_elements(*element, WCS_NAMESPACE_URI, "*");
 
   for (const xercesc::DOMElement* child : childrens)
   {
     const auto name =
-        Xml::check_name_info(child, WCS_NAMESPACE_URI, allowedChildrens, "Wcs::DimensionSubset");
+        Xml::check_name_info(child, WCS_NAMESPACE_URI, mAllowedChildrens, "Wcs::DimensionSubset");
 
     setElement(std::move(Element(child)));
   }
 }
 
-DimensionSubset::DimensionSubset(const std::string& ss)
+void DimensionSubset::setSubset(const std::string&)
 {
 }
 
@@ -55,12 +63,20 @@ void DimensionSubset::setElement(const Element&& element)
   mElements.emplace(element.getName(), std::move(element));
 }
 
-DimensionSlice::DimensionSlice(const xercesc::DOMElement* element)
-    : DimensionSubset(element, {"Dimension", "SlicePoint"})
+DimensionSlice::DimensionSlice() : DimensionSubset({"Dimension", "SlicePoint"})
 {
 }
 
-DimensionSlice::DimensionSlice(const std::string& ss) : DimensionSubset(ss)
+DimensionSlice::~DimensionSlice()
+{
+}
+
+void DimensionSlice::setSubset(const xercesc::DOMElement* element)
+{
+  DimensionSubset::setSubset(element);
+}
+
+void DimensionSlice::setSubset(const std::string& ss)
 {
   using boost::spirit::qi::phrase_parse;
   using boost::spirit::qi::_1;
@@ -136,12 +152,20 @@ invalidSubset:
   throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
 }
 
-DimensionTrim::DimensionTrim(const xercesc::DOMElement* element)
-    : DimensionSubset(element, {"Dimension", "TrimLow", "TrimHigh"})
+DimensionTrim::DimensionTrim() : DimensionSubset({"Dimension", "TrimLow", "TrimHigh"})
 {
 }
 
-DimensionTrim::DimensionTrim(const std::string& ss) : DimensionSubset(ss)
+DimensionTrim::~DimensionTrim()
+{
+}
+
+void DimensionTrim::setSubset(const xercesc::DOMElement* element)
+{
+  DimensionSubset::setSubset(element);
+}
+
+void DimensionTrim::setSubset(const std::string& ss)
 {
   using boost::spirit::qi::phrase_parse;
   using boost::spirit::qi::_1;

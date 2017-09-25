@@ -167,14 +167,16 @@ boost::shared_ptr<GetCoverage> GetCoverage::createFromKvp(const Spine::HTTP::Req
 
   for (auto& ss : subsets)
   {
-    DimensionTrim trim(ss);
+    DimensionTrim trim;
+    trim.setSubset(ss);
     if (not trim.get("Dimension").is_empty())
     {
       getcoverage->getOptions()->setDimensionSubset(std::move(trim));
       continue;
     }
 
-    DimensionSlice slice(ss);
+    DimensionSlice slice;
+    slice.setSubset(ss);
     if (not slice.get("Dimension").is_empty())
     {
       getcoverage->getOptions()->setDimensionSubset(std::move(slice));
@@ -240,12 +242,14 @@ boost::shared_ptr<GetCoverage> GetCoverage::createFromXml(const xercesc::DOMDocu
     }
     else if (name == "DimensionSlice")
     {
-      DimensionSlice slice(child);
+      DimensionSlice slice;
+      slice.setSubset(child);
       getcoverage->getOptions()->setDimensionSubset(std::move(slice));
     }
     else if (name == "DimensionTrim")
     {
-      DimensionTrim trim(child);
+      DimensionTrim trim;
+      trim.setSubset(child);
       getcoverage->getOptions()->setDimensionSubset(std::move(trim));
     }
     else if (name == "format")
