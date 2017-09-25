@@ -17,34 +17,40 @@ class DimensionSubset
  public:
   using NameType = Element::NameType;
   using Value = Element::Value;
-  DimensionSubset(const xercesc::DOMElement* element,
-                  const std::set<NameType>& allowedChildrens = {"Dimension"});
-  DimensionSubset(const std::string& subset);
-  virtual ~DimensionSubset() {}
+  using ChildrenNameSet = std::set<NameType>;
+  DimensionSubset(const ChildrenNameSet& allowedChildrens = {"Dimension"});
+  virtual ~DimensionSubset();
+
   Value get(const NameType& name) const;
+  virtual void setSubset(const xercesc::DOMElement* element);
+  virtual void setSubset(const std::string& subset);
 
  protected:
-  DimensionSubset() {}
   void setElement(const Element&& element);
 
  private:
   std::map<NameType, Element> mElements;
+  ChildrenNameSet mAllowedChildrens;
 };
 
 class DimensionTrim : public DimensionSubset
 {
  public:
-  DimensionTrim() {}
-  DimensionTrim(const xercesc::DOMElement* element);
-  DimensionTrim(const std::string& subset);
+  DimensionTrim();
+  ~DimensionTrim();
+
+  void setSubset(const xercesc::DOMElement* element);
+  void setSubset(const std::string& ss);
 };
 
 class DimensionSlice : public DimensionSubset
 {
  public:
-  DimensionSlice() {}
-  DimensionSlice(const xercesc::DOMElement* element);
-  DimensionSlice(const std::string& subset);
+  DimensionSlice();
+  ~DimensionSlice();
+
+  void setSubset(const xercesc::DOMElement* element);
+  void setSubset(const std::string& subset);
 };
 }
 }
