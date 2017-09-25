@@ -12,7 +12,12 @@ namespace WCS
 /**
 @verbatim
 {
-  crs = "http://www.opengis.net/def/crs/EPSG/0/4258";
+  // Mandatory crs configuration
+  crs:
+  {
+    identifier = "http://www.opengis.net/def/crs/EPSG/0/4258";
+    abbrev = "Lat Long";
+  };
 
   // Optional VerticalCRS configuration
   vertical_crs: { };
@@ -22,21 +27,18 @@ namespace WCS
 };
 @endverbatim
  */
-class CompoundCRS
+class CompoundCRS : public CRSBase
 {
  public:
   using Optional = boost::optional<CompoundCRS>;
-  using CRSType = std::string;
 
   CompoundCRS(boost::shared_ptr<SmartMet::Spine::ConfigBase> config, libconfig::Setting& setting);
   virtual ~CompoundCRS();
 
-  inline const CRSType& getCrs() const { return mCrs; }
   inline const VerticalCRS::Optional& getVerticalCRS() const { return mVerticalCRS; }
   inline const TemporalCRS::Optional& getTemporalCRS() const { return mTemporalCRS; }
 
  private:
-  std::string mCrs;
   VerticalCRS::Optional mVerticalCRS;
   TemporalCRS::Optional mTemporalCRS;
 };

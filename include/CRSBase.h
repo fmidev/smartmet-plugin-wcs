@@ -13,9 +13,12 @@ class CRSBase
  public:
   using Identifier = std::string;
   using Abbrev = std::string;
-  CRSBase() {}
+  using DimensionSize = size_t;
+
+  CRSBase();
   virtual ~CRSBase() {}
   inline const Abbrev& getAbbrev() const { return mAbbrev; }
+  inline const DimensionSize& getDimensionSize() const { return mDimensionSize; }
   inline const Identifier& getIdentifier() const { return mIdentifier; }
 
  protected:
@@ -26,6 +29,7 @@ class CRSBase
  private:
   Identifier mIdentifier;
   Abbrev mAbbrev;
+  DimensionSize mDimensionSize;
 };
 }
 }
