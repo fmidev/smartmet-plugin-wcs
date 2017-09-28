@@ -8,7 +8,7 @@ PROJECT_NAME           = "SmartMet: WCS Plugin"
 PROJECT_NUMBER         =
 PROJECT_BRIEF          =
 PROJECT_LOGO           =
-OUTPUT_DIRECTORY       = ../../doc/smartmet/plugins/wcs
+OUTPUT_DIRECTORY       = doc
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
 BRIEF_MEMBER_DESC      = YES
@@ -247,11 +247,12 @@ SKIP_FUNCTION_MACROS   = YES
 #---------------------------------------------------------------------------
 # Configuration::additions related to external references
 #---------------------------------------------------------------------------
-TAGFILES               = ../../doc/macgyver/macgyver.tag=../../../../macgyver/html \
-                         ../../doc/newbase/newbase.tag=../../../../newbase/html \
-                         ../../doc/smartmet/spine/spine.tag=../../../spine/html \
-                         ../../doc/smartmet/engines/querydata/querydata.tag=../../../engines/querydata/html
-GENERATE_TAGFILE       = ../../doc/smartmet/plugins/wcs/wcs.tag
+TAGFILES               = ../../library/macgyver/doc/macgyver.tag=../../../../library/macgyver/doc/html \
+                         ../../library/spine/doc/spine.tag=../../../../library/spine/doc/html \
+                         ../../library/newbase/doc/newbase.tag=../../../../library/newbase/doc/html \
+                         ../../engines/querydata/doc/querydata.tag=../../../../engines/querydata/doc/html \
+                         ../../engines/gis/doc/gis.tag=../../../../engines/gis/doc/html
+GENERATE_TAGFILE       = doc/wcs.tag
 ALLEXTERNALS           = NO
 EXTERNAL_GROUPS        = YES
 PERL_PATH              = /usr/bin/perl
