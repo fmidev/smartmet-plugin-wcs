@@ -19,7 +19,7 @@ namespace WCS
 {
 const char* default_url = "/wcs";
 
-Config::Config(const string& configfile)
+Config::Config(const std::string& configfile)
     : ConfigBase(configfile, "WCS plugin"), mDefaultUrl(default_url)
 {
   mDebugLevel = get_optional_config_param<int>("debugLevel", 1);
