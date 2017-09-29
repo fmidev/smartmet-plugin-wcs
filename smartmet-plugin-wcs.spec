@@ -27,6 +27,8 @@ BuildRequires: smartmet-library-newbase-devel >= 17.9.11
 BuildRequires: smartmet-library-spine-devel >= 17.8.28
 BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
+BuildRequires: bzip2-devel
+BuildRequires: openssl-devel
 Requires: boost-chrono
 Requires: boost-date-time
 Requires: boost-filesystem
