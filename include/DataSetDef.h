@@ -1,7 +1,9 @@
 #pragma once
 
 #include "CompoundCRS.h"
+#include "Dataset.h"
 #include "MultiLanguageString.h"
+
 #include <boost/optional.hpp>
 #include <boost/shared_ptr.hpp>
 #include <engines/gis/Engine.h>
@@ -22,38 +24,17 @@ keywords = ["forecast","ocean"];
 parameters = ["TemperatureSea","Salinity"];
 subtype = "RectifiedGridCoverage";
 
+// Optional dataset section.
 dataset:
 {
-  id = "1000567";
-  uuid = "6667f5d8-041f-4b00-a55b-62980f6f78ef";
-  ns = "FI";
 };
+
 compoundcrs:
 {
 //Some configurations from CompoundCRS class
 };
 @endverbatim
 */
-
-class Dataset
-{
- public:
-  using Optional = boost::optional<Dataset>;
-  using Id = std::string;
-  using Ns = std::string;
-  using Uuid = std::string;
-
-  Dataset(boost::shared_ptr<SmartMet::Spine::ConfigBase> config, libconfig::Setting& setting);
-  virtual ~Dataset() {}
-  inline const Id& getId() const { return mId; }
-  inline const boost::optional<Uuid>& getUuid() const { return mUuid; }
-  inline const boost::optional<Ns>& getIdNs() const { return mIdNs; }
-
- private:
-  Id mId;
-  boost::optional<Ns> mIdNs;
-  boost::optional<Uuid> mUuid;
-};
 
 class DataSetDef
 {
