@@ -1,4 +1,4 @@
-GET /wcs?service=WCS&request=GetCoverage&CoverageId=hbm-temperaturesea&format=application/netcdf&subset=z(10,15)&subset=t("2014-07-28T02:00:00Z","2014-07-28T03:00:00Z")&subset=x(10,11)&subset=y(55,55.5) HTTP/1.1
+GET /wcs?service=WCS&request=GetCoverage&CoverageId=hbm-temperaturesea&format=application/netcdf&subset=D(10,15)&subset=unix("2014-07-28T02:00:00Z","2014-07-28T03:00:00Z")&subset=Long(10,11)&subset=Lat(55,55.5) HTTP/1.1
 Host: data.fmi.fi
 fmi-apikey: foobar
 

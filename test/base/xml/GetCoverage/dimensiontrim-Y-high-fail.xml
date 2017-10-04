@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.opengis.net/wcs/2.0 http://schemas.opengis.net/wcs/2.0/wcsAll.xsd">
   <wcs:CoverageId>hbm-temperaturesea</wcs:CoverageId>
   <wcs:DimensionTrim>
-    <wcs:Dimension>y</wcs:Dimension>
+    <wcs:Dimension>Lat</wcs:Dimension>
     <wcs:TrimLow>66.0</wcs:TrimLow>
     <wcs:TrimHigh>66.5</wcs:TrimHigh>
   </wcs:DimensionTrim>
