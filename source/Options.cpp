@@ -20,6 +20,11 @@ namespace Plugin
 {
 namespace WCS
 {
+void Options::setAbbreviations(const Abbreviations::Shared& abbreviations)
+{
+  mAbbreviations = abbreviations;
+}
+
 void Options::setDimensionSubset(const DimensionSubset& dimensionSubset)
 {
   const DimensionSubset* subset = reinterpret_cast<const DimensionSubset*>(&dimensionSubset);
