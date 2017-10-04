@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Abbreviations.h"
 #include "DimensionSubset.h"
 #include "OptionsBase.h"
 #include <engines/gis/CRSRegistry.h>
@@ -28,6 +29,7 @@ class Options : public OptionsBase
 
   Options() : mSwap(false) {}
   ~Options() {}
+  void setAbbreviations(const Abbreviations::Shared& abbreviations);
   void setDimensionSubset(const DimensionSubset& dimensionSubset);
   void setOutputCrs(const OutputCrsType& outputCrs) { mOutputCrs = outputCrs; }
   void setProducer(const ProducerType& producer) { mProducer = producer; }
@@ -37,6 +39,8 @@ class Options : public OptionsBase
     mTransformation = transformation;
   }
   void setSwap(const SwapType& swap) { mSwap = swap; }
+
+  const Abbreviations::Shared& getAbbreviations() const { return mAbbreviations; }
   boost::optional<DimensionSlice> getDimensionSlice(const NameType& name) const;
   boost::optional<DimensionTrim> getDimensionTrim(const NameType& name) const;
   boost::optional<OutputCrsType> getOutputCrs() const { return mOutputCrs; }
@@ -49,6 +53,7 @@ class Options : public OptionsBase
  private:
   Options(const Options& other) = delete;
   Options& operator=(const Options& other) = delete;
+  Abbreviations::Shared mAbbreviations;
   DimensionSliceMapType mDimensionSlices;
   DimensionTrimMapType mDimensionTrims;
   boost::optional<OutputCrsType> mOutputCrs;
