@@ -10,15 +10,15 @@
   </wcs:Extension>
   <wcs:CoverageId>hbm-temperaturesea</wcs:CoverageId>
   <wcs:DimensionSlice>
-    <wcs:Dimension>t</wcs:Dimension>
+    <wcs:Dimension>unix</wcs:Dimension>
     <wcs:SlicePoint>2014-07-28T03:00:00Z</wcs:SlicePoint>
   </wcs:DimensionSlice>
   <wcs:DimensionSlice>
-    <wcs:Dimension>x</wcs:Dimension>
+    <wcs:Dimension>Long</wcs:Dimension>
     <wcs:SlicePoint>20.0</wcs:SlicePoint>
   </wcs:DimensionSlice>
   <wcs:DimensionSlice>
-    <wcs:Dimension>y</wcs:Dimension>
+    <wcs:Dimension>Lat</wcs:Dimension>
     <wcs:SlicePoint>58.0</wcs:SlicePoint>
   </wcs:DimensionSlice>
   <wcs:format>application/netcdf</wcs:format>

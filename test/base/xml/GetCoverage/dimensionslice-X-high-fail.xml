@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.opengis.net/wcs/2.0 http://schemas.opengis.net/wcs/2.0/wcsAll.xsd">
   <wcs:CoverageId>hbm-temperaturesea</wcs:CoverageId>
   <wcs:DimensionSlice>
-    <wcs:Dimension>x</wcs:Dimension>
+    <wcs:Dimension>Long</wcs:Dimension>
     <wcs:SlicePoint>30.4</wcs:SlicePoint>
   </wcs:DimensionSlice>
   <wcs:format>application/netcdf</wcs:format>

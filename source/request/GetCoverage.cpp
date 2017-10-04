@@ -170,9 +170,11 @@ boost::shared_ptr<GetCoverage> GetCoverage::createFromKvp(const Spine::HTTP::Req
   if (auto outputCrs = httpRequest.getParameter("outputCrs"))
     getcoverage->getOptions()->setOutputCrs(ba::trim_copy(*outputCrs));
 
+  auto abbreviations = getcoverage->getOptions()->getAbbreviations();
   for (auto& ss : subsets)
   {
     DimensionTrim trim;
+    trim.setAbbreviations(abbreviations);
     trim.setSubset(ss);
     if (not trim.get("Dimension").is_empty())
     {
@@ -181,6 +183,7 @@ boost::shared_ptr<GetCoverage> GetCoverage::createFromKvp(const Spine::HTTP::Req
     }
 
     DimensionSlice slice;
+    slice.setAbbreviations(abbreviations);
     slice.setSubset(ss);
     if (not slice.get("Dimension").is_empty())
     {
@@ -254,12 +257,14 @@ boost::shared_ptr<GetCoverage> GetCoverage::createFromXml(const xercesc::DOMDocu
     else if (name == "DimensionSlice")
     {
       DimensionSlice slice;
+      slice.setAbbreviations(getcoverage->getOptions()->getAbbreviations());
       slice.setSubset(child);
       getcoverage->getOptions()->setDimensionSubset(std::move(slice));
     }
     else if (name == "DimensionTrim")
     {
       DimensionTrim trim;
+      trim.setAbbreviations(getcoverage->getOptions()->getAbbreviations());
       trim.setSubset(child);
       getcoverage->getOptions()->setDimensionSubset(std::move(trim));
     }
@@ -365,6 +370,8 @@ void GetCoverage::setCoverageIds(const CoverageIdsType& ids)
   auto& crs_registry = mPluginData.getCrsRegistry();
   auto transformation = crs_registry.create_transformation(defaultCrs, crsName);
   mOptions->setTransformation(transformation);
+
+  mOptions->setAbbreviations(compoundcrs.getAbbreviations());
 
   bool swapCoord = false;
   crs_registry.get_attribute(crsName, "swapCoord", &swapCoord);

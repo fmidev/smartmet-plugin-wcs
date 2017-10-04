@@ -6,22 +6,22 @@
     xsi:schemaLocation="http://www.opengis.net/wcs/2.0 http://schemas.opengis.net/wcs/2.0/wcsAll.xsd">
   <wcs:CoverageId>hbm-temperaturesea</wcs:CoverageId>
   <wcs:DimensionTrim>
-    <wcs:Dimension>x</wcs:Dimension>
+    <wcs:Dimension>Long</wcs:Dimension>
     <wcs:TrimLow>10.0</wcs:TrimLow>
     <wcs:TrimHigh>15.0</wcs:TrimHigh>
   </wcs:DimensionTrim>
   <wcs:DimensionTrim>
-    <wcs:Dimension>y</wcs:Dimension>
+    <wcs:Dimension>Lat</wcs:Dimension>
     <wcs:TrimLow>50.0</wcs:TrimLow>
     <wcs:TrimHigh>60.0</wcs:TrimHigh>
   </wcs:DimensionTrim>
   <wcs:DimensionTrim>
-    <wcs:Dimension>z</wcs:Dimension>
+    <wcs:Dimension>D</wcs:Dimension>
     <wcs:TrimLow>10.0</wcs:TrimLow>
     <wcs:TrimHigh>15.0</wcs:TrimHigh>
   </wcs:DimensionTrim>
   <wcs:DimensionTrim>
-    <wcs:Dimension>t</wcs:Dimension>
+    <wcs:Dimension>unix</wcs:Dimension>
     <wcs:TrimLow>2014-07-28T01:10:00Z</wcs:TrimLow>
     <wcs:TrimHigh>2014-07-28T02:10:00Z</wcs:TrimHigh>
   </wcs:DimensionTrim>

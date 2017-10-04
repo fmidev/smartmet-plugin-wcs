@@ -23,7 +23,7 @@ namespace WCS
 namespace spirit = boost::spirit;
 namespace phoenix = boost::phoenix;
 
-DimensionSubset::DimensionSubset(const std::set<NameType>& allowedChildrens)
+DimensionSubset::DimensionSubset(const ChildrenNameSet& allowedChildrens)
     : mAllowedChildrens(allowedChildrens)
 {
 }
@@ -32,8 +32,25 @@ DimensionSubset::~DimensionSubset()
 {
 }
 
+void DimensionSubset::setAbbreviations(const Abbreviations::Shared& abbreviations)
+{
+  mAbbreviations = abbreviations;
+}
+
+const Abbreviations::Shared& DimensionSubset::getAbbreviations() const
+{
+  return mAbbreviations;
+}
+
 void DimensionSubset::setSubset(const xercesc::DOMElement* element)
 {
+  if (not mAbbreviations)
+  {
+    std::ostringstream msg;
+    msg << "Axis labels not found. DimensionSubset operation is not possible.";
+    throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
+  }
+
   auto childrens = Xml::get_child_elements(*element, WCS_NAMESPACE_URI, "*");
 
   for (const xercesc::DOMElement* child : childrens)
@@ -41,7 +58,13 @@ void DimensionSubset::setSubset(const xercesc::DOMElement* element)
     const auto name =
         Xml::check_name_info(child, WCS_NAMESPACE_URI, mAllowedChildrens, "Wcs::DimensionSubset");
 
-    setElement(std::move(Element(child)));
+    Element childElement(child);
+
+    // Validate axis label
+    if (name == "Dimension")
+      mAbbreviations->getDistance(childElement.getValue().to_string());
+
+    setElement(std::move(childElement));
   }
 }
 
@@ -78,6 +101,14 @@ void DimensionSlice::setSubset(const xercesc::DOMElement* element)
 
 void DimensionSlice::setSubset(const std::string& ss)
 {
+  std::ostringstream msg;
+  if (not getAbbreviations())
+  {
+    msg << "Axis labels not found. DimensionSlice operation is not possible.";
+    throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
+  }
+  msg << "Invalid DimensionSlice subset '" << ss << "'.";
+
   using boost::spirit::qi::phrase_parse;
   using boost::spirit::qi::_1;
   using boost::spirit::qi::string;
@@ -89,12 +120,12 @@ void DimensionSlice::setSubset(const std::string& ss)
   using phoenix::push_back;
 
   std::string valueStr;
-  char name[2] = "";
+  std::string name;
   double valueDouble = std::numeric_limits<float>::max();
   bool isValid = phrase_parse(
       ss.begin(),
       ss.end(),
-      (char_[ref(*name) = _1] >> char_('(') >>
+      (lexeme[+(char_[push_back(boost::phoenix::ref(name), _1)] - char_('(')) >> char_('(')] >>
        ((lexeme[char_('"') >> +((char_ - '"')[push_back(boost::phoenix::ref(valueStr), _1)]) >>
                 char_('"')]) |
         (double_[boost::phoenix::ref(valueDouble) = _1])) >>
@@ -102,38 +133,41 @@ void DimensionSlice::setSubset(const std::string& ss)
       spirit::ascii::space);
 
   if (not isValid)
-    goto invalidSubset;
+    return;
+
+  Abbreviations::Distance distance = getAbbreviations()->getDistance(name);
 
   if (std::isfinite(valueDouble) and std::numeric_limits<float>::lowest() < valueDouble and
       valueDouble < std::numeric_limits<float>::max())
   {
-    if (name[0] == 't')
+    if (distance == 3)
     {
       boost::posix_time::ptime epoch = ptimeFromUnixTime(static_cast<int64_t>(valueDouble));
       if (epoch.is_not_a_date_time())
       {
-        goto invalidSubset;
+        msg << " Epoch is not a date time.";
+        throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
       }
       setElement(Element(Value(name), "Dimension"));
       setElement(Element(Value(epoch), "SlicePoint"));
     }
-    else if (name[0] == 'x' or name[0] == 'y' or name[0] == 'z')
+    else if (distance == 0 or distance == 1 or distance == 2)
     {
       setElement(Element(Value(name), "Dimension"));
       setElement(Element(Value(valueDouble), "SlicePoint"));
     }
     else
     {
-      goto invalidSubset;
+      msg << " Not a valid dimension name.";
+      throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
     }
   }
-  else if (not valueStr.empty())
+  else if (not valueStr.empty() and distance == 3)
   {
     boost::posix_time::ptime epoch = Spine::parse_xml_time(valueStr);
     if (epoch.is_not_a_date_time())
     {
-      std::ostringstream msg;
-      msg << "Invalid subset '" << ss << "'.";
+      msg << " Epoch is not a date time.";
       throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
     }
     setElement(Element(Value(name), "Dimension"));
@@ -141,15 +175,8 @@ void DimensionSlice::setSubset(const std::string& ss)
   }
   else
   {
-    goto invalidSubset;
+    throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
   }
-
-  return;
-
-invalidSubset:
-  std::ostringstream msg;
-  msg << "Invalid DimensionSlice subset '" << ss << "'.";
-  throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
 }
 
 DimensionTrim::DimensionTrim() : DimensionSubset({"Dimension", "TrimLow", "TrimHigh"})
@@ -167,6 +194,15 @@ void DimensionTrim::setSubset(const xercesc::DOMElement* element)
 
 void DimensionTrim::setSubset(const std::string& ss)
 {
+  std::ostringstream msg;
+
+  if (not getAbbreviations())
+  {
+    msg << "Axis labels not found. DimensionTrim operation is not possible.";
+    throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
+  }
+  msg << "Invalid DimensionTrim subset '" << ss << "'.";
+
   using boost::spirit::qi::phrase_parse;
   using boost::spirit::qi::_1;
   using boost::spirit::qi::string;
@@ -177,7 +213,7 @@ void DimensionTrim::setSubset(const std::string& ss)
   using boost::phoenix::ref;
   using phoenix::push_back;
 
-  char name[2] = "";
+  std::string name;
   double firstValueDouble = std::numeric_limits<float>::max();
   double secondValueDouble = std::numeric_limits<float>::max();
   std::string firstValueStr;
@@ -185,7 +221,7 @@ void DimensionTrim::setSubset(const std::string& ss)
   bool isValid = phrase_parse(
       ss.begin(),
       ss.end(),
-      (char_[ref(*name) = _1] >> char_('(') >>
+      (lexeme[+(char_[push_back(boost::phoenix::ref(name), _1)] - char_('(')) >> char_('(')] >>
        ((lexeme[char_('"') >> +((char_ - '"')[push_back(boost::phoenix::ref(firstValueStr), _1)]) >>
                 char_('"') >> char_(',') >> char_('"') >>
                 +((char_ - '"')[push_back(boost::phoenix::ref(secondValueStr), _1)]) >>
@@ -196,7 +232,9 @@ void DimensionTrim::setSubset(const std::string& ss)
       spirit::ascii::space);
 
   if (not isValid)
-    goto invalidSubset;
+    return;
+
+  Abbreviations::Distance distance = getAbbreviations()->getDistance(name);
 
   if (std::isfinite(firstValueDouble) and std::isfinite(secondValueDouble) and
       std::numeric_limits<float>::lowest() < firstValueDouble and
@@ -204,19 +242,20 @@ void DimensionTrim::setSubset(const std::string& ss)
       std::numeric_limits<float>::lowest() < secondValueDouble and
       secondValueDouble < std::numeric_limits<float>::max())
   {
-    if (name[0] == 'x' or name[0] == 'y' or name[0] == 'z')
+    if (distance == 0 or distance == 1 or distance == 2)
     {
       setElement(Element(Value(name), "Dimension"));
       setElement(Element(Value(firstValueDouble), "TrimLow"));
       setElement(Element(Value(secondValueDouble), "TrimHigh"));
     }
-    else if (name[0] == 't')
+    else if (distance == 3)
     {
       boost::posix_time::ptime epoch1 = ptimeFromUnixTime(static_cast<int64_t>(firstValueDouble));
       boost::posix_time::ptime epoch2 = ptimeFromUnixTime(static_cast<int64_t>(secondValueDouble));
       if (epoch1.is_not_a_date_time() or epoch2.is_not_a_date_time() or (epoch2 < epoch1))
       {
-        goto invalidSubset;
+        msg << " Epoch is not a date time or epoch2 < epoch1.";
+        throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
       }
       setElement(Element(Value(name), "Dimension"));
       setElement(Element(Value(epoch1), "TrimLow"));
@@ -224,16 +263,18 @@ void DimensionTrim::setSubset(const std::string& ss)
     }
     else
     {
-      goto invalidSubset;
+      msg << " Not a valid dimension name.";
+      throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
     }
   }
-  else if (not firstValueStr.empty() and not secondValueStr.empty() and name[0] == 't')
+  else if (not firstValueStr.empty() and not secondValueStr.empty() and distance == 3)
   {
     boost::posix_time::ptime epoch1 = Spine::parse_xml_time(firstValueStr);
     boost::posix_time::ptime epoch2 = Spine::parse_xml_time(secondValueStr);
     if (epoch1.is_not_a_date_time() or epoch2.is_not_a_date_time() or (epoch2 < epoch1))
     {
-      goto invalidSubset;
+      msg << " Epoch is not a date time or epoch2 < epoch1.";
+      throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
     }
     setElement(Element(Value(name), "Dimension"));
     setElement(Element(Value(epoch1), "TrimLow"));
@@ -241,18 +282,8 @@ void DimensionTrim::setSubset(const std::string& ss)
   }
   else
   {
-    goto invalidSubset;
+    throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
   }
-
-  return;
-
-invalidSubset:
-  /*
-  std::ostringstream msg;
-  msg << "Invalid DimensionTrim subset '" << ss << "'.";
-  throw WcsException(WcsException::INVALID_SUBSETTING, msg.str() );
-  */
-  return;
 }
 }
 }

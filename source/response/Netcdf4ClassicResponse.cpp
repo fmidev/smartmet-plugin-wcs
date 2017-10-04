@@ -27,6 +27,14 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   if (not opt)
     throw std::runtime_error("Cannot cast query options object from OptionsBase to Options.");
 
+  Abbreviations::Shared abbreviations = opt->getAbbreviations();
+  if (not abbreviations)
+  {
+    std::ostringstream msg;
+    msg << "Dimension abbreviations not found.";
+    throw WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
+  }
+
   auto q = querydata->get(opt->getProducer());
   if (not q)
   {
@@ -77,7 +85,8 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   boost::optional<DimensionTrim> trim;
   boost::optional<DimensionSlice> slice;
 
-  if (slice = opt->getDimensionSlice("z"))
+  auto axisLabel = abbreviations->getAbbreviation(2);
+  if (slice = opt->getDimensionSlice(axisLabel))
   {
     const double sPoint = slice->get("SlicePoint").get_double();
     if (sPoint < rangeZ.first or sPoint > rangeZ.second)
@@ -92,7 +101,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
     const auto nearestLevel = solveNearestLevel(q, sPoint);
     levelIds.push_back(nearestLevel.first);
   }
-  else if (trim = opt->getDimensionTrim("z"))
+  else if (trim = opt->getDimensionTrim(axisLabel))
   {
     const auto low = trim->get("TrimLow").get_double();
     const auto high = trim->get("TrimHigh").get_double();
@@ -129,7 +138,10 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   const auto& qWgs84Envelope = q->getWGS84Envelope();
   const auto& rangeLon = qWgs84Envelope.getRangeLon();
 
-  if (slice = opt->getDimensionSlice("x"))
+  bool swapCoord = opt->getSwap();
+  axisLabel = (swapCoord ? abbreviations->getAbbreviation(1) : abbreviations->getAbbreviation(0));
+
+  if (slice = opt->getDimensionSlice(axisLabel))
   {
     const auto step = (rangeLon.getMax() - rangeLon.getMin()) / maxXId;
     const Engine::Querydata::Range range(rangeLon.getMin() - step, rangeLon.getMax() + step);
@@ -149,7 +161,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
     maxXId = nearestLoc.first;
     xDelta = maxXId - minXId + 1;
   }
-  else if (trim = opt->getDimensionTrim("x"))
+  else if (trim = opt->getDimensionTrim(axisLabel))
   {
     double low = trim->get("TrimLow").get_double();
     double high = trim->get("TrimHigh").get_double();
@@ -178,8 +190,8 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   }
 
   const auto& rangeLat = qWgs84Envelope.getRangeLat();
-
-  if (slice = opt->getDimensionSlice("y"))
+  axisLabel = (swapCoord ? abbreviations->getAbbreviation(0) : abbreviations->getAbbreviation(1));
+  if (slice = opt->getDimensionSlice(axisLabel))
   {
     const auto step = (rangeLat.getMax() - rangeLat.getMin()) / maxYId;
     const Engine::Querydata::Range range(rangeLat.getMin() - step, rangeLat.getMax() + step);
@@ -199,7 +211,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
     maxYId = nearestLoc.first;
     yDelta = maxYId - minYId + 1;
   }
-  else if (trim = opt->getDimensionTrim("y"))
+  else if (trim = opt->getDimensionTrim(axisLabel))
   {
     double low = trim->get("TrimLow").get_double();
     double high = trim->get("TrimHigh").get_double();
@@ -230,7 +242,9 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
 
   std::vector<long> t;
   std::vector<unsigned long> timeIds;
-  if (slice = opt->getDimensionSlice("t"))
+
+  axisLabel = abbreviations->getAbbreviation(3);
+  if (slice = opt->getDimensionSlice(axisLabel))
   {
     const auto sPoint = slice->get("SlicePoint").get_ptime();
     if (sPoint < rangeT.first or sPoint > rangeT.second)
@@ -253,7 +267,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
     timeIds.push_back(nearestTime.first);
     t.push_back(q->validTime().DifferenceInMinutes(q->originTime()));
   }
-  else if (trim = opt->getDimensionTrim("t"))
+  else if (trim = opt->getDimensionTrim(axisLabel))
   {
     auto low = trim->get("TrimLow").get_ptime();
     auto high = trim->get("TrimHigh").get_ptime();
@@ -312,7 +326,6 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   auto transformation = opt->getTransformation();
 
   // XY coordinates
-  bool swapCoord = opt->getSwap();
   auto llCache = q->latLonCache();
   auto it = llCache->cbegin();
   auto itEnd = it;
