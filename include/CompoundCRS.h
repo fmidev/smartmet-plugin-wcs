@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Abbreviations.h"
 #include "TemporalCRS.h"
 #include "VerticalCRS.h"
 
@@ -37,6 +38,8 @@ class CompoundCRS : public CRSBase
 
   inline const VerticalCRS::Optional& getVerticalCRS() const { return mVerticalCRS; }
   inline const TemporalCRS::Optional& getTemporalCRS() const { return mTemporalCRS; }
+
+  Abbreviations::Shared getAbbreviations() const;
 
  private:
   VerticalCRS::Optional mVerticalCRS;
