@@ -123,6 +123,9 @@ std::vector<boost::shared_ptr<DataSetDef> > Config::readDataSetDefs()
       {
         boost::shared_ptr<DataSetDef> dataSetDef(
             new DataSetDef(mLanguages.at(0), desc, desc->get_root()));
+        if (dataSetDef->getDisabled())
+          continue;
+
         const auto& compoundcrs = dataSetDef->getCompoundcrs();
         if (std::find(mSupportedCrss.begin(), mSupportedCrss.end(), compoundcrs.getIdentifier()) ==
             mSupportedCrss.end())

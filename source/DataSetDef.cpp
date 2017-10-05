@@ -10,9 +10,11 @@ namespace WCS
 DataSetDef::DataSetDef(const std::string& defaultLanguage,
                        boost::shared_ptr<SmartMet::Spine::ConfigBase> config,
                        libconfig::Setting& setting)
-
 {
   mDisabled = config->get_optional_config_param<bool>(setting, "disabled", false);
+  if (mDisabled)
+    return;
+
   mName = config->get_mandatory_config_param<std::string>(setting, "name");
 
   if (libconfig::Setting* mlTitle = config->find_setting(setting, "title", false))
