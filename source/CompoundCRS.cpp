@@ -1,4 +1,5 @@
 #include "CompoundCRS.h"
+#include "WcsException.h"
 
 #include <boost/algorithm/string.hpp>
 #include <macgyver/StringConversion.h>
@@ -24,6 +25,26 @@ CompoundCRS::CompoundCRS(boost::shared_ptr<SmartMet::Spine::ConfigBase> config,
   libconfig::Setting* temporalCRS = config->find_setting(setting, "temporal_crs", false);
   if (temporalCRS)
     mTemporalCRS = TemporalCRS(config, *temporalCRS);
+
+  Abbreviations::Vector abbrVector;
+  boost::algorithm::split(abbrVector, getAbbrev(), boost::algorithm::is_any_of(" "));
+
+  if (abbrVector.size() < 2 or abbrVector.size() > 3)
+  {
+    std::ostringstream msg;
+    msg << "2 or 3 abbreviations required for '" << getIdentifier() << "'.";
+    throw WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
+  }
+
+  if (mVerticalCRS and abbrVector.size() > 2)
+  {
+    std::ostringstream msg;
+    msg << "Three abbreviations for '" << getIdentifier() << "' "
+        << "and vertical CRS '" << mVerticalCRS->getIdentifier()
+        << "' detected in same compoundcrs configuration. "
+        << "Maybe there is too many abbreviations defined.";
+    throw WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
+  }
 }
 
 CompoundCRS::~CompoundCRS()
