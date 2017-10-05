@@ -54,10 +54,11 @@ void CRSBase::parse(boost::shared_ptr<SmartMet::Spine::ConfigBase> config,
 {
   config->assert_is_group(setting);
 
-  CRSBase::Identifier identifier =
-      config->get_mandatory_config_param<CRSBase::Identifier>(setting, "identifier");
+  CRSBase::Identifier identifier = boost::algorithm::trim_copy(
+      config->get_mandatory_config_param<CRSBase::Identifier>(setting, "identifier"));
 
-  CRSBase::Abbrev abbrev = config->get_mandatory_config_param<CRSBase::Abbrev>(setting, "abbrev");
+  CRSBase::Abbrev abbrev = boost::algorithm::trim_copy(
+      config->get_mandatory_config_param<CRSBase::Abbrev>(setting, "abbrev"));
   CRSBase::setIdentifier(identifier);
   CRSBase::setAbbrev(abbrev);
 }
