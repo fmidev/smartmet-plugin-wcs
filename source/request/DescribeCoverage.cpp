@@ -133,7 +133,6 @@ void DescribeCoverage::execute(std::ostream& output) const
     crs_registry.get_attribute(crsName, "projUri", &projUri);
     crs_registry.get_attribute(crsName, "projEpochUri", &projEpochUri);
     crs_registry.get_attribute(crsName, "projPressEpochUri", &projPressEpochUri);
-    crs_registry.get_attribute(crsName, "axisLabels", &projLabels);
     crs_registry.get_attribute(crsName, "swapCoord", &swapCoord);
 
     // EPSG crs code is either 2D or 3D. Compound height is not allowed in the case of 3D.
@@ -142,6 +141,14 @@ void DescribeCoverage::execute(std::ostream& output) const
 
     if (showHeight)
       axisLabels.append(" z");
+
+    auto abbreviations = compoundcrs.getAbbreviations();
+    for (const auto& label : abbreviations->getAbbreviationVector())
+    {
+      if (not projLabels.empty())
+        projLabels.append(" ");
+      projLabels.append(label);
+    }
 
     const bool showCompoundcrsHeight = (compoundcrs.getVerticalCRS() ? true : false);
     const bool showCompoundcrsTime = (compoundcrs.getTemporalCRS() ? true : false);
@@ -169,15 +176,14 @@ void DescribeCoverage::execute(std::ostream& output) const
           .append(Fmi::to_string(compoundAxisId++))
           .append("=")
           .append(verticalCRS->getIdentifier());
-      projLabels.append(" ").append(verticalCRS->getAbbrev());
       axisLabels.append(" z");
       srsDimension++;
     }
     if (showCompoundcrsTime)
     {
+      auto& temporalCRS = compoundcrs.getTemporalCRS();
       compoundcrsUri.append("&amp;").append(Fmi::to_string(compoundAxisId++)).append("=");
-      compoundcrsUri.append(compoundcrs.getTemporalCRS()->getIdentifier());
-      projLabels.append(" t");
+      compoundcrsUri.append(temporalCRS->getIdentifier());
       axisLabels.append(" t");
       srsDimension++;
     }

@@ -20,7 +20,7 @@
                <gml:high><TMPL_var cov.grid_size[0]> <TMPL_var cov.grid_size[1]><TMPL_if DEFINED(cov.grid_offset_z)> <TMPL_var cov.grid_size[2]></TMPL_if><TMPL_if DEFINED(cov.grid_size[3])> <TMPL_var cov.grid_size[3]></TMPL_if></gml:high>
              </gml:GridEnvelope>
            </gml:limits>
-           <gml:axisLabels><TMPL_var cov.axisLabels></gml:axisLabels>
+           <gml:axisLabels><TMPL_var cov.srsLabels></gml:axisLabels>
            <gml:origin>
              <gml:Point gml:id="cd<TMPL_var CONCAT("-",cov.__index__ + 1)>-mg-0-rg<TMPL_var CONCAT("-",gm.__index__ + 1)>-origin-<TMPL_var cov.id>-<TMPL_var gm.level>"<TMPL_if DEFINED(cov.srsNamePressEpoch)> srsName="<TMPL_var cov.srsNamePressEpoch>"</TMPL_if><TMPL_if DEFINED(cov.srsLabels)> axisLabels="<TMPL_var cov.srsLabels>"</TMPL_if><TMPL_if DEFINED(cov.uomLabels)> uomLabels="<TMPL_var cov.uomLabels>"</TMPL_if><TMPL_if DEFINED(cov.srsDimension)> srsDimension="<TMPL_var cov.srsDimension>"</TMPL_if>>
                <gml:pos><TMPL_var cov.bottom_left[0]> <TMPL_var cov.bottom_left[1]><TMPL_if DEFINED(cov.grid_offset_z)> <TMPL_var gm.level></TMPL_if><TMPL_if DEFINED(cov.grid_size[3])> <TMPL_var cov.epoch_time[0]></TMPL_if></gml:pos>
