@@ -24,8 +24,8 @@ void DataContainer<T>::add(const DataType& value)
   else
   {
     std::ostringstream msg;
-    msg << "There is too many values to add to '" << mName << "' array. Maximum size is '"
-        << mSize << "'";
+    msg << "There is too many values to add to '" << mName << "' array. Maximum size is '" << mSize
+        << "'";
     throw WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
   }
 }
