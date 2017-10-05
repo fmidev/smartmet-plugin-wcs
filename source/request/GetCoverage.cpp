@@ -152,18 +152,23 @@ boost::shared_ptr<GetCoverage> GetCoverage::createFromKvp(const Spine::HTTP::Req
   {
     ba::trim(id);
   }
-  auto format = httpRequest.getParameter("format");
+
+  boost::shared_ptr<GetCoverage> getcoverage(new GetCoverage(pluginData));
+  getcoverage->checkKvpAttributes(httpRequest);
+  getcoverage->checkCoverageIds(ids);
+  getcoverage->setCoverageIds(ids);
+
   auto subsets = httpRequest.getParameterList("subset");
   auto slices = httpRequest.getParameterList("DimensionSlice");
   subsets.insert(subsets.end(), slices.begin(), slices.end());
   auto trims = httpRequest.getParameterList("DimensionTrim");
   subsets.insert(subsets.end(), trims.begin(), trims.end());
 
-  boost::shared_ptr<GetCoverage> getcoverage(new GetCoverage(pluginData));
-  getcoverage->checkKvpAttributes(httpRequest);
-
-  if (format)
+  if (auto format = httpRequest.getParameter("format"))
     getcoverage->setOutputFormat(ba::trim_copy(*format));
+
+  if (auto outputCrs = httpRequest.getParameter("outputCrs"))
+    getcoverage->getOptions()->setOutputCrs(ba::trim_copy(*outputCrs));
 
   for (auto& ss : subsets)
   {
@@ -187,13 +192,6 @@ boost::shared_ptr<GetCoverage> GetCoverage::createFromKvp(const Spine::HTTP::Req
     msg << "Invalid subset '" << ss << "'.";
     throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
   }
-
-  auto outputCrs = httpRequest.getParameter("outputCrs");
-  if (outputCrs)
-    getcoverage->getOptions()->setOutputCrs(ba::trim_copy(*outputCrs));
-
-  getcoverage->checkCoverageIds(ids);
-  getcoverage->setCoverageIds(ids);
 
   return getcoverage;
 }
@@ -236,6 +234,19 @@ boost::shared_ptr<GetCoverage> GetCoverage::createFromXml(const xercesc::DOMDocu
     if (name == "CoverageId")
     {
       ids.push_back(ba::trim_copy(Xml::extract_text(*child)));
+    }
+  }
+
+  getcoverage->checkCoverageIds(ids);
+  getcoverage->setCoverageIds(ids);
+
+  for (const xercesc::DOMElement* child : children)
+  {
+    const std::string name =
+        Xml::check_name_info(child, WCS_NAMESPACE_URI, allowedChildren, methodName);
+
+    if (name == "CoverageId")
+    {
     }
     else if (name == "DimensionSubset")
     {
@@ -283,9 +294,6 @@ boost::shared_ptr<GetCoverage> GetCoverage::createFromXml(const xercesc::DOMDocu
       assert(0);
     }
   }
-
-  getcoverage->checkCoverageIds(ids);
-  getcoverage->setCoverageIds(ids);
 
   return getcoverage;
 }
