@@ -127,6 +127,10 @@ void GetCapabilities::execute(std::ostream& output) const
     }
   }
 
+  auto metadataHash = capabilities.getServiceMetaData()->getHash();
+  if (metadataHash.Size() > 0)
+    hash.MergeCDT(metadataHash);
+
   std::ostringstream logMessages;
   try
   {
