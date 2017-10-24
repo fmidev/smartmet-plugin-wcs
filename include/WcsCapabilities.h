@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ConfigHash.h"
 #include "Coverage.h"
 #include "RequestType.h"
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -25,6 +26,7 @@ class WcsCapabilities
   using FormatSetMap = std::map<RequestType, FormatSet>;
   using Operation = std::string;
   using OperationSet = std::set<Operation>;
+  using ServiceMetaData = ConfigHash;
   using Version = std::string;
   using VersionSet = std::set<Version>;
 
@@ -43,11 +45,15 @@ class WcsCapabilities
 
   const Version& getHighestVersion() const;
 
+  const ServiceMetaData::Shared& getServiceMetaData() const;
+
   bool registerOperation(const Operation& operation);
 
   bool registerOutputFormat(const RequestType& rtype, const Format& format);
 
   void registerDataset(const Dataset& code, const CoverageDescription& cov);
+
+  void setServiceMetaData(const ServiceMetaData::Shared& serviceMetaData);
 
  private:
   FormatSetMap mFormats;
@@ -55,6 +61,7 @@ class WcsCapabilities
   VersionSet mVersions;
   Version mHighestVersion;
   DatasetMap mDatasetMap;
+  ServiceMetaData::Shared mServiceMetaData;
 
   /**
    *  @brief Mutex for preventing race conditions when accessing this object

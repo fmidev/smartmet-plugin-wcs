@@ -13,7 +13,10 @@ namespace WCS
 {
 using SmartMet::Spine::log_time_str;
 
-WcsCapabilities::WcsCapabilities() : mVersions({"2.0.1", "2.0.0"}), mHighestVersion("2.0.1")
+WcsCapabilities::WcsCapabilities()
+    : mVersions({"2.0.1", "2.0.0"}),
+      mHighestVersion("2.0.1"),
+      mServiceMetaData(new ServiceMetaData())
 {
   if (mVersions.empty() or mHighestVersion.empty())
   {
@@ -102,6 +105,12 @@ const WcsCapabilities::Version& WcsCapabilities::getHighestVersion() const
   return mHighestVersion;
 }
 
+const WcsCapabilities::ServiceMetaData::Shared& WcsCapabilities::getServiceMetaData() const
+{
+  Spine::ReadLock lock(mutex);
+  return mServiceMetaData;
+}
+
 void WcsCapabilities::registerDataset(const WcsCapabilities::Dataset& code,
                                       const CoverageDescription& cov)
 {
@@ -118,6 +127,12 @@ const WcsCapabilities::DatasetMap& WcsCapabilities::getSupportedDatasets() const
 {
   Spine::ReadLock lock(mutex);
   return mDatasetMap;
+}
+
+void WcsCapabilities::setServiceMetaData(const ServiceMetaData::Shared& serviceMetaData)
+{
+  Spine::WriteLock lock(mutex);
+  mServiceMetaData = serviceMetaData;
 }
 }
 }
