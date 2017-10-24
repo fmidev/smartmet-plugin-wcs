@@ -84,6 +84,7 @@ class PluginData : public boost::noncopyable
   void createTemplateFormatters();
   void createXmlParser();
   void createParameterConfigs();
+  void createServiceMetaData();
 
  private:
   Config mConfig;

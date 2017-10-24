@@ -1,4 +1,5 @@
 #include "PluginData.h"
+#include "WcsException.h"
 #include <macgyver/StringConversion.h>
 #include <macgyver/TimeParser.h>
 
@@ -33,6 +34,7 @@ PluginData::PluginData(Spine::Reactor *reactor, const char *config)
   createTemplateFormatters();
   createXmlParser();
   createParameterConfigs();
+  createServiceMetaData();
 
   std::vector<boost::shared_ptr<DataSetDef> > dsDefs = mConfig.readDataSetDefs();
   for (auto &dsDef : dsDefs)
@@ -128,6 +130,30 @@ void PluginData::createParameterConfigs()
   const ParamConfig::FilePathType &netcdfParamConfigPath =
       mConfig.get_mandatory_config_param<std::string>("netcdfParamConfigPath");
   mNetcdfParamConfig.reset(new NetcdfParamConfig(netcdfParamConfigPath));
+}
+
+void PluginData::createServiceMetaData()
+{
+  try
+  {
+    libconfig::Setting *setting = mConfig.find_setting(mConfig.get_root(), "Capabilities", false);
+    if (setting)
+    {
+      WcsCapabilities::ServiceMetaData::Shared serviceMetaData(
+          new WcsCapabilities::ServiceMetaData);
+      serviceMetaData->set(*setting);
+      mWcsCapabilities->setServiceMetaData(serviceMetaData);
+    }
+  }
+  catch (const std::exception &exception)
+  {
+    throw WcsException(WcsException::NO_APPLICABLE_CODE, exception.what());
+  }
+  catch (...)
+  {
+    throw WcsException(WcsException::NO_APPLICABLE_CODE,
+                       "Failed to read or set ServiceMetaData setting from main configuration.");
+  }
 }
 }
 }
