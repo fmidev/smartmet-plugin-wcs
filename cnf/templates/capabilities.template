@@ -35,177 +35,6 @@
       tulee rekisteröityä palveluun sekä hyväksyä käyttöehdot saadakseen pääsyn palveluun.
     </ows:Fees>
     <ows:AccessConstraints>
-<TMPL_else>
-  <ows:ServiceIdentification>
-    <ows:Title>Finnish Meteorological Institute's Open Data Download Service</ows:Title>
-    <ows:Abstract>
-      Finnish Meteorological Institute's Open Data Download Service provides data
-      free-of-charge for public use. The producer of open data is the Finnish
-      Meteorological Institute.
-    </ows:Abstract>
-    <ows:Keywords>
-      <ows:Keyword>Forecast</ows:Keyword>
-      <ows:Keyword>Model</ows:Keyword>
-      <ows:Keyword>Hirlam</ows:Keyword>
-      <ows:Type>String</ows:Type>
-    </ows:Keywords>
-    <ows:ServiceType>WCS</ows:ServiceType>
-    <ows:ServiceTypeVersion><TMPL_var version></ows:ServiceTypeVersion>
-    <ows:Fees>
-      The use of this service and the returned data is free-of-charge, but users must
-      register and agree to the terms of service to gain access to the data.
-    </ows:Fees>
-    <ows:AccessConstraints>
-</TMPL_if>
-<TMPL_if in_set(language, "fin")>
-1.7.2014
-
-1. Yleistä
-Aineiston käyttöoikeutta rajoittavat tämän lisenssin mukaiset käyttöehdot:
-
-Avoin data -aineiston tuottaja ja tekijänoikeuden tai tietokantasuojan haltijat ovat kukin oman aineistonsa osalta seuraavat: Ilmatieteen laitos, Liikennevirasto ja muut tiedontuottajat (jäljempänä lisenssin myöntäjä). Muut tiedontuottajat on lueteltu liitteessä 1.
-
-Aineistoa käyttäessä on aineiston tai sitä sisältävän tai hyödyntävän palvelun yhteyteen liitettävä maininta alkuperäislähteestä ja aineistoversion ajankohdasta seuraavasti:
-- aineiston tuottaja ja hakuajankohdan päiväys
-- ilmoitus mikäli aineistoa on muokattu
-
-
-Lisenssin saajalla tarkoitetaan luonnollista tai juridista henkilöä, joka ottaa tämän lisenssin alaisen aineiston käyttöön.
-
-Lisenssin myöntäjä ei peri lisenssin alaisen aineiston käytöstä maksua.
-
-Vastaanottamalla aineistoa lisenssin saaja hyväksyy tämän lisenssin ehdot.
-
-2. Lisenssin ehdot
-2.1. Käyttöoikeudet
-Tämä on maailmanlaajuisen, maksuttoman, peruuttamattoman rinnakkaisen käyttöoikeuden myöntävä lisenssi, jonka mukaan lisenssin saajan vastaanottamaa aineistoa voi vapaasti:
-- kopioida, levittää ja julkaista,
-- muokata ja hyödyntää kaupallisesti ja ei-kaupallisesti,
-- yhdistellä muihin tuotteisiin ja
-- käyttää osana sovellusta tai palvelua.
-
-2.2. Lisenssin saajan velvollisuudet ja vastuut
-Lisenssin saajan on aineistoa tai siitä tehtyjä tuotteita käyttäessään ja edelleen luovuttaessaan:
-- mainittava aineiston alkuperäislähde kohdan 1. Yleistä mukaisesti.
-- esitettävä tämän lisenssin kopio tai linkki siihen.
-- vaadittava tämän lisenssin kohdan 1. Yleistä mukaista nimeämiskäytännön noudattamista myöntäessään lisenssejä tuotteeseen tai palveluun, jossa käyttää tämän lisenssin alaista aineistoa tai sen osaa.
-poistettava maininta alkuperäislähteestä, mikäli lisenssin myöntäjä sitä erikseen vaatii.
-- lentosäähavaintosanomiin (METAR) sovelletaan oheisen liitteen 2 mukaisia lisäehtoja.
-
-Lisenssin saajan ja lisenssin myöntäjän välille ei tämän lisenssin myötä synny yhteistyö- tai liikesuhdetta. Lisenssin saaja ei saa aineiston yhteydessä ilmaista, että lisenssin myöntäjä tukisi tai suosittelisi kyseistä aineiston käyttötapaa.
-
-Lisenssin myöntäjän ylläpitämän aineiston latauspalvelun häiriökäyttö on kielletty.
-
-2.3. Lisenssin myöntäjän velvollisuudet ja vastuut
-Lisenssin myöntäjä vastaa, että sillä on oikeus luovuttaa lisenssi kohdassa 1. Yleistä nimettyyn aineistoon.
-
-Aineisto on lisensoitu sellaisenaan eikä lisenssin myöntäjä vastaa aineiston perusteella tehdyistä päätöksistä, aineistossa mahdollisesti esiintyvistä virheistä eikä aineiston käytöstä aiheutuvista välittömistä tai välillisistä vahingoista. Lisenssin myöntäjä ei myönnä aineistolle tai siinä olevien tietojen oikeellisuudelle tai ajantasaisuudelle takuuta.
-
-Lisenssin myöntäjä ei takaa, että aineisto olisi jatkuvasti saatavilla, ja lisenssin myöntäjä voi lopettaa aineiston jakelun ennalta ilmoittamatta. Lisenssin myöntäjä voi myös muuttaa aineiston latausrajapintaa ennalta ilmoittamatta.
-
-3. Sovellettava laki
-Tähän lisenssiin sovelletaan Suomen lakia.
-
-4. Muutokset tähän lisenssiin
-Lisenssin myöntäjä voi milloin tahansa muuttaa lisenssin ehtoja tai soveltaa aineistoon eri lisenssiä. Tämän lisenssin ehtoja sovelletaan kuitenkin edelleen niihin yksittäisiin aineistoihin, jotka oli lisenssin muuttuessa jo ladattu.
-
-
-LIITE 1
-
-Muut tiedontuottajat
-(Toistaiseksi ei muita tiedontuottajia.)
-
-LIITE 2
-
-Lentosäähavaintosanomat (METAR) -aineistoon liittyvät lisäehdot
-
-YLEISTÄ
-Lentokentillä tuotetaan kahta eri säähavaintoaineistoa: lentosäähavaintosanomia (METAReita) ja hetkellisiä säähavaintoja. Lentosäähavaintosanomat (METARit) koostetaan yleensä lentokentän eri havaintolaitteiden datasta noudattaen ICAO Annex 3:n* määräyksiä. Hetkelliset säähavainnot ovat puolestaan lentokentän tiettyjen havaintolaitteiden havaintoja. Lentosäähavaintosanoman (METARin) ja lentopaikan hetkellisen säähavainnon välillä voi olla suuriakin eroja johtuen erilaisista laskentamenetelmistä ja päättelyketjuista.
-
-Ilmatieteen laitos on nimetty yksinoikeudella lentosäähavaintopalveluiden tarjoajaksi Suomen lentotiedotusalueelle 31.1.2020 asti. (LVM päätös 5.3.2013 dnro LVM/1185/02/2012)
-
-ICAO Annex 3:n* mukaan METAR tulee esittää määritetyn muotoisena ja sisältöisenä säähavaintosanomana.
-
-DISCLAIMER -SUOSITUS
-Sovelluksissa, joissa käytetään lentosäähavaintosanomia (METAReita), tulisi esittää disclaimer "Palvelussa esitetyt METAR-sanomat voivat puuttua tai olla käytettävissä myöhemmin kuin ilmailun viestiverkossa."
-
-*Annex 3 to the Convention on International Civil Aviation – Meteorological Service for International Service for International Air Navigation
-<TMPL_else>
-1.7.2014
-
-1. General
-The use of the material is governed by the terms and conditions specified in this licence.
-
-The following are regarded as the producer of open data and the holders of copyright or database rights: the Finnish Meteorological Institute, the Finnish Transport Agency and other data producers as specified in Annex 1 (hereinafter the licensors).
-
-When used, the material or the service including or utilising the material must be accompanied by information on the original source and the date of the current version as follows:
-- the producer of the material and the retrieval date;
-- a note if the data have been adapted.
-
-The licensee refers to a natural or legal person who takes the material covered by this licence into use.
-
-The licensor does not charge a fee for using the material subject to this licence.
-
-By receiving the material, the licensee accepts the terms of this licence.
-
-2. Terms of use
-
-2.1. The right to use the material
-This licence grants a worldwide, free of charge, perpetual, non-exclusive right, under which the material received by the licensee can be freely:
-- copied, distributed and published;
-- adapted and utilised commercially and non-commercially;
-- combined with other products; and
-- used as part of an application or a service.
-
-2.2. The licensee's obligations and responsibilities
-When using and transmitting the material or products made of the material, the licensee must:
-
-- mention the original source of the material in accordance with Section 1. General;
-- present a copy of this licence or a link to it;
-- require that the attribution practice specified under Section 1. General of this licence is followed when the licensee grants licenses to a product or service that uses some or all of the material subject to this licence;
-remove the note of the original source if so required explicitly by the licensor.
-- Special additional terms as stated in Annex 2 apply to aviation weather reports (METAR).
-
-This licence does not create any cooperation or business relationship between the licensee and the licensor. In connection with the material, the licensee must not indicate that the licensor endorses or recommends the licensee's use of the material.
-
-Malicious use of the download service maintained by the licensor is prohibited.
-
-2.3. The licensor's obligations and responsibilities
-The licensor is responsible for ensuring that it has the right to grant a licence to the material specified in Section 1. General.
-
-The material is licensed ‘as is' and the licensor is not liable for decisions made on the basis of the material, for any errors in the material, or for direct or indirect damage caused by the use of the material. The licensor does not grant any warranty for the material and does not guarantee that the material is accurate and up-to-date.
-
-The licensor does not guarantee that the material is constantly available, and the licensor may terminate the distribution of the material without prior notice. The licensor may also change the interface for downloading the material without prior notice.
-
-3. Applicable law
-This licence is governed by Finnish law.
-
-4. Changes to this licence
-At any time, the licensor may change the licence terms or may apply a different licence to the material. However, the terms of this licence continue to be applied to individual materials that had already been downloaded when the licence changed.
-
-ANNEX 1
-
-Other data producers
-(No other data producers.)
-
-ANNEX 2
-
-Additional terms for aviation weather reports (METAR)
-
-GENERAL ASPECTS
-
-The airports produce two different kinds of weather reports: aviation weather reports (METAR) and weather observations. Aviation weather reports (METAR) are generally compiled from the data collected by the airport's various observation equipment in compliance with the regulations in ICAO Annex 3*. Weather observations refer to data collected by certain observation equipment at an airport. Due to different calculation methods and deduction chains, the differences between an aviation weather report (METAR) and a weather observation at an aerodrome can be quite large.
-
-The Finnish Meteorological Institute has been appointed as the designated producer of aviation weather reports in the Finnish Flight Information Region until 31 January 2010 (Decision of the Finnish Ministry of Transport and Communications, 5 March 2013, record number LVM/1185/02/2012).
-
-ICAO Annex 3* establishes specific formal and material requirements for METAR weather reports.
-
-RECOMMENDED DISCLAIMER
-Applications containing aviation weather reports (METAR) should contain the following disclaimer: "METAR reports may be missing or available later than in the Aeronautical Fixed Telecommunication Network (AFTN)"
-
-*Annex 3 to the Convention on International Civil Aviation – Meteorological Service for International Service for International Air Navigation
-</TMPL_if>
-<TMPL_if in_set(language, "fin")>
     </ows:AccessConstraints>
   </ows:ServiceIdentification>
   <ows:ServiceProvider>
@@ -225,39 +54,59 @@ Applications containing aviation weather reports (METAR) should contain the foll
           <ows:Country>Suomi</ows:Country>
           <ows:ElectronicMailAddress>avoin-data@fmi.fi</ows:ElectronicMailAddress>
         </ows:Address>
-<TMPL_else>
-    </ows:AccessConstraints>
-  </ows:ServiceIdentification>
-  <ows:ServiceProvider>
-    <ows:ProviderName>Finnish Meteorological Institute</ows:ProviderName>
-    <ows:ProviderSite xlink:href="http://en.ilmatieteenlaitos.fi"/>
-    <ows:ServiceContact>
-      <ows:ContactInfo>
-        <ows:Phone>
-          <ows:Voice>+358 29 539 1000</ows:Voice>
-          <ows:Facsimile>+358 29 539 2303</ows:Facsimile>
-        </ows:Phone>
-        <ows:Address>
-          <ows:DeliveryPoint>P.O. BOX 503</ows:DeliveryPoint>
-          <ows:City>Helsinki</ows:City>
-          <ows:AdministrativeArea>Uusimaa</ows:AdministrativeArea>
-          <ows:PostalCode>00101</ows:PostalCode>
-          <ows:Country>Finland</ows:Country>
-          <ows:ElectronicMailAddress>avoin-data@fmi.fi</ows:ElectronicMailAddress>
-        </ows:Address>
-</TMPL_if>
-        <TMPL_if in_set(language, "fin")><ows:OnlineResource xlink:href="http://ilmatieteenlaitos.fi/avoin-data"/><TMPL_else><ows:OnlineResource xlink:href="http://en.ilmatieteenlaitos.fi/open-data"/></TMPL_if>
+
+        <ows:OnlineResource xlink:href="http://ilmatieteenlaitos.fi/avoin-data"/>
         <ows:ContactInstructions>
-<TMPL_if in_set(language, "fin")>
           Saadaksesi teknistä apua tai antaaksesi palvelua koskevia virheilmoituksia, ole hyvä ja ota yhteyttä www-sivun http://ilmatieteenlaitos.fi/avoin-data kautta.
-<TMPL_else>
-          For technical help or error reports considering FMI Open Data Web Services, please consult our web page http://en.ilmatieteenlaitos.fi/open-data
-</TMPL_if>
         </ows:ContactInstructions>
       </ows:ContactInfo>
       <ows:Role>PointOfContact</ows:Role>
     </ows:ServiceContact>
-  </ows:ServiceProvider><TMPL_if DEFINED(operation.GetCapabilities && operation.DescribeCoverage)>
+<TMPL_else>
+  <TMPL_if DEFINED(Capabilities && Capabilities.ServiceIdentification)><ows:ServiceIdentification><TMPL_if DEFINED(Capabilities.ServiceIdentification.Title)>
+    <ows:Title><TMPL_var Capabilities.ServiceIdentification.Title></ows:Title></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceIdentification.Abstract)>
+    <ows:Abstract><TMPL_var Capabilities.ServiceIdentification.Abstract>
+    </ows:Abstract></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceIdentification.Keywords && Capabilities.ServiceIdentification.Keywords.Keyword)>
+    <ows:Keywords><TMPL_foreach Capabilities.ServiceIdentification.Keywords.Keyword as keyword>
+      <ows:Keyword><TMPL_var keyword></ows:Keyword></TMPL_foreach><TMPL_if DEFINED(Capabilities.ServiceIdentification.Keywords.Type)>
+      <ows:Type><TMPL_var Capabilities.ServiceIdentification.Keywords.Type></ows:Type></TMPL_if>
+    </ows:Keywords></TMPL_if>
+    <ows:ServiceType>WCS</ows:ServiceType>
+    <ows:ServiceTypeVersion><TMPL_var version></ows:ServiceTypeVersion>
+    <ows:Fees><TMPL_if DEFINED(Capabilities.ServiceIdentification.Fees)>
+      <TMPL_var Capabilities.ServiceIdentification.Fees></TMPL_if>
+    </ows:Fees><TMPL_if DEFINED(Capabilities.ServiceIdentification.AccessConstraints.eng)>
+    <ows:AccessConstraints><TMPL_var Capabilities.ServiceIdentification.AccessConstraints.eng>
+    </ows:AccessConstraints></TMPL_if>
+  </ows:ServiceIdentification></TMPL_if>
+  <TMPL_if DEFINED(Capabilities && Capabilities.ServiceProvider && Capabilities.ServiceProvider.ProviderName && Capabilities.ServiceProvider.ServiceContact)><ows:ServiceProvider>
+    <ows:ProviderName><TMPL_var Capabilities.ServiceProvider.ProviderName></ows:ProviderName>
+    <TMPL_if DEFINED(Capabilities.ServiceProvider.ProviderSite && Capabilities.ServiceProvider.ProviderSite.href)><ows:ProviderSite xlink:href="<TMPL_var Capabilities.ServiceProvider.ProviderSite.href>"/></TMPL_if>
+    <ows:ServiceContact>
+      <TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo)><ows:ContactInfo><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.Phone)>
+        <ows:Phone><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.Phone.Voice)>
+          <ows:Voice><TMPL_var Capabilities.ServiceProvider.ServiceContact.ContactInfo.Phone.Voice></ows:Voice></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.Phone.Facsimile)>
+          <ows:Facsimile><TMPL_var Capabilities.ServiceProvider.ServiceContact.ContactInfo.Phone.Facsimile></ows:Facsimile></TMPL_if>
+        </ows:Phone></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address)>
+        <ows:Address><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.DeliveryPoint)>
+          <ows:DeliveryPoint><TMPL_var Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.DeliveryPoint></ows:DeliveryPoint></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.City)>
+          <ows:City><TMPL_var Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.City></ows:City></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.AdministrativeArea)>
+          <ows:AdministrativeArea><TMPL_var Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.AdministrativeArea></ows:AdministrativeArea></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.PostalCode)>
+          <ows:PostalCode><TMPL_var Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.PostalCode></ows:PostalCode></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.Country)>
+          <ows:Country><TMPL_var Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.Country></ows:Country></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.ElectronicMailAddress)>
+          <ows:ElectronicMailAddress><TMPL_var Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.ElectronicMailAddress></ows:ElectronicMailAddress></TMPL_if>
+        </ows:Address></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.OnlineResource)>
+
+        <ows:OnlineResource xlink:href="http://en.ilmatieteenlaitos.fi/open-data"/></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.ContactInstructions)>
+        <ows:ContactInstructions>
+
+          <TMPL_var Capabilities.ServiceProvider.ServiceContact.ContactInfo.ContactInstructions>
+
+        </ows:ContactInstructions></TMPL_if>
+      </ows:ContactInfo></TMPL_if>
+      <TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.Role)><ows:Role><TMPL_var Capabilities.ServiceProvider.ServiceContact.Role></ows:Role></TMPL_if>
+    </ows:ServiceContact>
+  </ows:ServiceProvider></TMPL_if></TMPL_if><TMPL_if DEFINED(operation.GetCapabilities && operation.DescribeCoverage)>
   <ows:OperationsMetadata>
     <ows:Operation name="GetCapabilities">
       <ows:DCP>
