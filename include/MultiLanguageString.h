@@ -24,7 +24,7 @@ class MultiLanguageString
   using Message = std::string;
   using Content = std::map<Language, Message>;
 
-  MultiLanguageString(const Language& defaultLanguage, libconfig::Setting& setting);
+  MultiLanguageString(const Language& defaultLanguage, const libconfig::Setting& setting);
   virtual ~MultiLanguageString();
   static Shared create(const Language& defaultLanguage, libconfig::Setting& setting);
   const Message& get() const;
