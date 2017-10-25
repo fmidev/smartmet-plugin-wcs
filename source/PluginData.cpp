@@ -1,7 +1,9 @@
 #include "PluginData.h"
 #include "WcsException.h"
+
 #include <macgyver/StringConversion.h>
 #include <macgyver/TimeParser.h>
+#include <functional>
 
 namespace SmartMet
 {
@@ -149,6 +151,48 @@ void PluginData::createServiceMetaData()
         serviceMetaData.setLanguage(language);
         serviceMetaData.set(*setting);
         mWcsCapabilities->registerServiceMetaData(language, serviceMetaData);
+      }
+
+      std::vector<WcsCapabilities::ServiceMetaData::Path> settingsRequired = {
+          "Capabilities.ServiceIdentification.Title",
+          "Capabilities.ServiceIdentification.Abstract",
+          "Capabilities.ServiceIdentification.Keywords",
+          "Capabilities.ServiceIdentification.Keywords.Keyword",
+          "Capabilities.ServiceIdentification.ServiceType",
+          "Capabilities.ServiceIdentification.Fees",
+          "Capabilities.ServiceIdentification.AccessConstraints",
+          "Capabilities.ServiceProvider.ProviderName",
+          "Capabilities.ServiceProvider.ProviderSite",
+          "Capabilities.ServiceProvider.ProviderSite.href",
+          "Capabilities.ServiceProvider.ServiceContact",
+          "Capabilities.ServiceProvider.ServiceContact.ContactInfo",
+          "Capabilities.ServiceProvider.ServiceContact.ContactInfo.Phone",
+          "Capabilities.ServiceProvider.ServiceContact.ContactInfo.Phone.Voice",
+          "Capabilities.ServiceProvider.ServiceContact.ContactInfo.Phone.Facsimile",
+          "Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address",
+          "Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.DeliveryPoint",
+          "Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.City",
+          "Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.AdministrativeArea",
+          "Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.PostalCode",
+          "Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.Country",
+          "Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.ElectronicMailAddress",
+          "Capabilities.ServiceProvider.ServiceContact.ContactInfo.OnlineResource",
+          "Capabilities.ServiceProvider.ServiceContact.ContactInfo.OnlineResource.href",
+          "Capabilities.ServiceProvider.ServiceContact.ContactInfo.ContactInstructions",
+          "Capabilities.ServiceProvider.ServiceContact.Role"};
+
+      for (const auto &path : settingsRequired)
+      {
+        if (not mWcsCapabilities->getServiceMetaData(defaultLanguage)->exists(path))
+        {
+          std::ostringstream msg;
+          msg << "Configuration '" << path
+              << "' not found from the main configurations. Following setting required: \n";
+          for (const auto &item : settingsRequired)
+            msg << item << "\n";
+
+          throw WcsException(WcsException::NO_APPLICABLE_CODE, msg.str());
+        }
       }
     }
   }
