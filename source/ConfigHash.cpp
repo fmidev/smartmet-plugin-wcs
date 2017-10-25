@@ -8,11 +8,12 @@ namespace Plugin
 {
 namespace WCS
 {
-ConfigHash::ConfigHash() : mHash(CTPP::CDT()), mLanguage("")
+ConfigHash::ConfigHash() : mHash(CTPP::CDT()), mDefaultLanguage(""), mLanguage("")
 {
 }
 
-ConfigHash::ConfigHash(const ConfigHash& other) : mHash(other.getHash()), mLanguage(other.mLanguage)
+ConfigHash::ConfigHash(const ConfigHash& other)
+    : mHash(other.getHash()), mDefaultLanguage(other.mDefaultLanguage), mLanguage(other.mLanguage)
 {
 }
 
@@ -72,6 +73,11 @@ void ConfigHash::set(const libconfig::Setting& setting)
   }
 }
 
+void ConfigHash::setDefaultLanguage(const Language& language)
+{
+  mDefaultLanguage = language;
+}
+
 void ConfigHash::setLanguage(const Language& language)
 {
   mLanguage = language;
@@ -86,14 +92,15 @@ void ConfigHash::store(const libconfig::Setting& setting, CTPP::CDT& targetHash)
 
     if (type == libconfig::Setting::TypeGroup)
     {
-      if (name and not mLanguage.empty() and std::string(name) == "MultiLanguageString")
+      int N = setting.getLength();
+      if (name and N > 0 and not mDefaultLanguage.empty() and
+          std::string(name) == "MultiLanguageString")
       {
-        MultiLanguageString mlString(mLanguage, setting);
-        targetHash = mlString.get();
+        MultiLanguageString mlString(mDefaultLanguage, setting);
+        targetHash = mlString.get(mLanguage);
       }
       else
       {
-        int N = setting.getLength();
         for (int i = 0; i < N; i++)
         {
           if (name)
