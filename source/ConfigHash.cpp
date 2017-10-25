@@ -12,6 +12,10 @@ ConfigHash::ConfigHash() : mHash(CTPP::CDT()), mLanguage("")
 {
 }
 
+ConfigHash::ConfigHash(const ConfigHash& other) : mHash(other.getHash()), mLanguage(other.mLanguage)
+{
+}
+
 ConfigHash::~ConfigHash()
 {
 }
