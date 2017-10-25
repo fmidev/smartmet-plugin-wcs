@@ -2,6 +2,8 @@
 #include "MultiLanguageString.h"
 #include "WcsException.h"
 
+#include <boost/algorithm/string.hpp>
+
 namespace SmartMet
 {
 namespace Plugin
@@ -26,14 +28,23 @@ const CTPP::CDT& ConfigHash::getHash() const
   return mHash;
 }
 
-bool ConfigHash::exists(const std::string& key)
+bool ConfigHash::exists(const Path& path)
 {
   try
   {
-    if (mHash.Exists(key))
-      return true;
+    std::vector<Path> keys;
+    boost::algorithm::split(keys, path, boost::algorithm::is_any_of("."));
 
-    return false;
+    CTPP::CDT& existedCDT = mHash;
+    bool bCDTExist = false;
+    for (auto item : keys)
+    {
+      existedCDT = existedCDT.GetExistedCDT(item, bCDTExist);
+      if (not bCDTExist)
+        return false;
+    }
+
+    return true;
   }
   catch (const CTPP::CTPPException& err)
   {
@@ -41,7 +52,7 @@ bool ConfigHash::exists(const std::string& key)
   }
   catch (...)
   {
-    throw Spine::Exception(BCP, "Unknown error while trying to find a key from hash", NULL);
+    throw Spine::Exception(BCP, "Unknown error while trying to find a path from hash", NULL);
   }
 }
 

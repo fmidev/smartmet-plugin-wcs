@@ -15,6 +15,7 @@ namespace WCS
 class ConfigHash
 {
  public:
+  using Path = std::string;
   using Language = std::string;
   using Shared = std::shared_ptr<ConfigHash>;
   using Unique = std::unique_ptr<ConfigHash>;
@@ -31,7 +32,7 @@ class ConfigHash
   void setDefaultLanguage(const Language& language);
   void setLanguage(const Language& language);
 
-  bool exists(const std::string& key);
+  bool exists(const Path& path);
 
  private:
   const ConfigHash& operator=(const ConfigHash& other) = delete;
