@@ -20,6 +20,7 @@ class ConfigHash
   using Unique = std::unique_ptr<ConfigHash>;
 
   explicit ConfigHash();
+  explicit ConfigHash(const ConfigHash& other);
   virtual ~ConfigHash();
 
   const CTPP::CDT& getHash() const;
@@ -30,7 +31,6 @@ class ConfigHash
   bool exists(const std::string& key);
 
  private:
-  ConfigHash(const ConfigHash& other) = delete;
   const ConfigHash& operator=(const ConfigHash& other) = delete;
 
   void store(const libconfig::Setting& setting, CTPP::CDT& hash);
