@@ -26,6 +26,9 @@ class ConfigHash
   const CTPP::CDT& getHash() const;
   void set(const libconfig::Config& config);
   void set(const libconfig::Setting& setting);
+
+  // Set language to search from MultiLanguageString setting.
+  void setDefaultLanguage(const Language& language);
   void setLanguage(const Language& language);
 
   bool exists(const std::string& key);
@@ -36,6 +39,7 @@ class ConfigHash
   void store(const libconfig::Setting& setting, CTPP::CDT& hash);
 
   CTPP::CDT mHash;
+  Language mDefaultLanguage;
   Language mLanguage;
 };
 }

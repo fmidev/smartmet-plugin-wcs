@@ -140,10 +140,12 @@ void PluginData::createServiceMetaData()
     if (setting)
     {
       WcsCapabilities::ServiceMetaDataMap metaDataMap;
+      const auto &defaultLanguage = getLanguages().at(0);
 
       for (auto language : getLanguages())
       {
         WcsCapabilities::ServiceMetaData serviceMetaData;
+        serviceMetaData.setDefaultLanguage(defaultLanguage);
         serviceMetaData.setLanguage(language);
         serviceMetaData.set(*setting);
         mWcsCapabilities->registerServiceMetaData(language, serviceMetaData);
