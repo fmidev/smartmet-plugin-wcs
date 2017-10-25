@@ -12,7 +12,7 @@ namespace Plugin
 namespace WCS
 {
 MultiLanguageString::MultiLanguageString(const Language& defaultLanguage,
-                                         libconfig::Setting& setting)
+                                         const libconfig::Setting& setting)
     : mDefaultLanguage(Fmi::ascii_tolower_copy(defaultLanguage)), mData()
 {
   try
