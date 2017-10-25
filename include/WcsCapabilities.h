@@ -24,9 +24,11 @@ class WcsCapabilities
   using Format = std::string;
   using FormatSet = std::set<Format>;
   using FormatSetMap = std::map<RequestType, FormatSet>;
+  using Language = std::string;
   using Operation = std::string;
   using OperationSet = std::set<Operation>;
   using ServiceMetaData = ConfigHash;
+  using ServiceMetaDataMap = std::map<Language, ServiceMetaData>;
   using Version = std::string;
   using VersionSet = std::set<Version>;
 
@@ -45,7 +47,7 @@ class WcsCapabilities
 
   const Version& getHighestVersion() const;
 
-  const ServiceMetaData::Shared& getServiceMetaData() const;
+  const ServiceMetaData::Shared getServiceMetaData(const Language& language) const;
 
   bool registerOperation(const Operation& operation);
 
@@ -53,7 +55,7 @@ class WcsCapabilities
 
   void registerDataset(const Dataset& code, const CoverageDescription& cov);
 
-  void setServiceMetaData(const ServiceMetaData::Shared& serviceMetaData);
+  void registerServiceMetaData(const Language& language, const ServiceMetaData& serviceMetaData);
 
  private:
   FormatSetMap mFormats;
@@ -61,7 +63,7 @@ class WcsCapabilities
   VersionSet mVersions;
   Version mHighestVersion;
   DatasetMap mDatasetMap;
-  ServiceMetaData::Shared mServiceMetaData;
+  ServiceMetaDataMap mServiceMetaData;
 
   /**
    *  @brief Mutex for preventing race conditions when accessing this object
