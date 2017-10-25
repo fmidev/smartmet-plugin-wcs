@@ -1,5 +1,5 @@
 #include "ConfigHash.h"
-
+#include "MultiLanguageString.h"
 #include "WcsException.h"
 
 namespace SmartMet
@@ -8,7 +8,7 @@ namespace Plugin
 {
 namespace WCS
 {
-ConfigHash::ConfigHash() : mHash(CTPP::CDT())
+ConfigHash::ConfigHash() : mHash(CTPP::CDT()), mLanguage("")
 {
 }
 
@@ -68,6 +68,11 @@ void ConfigHash::set(const libconfig::Setting& setting)
   }
 }
 
+void ConfigHash::setLanguage(const Language& language)
+{
+  mLanguage = language;
+}
+
 void ConfigHash::store(const libconfig::Setting& setting, CTPP::CDT& targetHash)
 {
   try
@@ -77,13 +82,21 @@ void ConfigHash::store(const libconfig::Setting& setting, CTPP::CDT& targetHash)
 
     if (type == libconfig::Setting::TypeGroup)
     {
-      int N = setting.getLength();
-      for (int i = 0; i < N; i++)
+      if (name and not mLanguage.empty() and std::string(name) == "MultiLanguageString")
       {
-        if (name)
-          store(setting[i], targetHash[name]);
-        else
-          store(setting[i], targetHash[i]);
+        MultiLanguageString mlString(mLanguage, setting);
+        targetHash = mlString.get();
+      }
+      else
+      {
+        int N = setting.getLength();
+        for (int i = 0; i < N; i++)
+        {
+          if (name)
+            store(setting[i], targetHash[name]);
+          else
+            store(setting[i], targetHash[i]);
+        }
       }
     }
     else if (type == libconfig::Setting::TypeList)
