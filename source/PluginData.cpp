@@ -139,10 +139,15 @@ void PluginData::createServiceMetaData()
     libconfig::Setting *setting = mConfig.find_setting(mConfig.get_root(), "Capabilities", false);
     if (setting)
     {
-      WcsCapabilities::ServiceMetaData::Shared serviceMetaData(
-          new WcsCapabilities::ServiceMetaData);
-      serviceMetaData->set(*setting);
-      mWcsCapabilities->setServiceMetaData(serviceMetaData);
+      WcsCapabilities::ServiceMetaDataMap metaDataMap;
+
+      for (auto language : getLanguages())
+      {
+        WcsCapabilities::ServiceMetaData serviceMetaData;
+        serviceMetaData.setLanguage(language);
+        serviceMetaData.set(*setting);
+        mWcsCapabilities->registerServiceMetaData(language, serviceMetaData);
+      }
     }
   }
   catch (const std::exception &exception)

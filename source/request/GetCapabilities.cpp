@@ -127,7 +127,7 @@ void GetCapabilities::execute(std::ostream& output) const
     }
   }
 
-  auto metadataHash = capabilities.getServiceMetaData()->getHash();
+  auto metadataHash = capabilities.getServiceMetaData(language)->getHash();
   if (metadataHash.Size() > 0)
     hash.MergeCDT(metadataHash);
 
