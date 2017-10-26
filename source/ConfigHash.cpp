@@ -56,7 +56,7 @@ bool ConfigHash::exists(const Path& path)
   }
 }
 
-void ConfigHash::set(const libconfig::Config& config)
+void ConfigHash::process(const libconfig::Config& config)
 {
   try
   {
@@ -71,7 +71,7 @@ void ConfigHash::set(const libconfig::Config& config)
   }
 }
 
-void ConfigHash::set(const libconfig::Setting& setting)
+void ConfigHash::process(const libconfig::Setting& setting)
 {
   try
   {

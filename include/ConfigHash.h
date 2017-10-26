@@ -25,12 +25,13 @@ class ConfigHash
   virtual ~ConfigHash();
 
   const CTPP::CDT& getHash() const;
-  void set(const libconfig::Config& config);
-  void set(const libconfig::Setting& setting);
 
   // Set language to search from MultiLanguageString setting.
   void setDefaultLanguage(const Language& language);
   void setLanguage(const Language& language);
+
+  void process(const libconfig::Config& config);
+  void process(const libconfig::Setting& setting);
 
   bool exists(const Path& path);
 

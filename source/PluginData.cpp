@@ -149,7 +149,7 @@ void PluginData::createServiceMetaData()
         WcsCapabilities::ServiceMetaData serviceMetaData;
         serviceMetaData.setDefaultLanguage(defaultLanguage);
         serviceMetaData.setLanguage(language);
-        serviceMetaData.set(*setting);
+        serviceMetaData.process(*setting);
         mWcsCapabilities->registerServiceMetaData(language, serviceMetaData);
       }
 
