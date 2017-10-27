@@ -15,11 +15,11 @@
   http://inspire.ec.europa.eu/schemas/inspire_dls/1.0 http://inspire.ec.europa.eu/schemas/inspire_dls/1.0/inspire_dls.xsd
   http://inspire.ec.europa.eu/schemas/common/1.0 http://inspire.ec.europa.eu/schemas/common/1.0/common.xsd">
 
-  <TMPL_if DEFINED(Capabilities && Capabilities.ServiceIdentification)><ows:ServiceIdentification><TMPL_if DEFINED(Capabilities.ServiceIdentification.Title)>
+  <TMPL_if DEFINED(Capabilities)><TMPL_if DEFINED(Capabilities.ServiceIdentification)><ows:ServiceIdentification><TMPL_if DEFINED(Capabilities.ServiceIdentification.Title)>
     <ows:Title><TMPL_var Capabilities.ServiceIdentification.Title></ows:Title></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceIdentification.Abstract)>
     <ows:Abstract>
       <TMPL_var Capabilities.ServiceIdentification.Abstract>
-    </ows:Abstract></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceIdentification.Keywords && Capabilities.ServiceIdentification.Keywords.Keyword)>
+    </ows:Abstract></TMPL_if><TMPL_if (DEFINED(Capabilities.ServiceIdentification.Keywords) && DEFINED(Capabilities.ServiceIdentification.Keywords.Keyword))>
     <ows:Keywords><TMPL_foreach Capabilities.ServiceIdentification.Keywords.Keyword as keyword>
       <ows:Keyword><TMPL_var keyword[0]></ows:Keyword></TMPL_foreach><TMPL_if DEFINED(Capabilities.ServiceIdentification.Keywords.Type)>
       <ows:Type><TMPL_var Capabilities.ServiceIdentification.Keywords.Type></ows:Type></TMPL_if>
@@ -31,10 +31,10 @@
     </ows:Fees><TMPL_if DEFINED(Capabilities.ServiceIdentification.AccessConstraints)>
     <ows:AccessConstraints><TMPL_var Capabilities.ServiceIdentification.AccessConstraints>
     </ows:AccessConstraints></TMPL_if>
-  </ows:ServiceIdentification></TMPL_if>
-  <TMPL_if DEFINED(Capabilities && Capabilities.ServiceProvider && Capabilities.ServiceProvider.ProviderName && Capabilities.ServiceProvider.ServiceContact)><ows:ServiceProvider>
+  </ows:ServiceIdentification></TMPL_if></TMPL_if>
+  <TMPL_if (DEFINED(Capabilities.ServiceProvider) && DEFINED(Capabilities.ServiceProvider.ProviderName))><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact)><ows:ServiceProvider>
     <ows:ProviderName><TMPL_var Capabilities.ServiceProvider.ProviderName></ows:ProviderName>
-    <TMPL_if DEFINED(Capabilities.ServiceProvider.ProviderSite && Capabilities.ServiceProvider.ProviderSite.href)><ows:ProviderSite xlink:href="<TMPL_var Capabilities.ServiceProvider.ProviderSite.href>"/></TMPL_if>
+    <TMPL_if DEFINED(Capabilities.ServiceProvider.ProviderSite)><TMPL_if DEFINED(Capabilities.ServiceProvider.ProviderSite.href)><ows:ProviderSite xlink:href="<TMPL_var Capabilities.ServiceProvider.ProviderSite.href>"/></TMPL_if></TMPL_if>
     <ows:ServiceContact>
       <TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo)><ows:ContactInfo><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.Phone)>
         <ows:Phone><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.Phone.Voice)>
@@ -48,7 +48,7 @@
           <ows:PostalCode><TMPL_var Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.PostalCode></ows:PostalCode></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.Country)>
           <ows:Country><TMPL_var Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.Country></ows:Country></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.ElectronicMailAddress)>
           <ows:ElectronicMailAddress><TMPL_var Capabilities.ServiceProvider.ServiceContact.ContactInfo.Address.ElectronicMailAddress></ows:ElectronicMailAddress></TMPL_if>
-        </ows:Address></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.OnlineResource && Capabilities.ServiceProvider.ServiceContact.ContactInfo.OnlineResource.href)>
+        </ows:Address></TMPL_if><TMPL_if (DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.OnlineResource) && DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.OnlineResource.href))>
 
         <ows:OnlineResource xlink:href="<TMPL_var Capabilities.ServiceProvider.ServiceContact.ContactInfo.OnlineResource.href>"/></TMPL_if><TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.ContactInfo.ContactInstructions)>
         <ows:ContactInstructions>
@@ -59,7 +59,7 @@
       </ows:ContactInfo></TMPL_if>
       <TMPL_if DEFINED(Capabilities.ServiceProvider.ServiceContact.Role)><ows:Role><TMPL_var Capabilities.ServiceProvider.ServiceContact.Role></ows:Role></TMPL_if>
     </ows:ServiceContact>
-  </ows:ServiceProvider></TMPL_if><TMPL_comment></TMPL_if></TMPL_comment><TMPL_if DEFINED(operation.GetCapabilities && operation.DescribeCoverage)>
+  </ows:ServiceProvider></TMPL_if></TMPL_if><TMPL_if (DEFINED(operation.GetCapabilities) && DEFINED(operation.DescribeCoverage))>
   <ows:OperationsMetadata>
     <ows:Operation name="GetCapabilities">
       <ows:DCP>
@@ -124,7 +124,7 @@
   <ows:Languages>
     <TMPL_foreach languages AS language><ows:Language><TMPL_var language></ows:Language>
   </TMPL_foreach>
-  </ows:Languages><TMPL_if DEFINED(operation.GetCoverage && formats[0])>
+  </ows:Languages><TMPL_if DEFINED(operation.GetCoverage)><TMPL_if DEFINED(formats[0])>
   <wcs:ServiceMetadata><TMPL_foreach formats as format>
     <wcs:formatSupported><TMPL_var format></wcs:formatSupported></TMPL_foreach><TMPL_if DEFINED(supported_crss)>
     <wcs:Extension><TMPL_foreach supported_crss AS crs>
@@ -146,5 +146,5 @@
       <wcs:CoverageId><TMPL_var dataset.coverage_id></wcs:CoverageId>
       <wcs:CoverageSubtype><TMPL_var dataset.subtype></wcs:CoverageSubtype>
     </wcs:CoverageSummary></TMPL_foreach></TMPL_if>
-  </wcs:Contents>
+  </wcs:Contents></TMPL_if>
 </wcs:Capabilities>
