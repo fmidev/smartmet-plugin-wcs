@@ -3,7 +3,7 @@
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
 Version: 17.10.27
-Release: 1%{?dist}.fmi
+Release: 2%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
 URL: https://github.com/fmidev/smartmet-plugin-wcs
@@ -88,6 +88,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Fri Oct 27 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.10.27-2.fmi
+- Fixed capabilities template
+
 * Fri Oct 27 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.10.27-1.fmi
 - Added service metadata into the main configuration file
 - Added multilanguage support into the configuration files
