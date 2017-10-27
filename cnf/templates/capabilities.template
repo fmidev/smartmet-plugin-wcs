@@ -139,10 +139,10 @@
         <ows:Keyword><TMPL_var keyword></ows:Keyword></TMPL_foreach>
         <ows:Type>string</ows:Type>
       </ows:Keywords></TMPL_if><TMPL_if DEFINED(dataset.wgs84BBox)>
-      <wcs:WGS84BoundingBox crs="http://www.opengis.net/def/crs/EPSG/0/4326" dimension="2">
+      <ows:WGS84BoundingBox crs="http://www.opengis.net/def/crs/EPSG/0/4326" dimension="2">
         <ows:LowerCorner><TMPL_var wgs84BBox.lc[0]> <TMPL_var wgs84BBox.lc[1]></ows:LowerCorner>
         <ows:UpperCorner><TMPL_var wgs84BBox.uc[0]> <TMPL_var wgs84BBox.uc[1]></ows:UpperCorner>
-      </wcs:WGS84BoundingBox></TMPL_if>
+      </ows:WGS84BoundingBox></TMPL_if>
       <wcs:CoverageId><TMPL_var dataset.coverage_id></wcs:CoverageId>
       <wcs:CoverageSubtype><TMPL_var dataset.subtype></wcs:CoverageSubtype>
     </wcs:CoverageSummary></TMPL_foreach></TMPL_if>
