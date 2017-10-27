@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 17.8.28
+Version: 17.10.27
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -88,6 +88,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Fri Oct 27 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.10.27-1.fmi
+- Added service metadata into the main configuration file
+- Added multilanguage support into the configuration files
+
 * Mon Aug 28 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.8.28-1.fmi
 - Upgrade to boost 1.65
 - Autoremove data from the path of UniqueTemporaryPath after instance lifetime.
