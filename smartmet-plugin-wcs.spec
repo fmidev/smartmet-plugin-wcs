@@ -3,7 +3,7 @@
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
 Version: 17.11.1
-Release: 1%{?dist}.fmi
+Release: 2%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
 URL: https://github.com/fmidev/smartmet-plugin-wcs
@@ -19,12 +19,12 @@ BuildRequires: libcurl-devel
 BuildRequires: libpqxx-devel
 BuildRequires: netcdf-cxx-devel
 BuildRequires: postgresql93-libs
-BuildRequires: smartmet-engine-gis-devel >= 17.8.28
-BuildRequires: smartmet-engine-querydata-devel >= 17.8.28
-BuildRequires: smartmet-library-gis-devel >= 17.8.28
+BuildRequires: smartmet-engine-gis-devel >= 17.11.1
+BuildRequires: smartmet-engine-querydata-devel >= 17.10.24
+BuildRequires: smartmet-library-gis-devel >= 17.10.31
 BuildRequires: smartmet-library-macgyver-devel >= 17.8.28
-BuildRequires: smartmet-library-newbase-devel >= 17.9.11
-BuildRequires: smartmet-library-spine-devel >= 17.8.28
+BuildRequires: smartmet-library-newbase-devel >= 17.10.29
+BuildRequires: smartmet-library-spine-devel >= 17.11.1
 BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: bzip2-devel
@@ -43,12 +43,12 @@ Requires: libconfig
 Requires: libcurl
 Requires: libpqxx
 Requires: netcdf-cxx
-Requires: smartmet-engine-gis >= 17.8.28
-Requires: smartmet-engine-gis >= 17.8.28
-Requires: smartmet-engine-querydata >= 17.8.28
+Requires: smartmet-engine-gis >= 17.11.1
+Requires: smartmet-engine-gis >= 17.11.1
+Requires: smartmet-engine-querydata >= 17.10.24
 Requires: smartmet-library-macgyver >= 17.8.28
-Requires: smartmet-library-newbase >= 17.9.11
-Requires: smartmet-library-spine >= 17.8.28
+Requires: smartmet-library-newbase >= 17.10.29
+Requires: smartmet-library-spine >= 17.11.1
 Requires: smartmet-server >= 17.8.28
 Requires: xerces-c
 Requires: xqilla
@@ -88,6 +88,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Wed Nov  1 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.11.1-2.fmi
+- Rebuilt due to GIS-library API change
+
 * Wed Nov  1 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.11.1-1.fmi
 - WGS84BoundingBox fixes
 
