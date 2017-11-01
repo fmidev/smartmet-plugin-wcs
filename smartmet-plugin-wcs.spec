@@ -2,8 +2,8 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 17.10.27
-Release: 2%{?dist}.fmi
+Version: 17.11.1
+Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
 URL: https://github.com/fmidev/smartmet-plugin-wcs
@@ -88,6 +88,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Wed Nov  1 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.11.1-1.fmi
+- WGS84BoundingBox fixes
+
 * Fri Oct 27 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.10.27-2.fmi
 - Fixed capabilities template
 
