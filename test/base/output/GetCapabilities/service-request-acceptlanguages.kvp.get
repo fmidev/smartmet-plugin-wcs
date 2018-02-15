@@ -228,10 +228,10 @@ Sovelluksissa, joissa käytetään lentosäähavaintosanomia (METAReita), tulisi
         <ows:Keyword>forecast</ows:Keyword>
         <ows:Type>string</ows:Type>
       </ows:Keywords>
-      <wcs:WGS84BoundingBox crs="http://www.opengis.net/def/crs/EPSG/0/4326" dimension="2">
-        <ows:LowerCorner>53.025 9.041</ows:LowerCorner>
-        <ows:UpperCorner>65.875 30.291</ows:UpperCorner>
-      </wcs:WGS84BoundingBox>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>9.041 53.025</ows:LowerCorner>
+        <ows:UpperCorner>30.291 65.875</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
       <wcs:CoverageId>hbm-salinity</wcs:CoverageId>
       <wcs:CoverageSubtype>RectifiedGridCoverage</wcs:CoverageSubtype>
     </wcs:CoverageSummary>
@@ -243,10 +243,10 @@ Sovelluksissa, joissa käytetään lentosäähavaintosanomia (METAReita), tulisi
         <ows:Keyword>forecast</ows:Keyword>
         <ows:Type>string</ows:Type>
       </ows:Keywords>
-      <wcs:WGS84BoundingBox crs="http://www.opengis.net/def/crs/EPSG/0/4326" dimension="2">
-        <ows:LowerCorner>53.025 9.041</ows:LowerCorner>
-        <ows:UpperCorner>65.875 30.291</ows:UpperCorner>
-      </wcs:WGS84BoundingBox>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>9.041 53.025</ows:LowerCorner>
+        <ows:UpperCorner>30.291 65.875</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
       <wcs:CoverageId>hbm-temperaturesea</wcs:CoverageId>
       <wcs:CoverageSubtype>RectifiedGridCoverage</wcs:CoverageSubtype>
     </wcs:CoverageSummary>
