@@ -201,7 +201,7 @@ Applications containing aviation weather reports (METAR) should contain the foll
         <inspire_common:ResponseLanguage>
           <inspire_common:Language>eng</inspire_common:Language>
         </inspire_common:ResponseLanguage>
-        <inspire_dls:SpatialDataSetIdentifier  metadataURL="http://catalog.fmi.fi/geonetwork/srv/fin/csw?SERVICE=CSW&amp;VERSION=2.0.2&amp;REQUEST=GetRecordById&amp;&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;ID=6667f5d8-041f-4b00-a55b-62980f6f78ef">
+        <inspire_dls:SpatialDataSetIdentifier  metadataURL="http://catalog.fmi.fi/geonetwork/srv/fin/csw?SERVICE=CSW&amp;VERSION=2.0.2&amp;REQUEST=GetRecordById&amp;&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;ID=6667f5d8-041f-4b00-a55b-62980f6f78ef&amp;">
           <inspire_common:Code>1000567</inspire_common:Code>
           <inspire_common:Namespace>FI</inspire_common:Namespace>
         </inspire_dls:SpatialDataSetIdentifier>
