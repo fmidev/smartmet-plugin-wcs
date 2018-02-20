@@ -117,7 +117,7 @@ void ConfigHash::store(const libconfig::Setting& setting, CTPP::CDT& targetHash)
           if (name)
             store(setting[i], targetHash[name]);
           else
-            store(setting[i], targetHash[i]);
+            store(setting[i], targetHash[0]);
         }
       }
     }
