@@ -96,11 +96,11 @@
       </ows:DCP>
     </ows:Operation></TMPL_if><TMPL_if DEFINED(dataSetIds)>
     <ows:ExtendedCapabilities>
-      <inspire_dls:ExtendedCapabilities>
+      <inspire_dls:ExtendedCapabilities><TMPL_if DEFINED(Capabilities.OperationsMetadata.ExtendedCapabilities.ExtendedCapabilities.MetadataUrl.URL)>
         <inspire_common:MetadataUrl>
-          <inspire_common:URL><TMPL_var csw_uri>/<TMPL_var csw_language>/csw?SERVICE=CSW&amp;VERSION=2.0.2&amp;REQUEST=GetRecordById&amp;ID=9fec2667-ccdd-431b-99e0-fd2ed5de4ca1&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full</inspire_common:URL>
-          <inspire_common:MediaType>application/gml+xml</inspire_common:MediaType>
-        </inspire_common:MetadataUrl>
+          <inspire_common:URL><TMPL_var Capabilities.OperationsMetadata.ExtendedCapabilities.ExtendedCapabilities.MetadataUrl.URL></inspire_common:URL><TMPL_if DEFINED(Capabilities.OperationsMetadata.ExtendedCapabilities.ExtendedCapabilities.MetadataUrl.MediaType)>
+          <inspire_common:MediaType><TMPL_var Capabilities.OperationsMetadata.ExtendedCapabilities.ExtendedCapabilities.MetadataUrl.MediaType></inspire_common:MediaType></TMPL_if>
+        </inspire_common:MetadataUrl></TMPL_if>
         <!-- Language support -->
         <inspire_common:SupportedLanguages>
           <inspire_common:DefaultLanguage>
@@ -114,7 +114,7 @@
         <inspire_common:ResponseLanguage>
           <inspire_common:Language><TMPL_var language></inspire_common:Language>
         </inspire_common:ResponseLanguage><TMPL_foreach dataSetIds as item>
-        <inspire_dls:SpatialDataSetIdentifier<TMPL_if item.uuid>  metadataURL="<TMPL_var csw_uri>/<TMPL_var csw_language>/csw?SERVICE=CSW&amp;VERSION=2.0.2&amp;REQUEST=GetRecordById&amp;&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;ID=<TMPL_var item.uuid>"</TMPL_if>>
+        <inspire_dls:SpatialDataSetIdentifier<TMPL_if DEFINED(Capabilities.OperationsMetadata.ExtendedCapabilities.ExtendedCapabilities.SpatialDataSetIdentifier.metadataURL)>  metadataURL="<TMPL_if IN_SET(SUBSTR(Capabilities.OperationsMetadata.ExtendedCapabilities.ExtendedCapabilities.SpatialDataSetIdentifier.metadataURL,0,8), "HASH (0x")><TMPL_foreach Capabilities.OperationsMetadata.ExtendedCapabilities.ExtendedCapabilities.SpatialDataSetIdentifier.metadataURL as mURL><TMPL_include "include/metadata_url.template"></TMPL_foreach><TMPL_else><TMPL_var Capabilities.OperationsMetadata.ExtendedCapabilities.ExtendedCapabilities.SpatialDataSetIdentifier.metadataURL></TMPL_if>"</TMPL_if>>
           <inspire_common:Code><TMPL_var item.id></inspire_common:Code>
           <inspire_common:Namespace><TMPL_var item.ns></inspire_common:Namespace>
         </inspire_dls:SpatialDataSetIdentifier></TMPL_foreach>
