@@ -34,7 +34,6 @@ class Config : private boost::noncopyable, public SmartMet::Spine::ConfigBase
   const Fmi::TemplateDirectory& getTemplateDirectory() const { return *mTemplateDirectory; }
   const std::vector<std::string>& getLanguages() const { return mLanguages; }
   const std::vector<std::string>& getCswLanguages() const { return mCswLanguages; }
-  const std::string& getCswUri() const { return mCswUri; }
   const std::vector<std::string>& getSupportedCrss() const { return mSupportedCrss; }
   const std::string& getDefaultCrs() const { return mSupportedCrss.at(0); }
   const std::string& getCompoundcrsUri() const { return mCompoundcrsUri; }
@@ -52,7 +51,6 @@ class Config : private boost::noncopyable, public SmartMet::Spine::ConfigBase
   std::vector<std::string> mLanguages;
   std::vector<std::string> mSupportedCrss;
   std::vector<std::string> mCswLanguages;
-  std::string mCswUri;
   std::string mCompoundcrsUri;
   std::unique_ptr<Fmi::TemplateDirectory> mTemplateDirectory;
   std::string mXmlGrammarPoolDump;

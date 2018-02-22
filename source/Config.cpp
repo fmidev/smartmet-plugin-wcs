@@ -49,8 +49,6 @@ Config::Config(const std::string& configfile)
   for (auto& language : mCswLanguages)
     Fmi::ascii_tolower(language);
 
-  mCswUri = get_mandatory_config_param<std::string>("cswURI");
-
   mCompoundcrsUri = get_optional_config_param<std::string>(
       "compoundcrsURI", "http://www.opengis.net/def/crs-compound");
 

@@ -56,7 +56,6 @@ void GetCapabilities::execute(std::ostream& output) const
   for (auto& l : mPluginData.getCswLanguages())
     hash["csw_languages"][ind++] = l;
   hash["csw_language"] = mPluginData.getCswLanguages().at(0);
-  hash["csw_uri"] = mPluginData.getConfig().getCswUri();
 
   hash["version"] = (mResponseVersion ? *mResponseVersion : capabilities.getHighestVersion());
   ind = 0;
