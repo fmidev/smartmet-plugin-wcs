@@ -2,8 +2,8 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 17.11.1
-Release: 2%{?dist}.fmi
+Version: 18.2.27
+Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
 URL: https://github.com/fmidev/smartmet-plugin-wcs
@@ -18,13 +18,13 @@ BuildRequires: libconfig-devel
 BuildRequires: libcurl-devel
 BuildRequires: libpqxx-devel
 BuildRequires: netcdf-cxx-devel
-BuildRequires: postgresql93-libs
-BuildRequires: smartmet-engine-gis-devel >= 17.11.1
-BuildRequires: smartmet-engine-querydata-devel >= 17.10.24
-BuildRequires: smartmet-library-gis-devel >= 17.10.31
-BuildRequires: smartmet-library-macgyver-devel >= 17.8.28
-BuildRequires: smartmet-library-newbase-devel >= 17.10.29
-BuildRequires: smartmet-library-spine-devel >= 17.11.1
+BuildRequires: postgresql95-libs
+BuildRequires: smartmet-engine-gis-devel >= 18.2.20
+BuildRequires: smartmet-engine-querydata-devel >= 18.2.27
+BuildRequires: smartmet-library-gis-devel >= 18.2.8
+BuildRequires: smartmet-library-macgyver-devel >= 18.2.12
+BuildRequires: smartmet-library-newbase-devel >= 18.2.8
+BuildRequires: smartmet-library-spine-devel >= 18.2.27
 BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: bzip2-devel
@@ -43,13 +43,13 @@ Requires: libconfig
 Requires: libcurl
 Requires: libpqxx
 Requires: netcdf-cxx
-Requires: smartmet-engine-gis >= 17.11.1
-Requires: smartmet-engine-gis >= 17.11.1
-Requires: smartmet-engine-querydata >= 17.10.24
-Requires: smartmet-library-macgyver >= 17.8.28
-Requires: smartmet-library-newbase >= 17.10.29
-Requires: smartmet-library-spine >= 17.11.1
-Requires: smartmet-server >= 17.8.28
+Requires: smartmet-engine-gis >= 18.2.20
+Requires: smartmet-engine-gis >= 18.2.20
+Requires: smartmet-engine-querydata >= 18.2.27
+Requires: smartmet-library-macgyver >= 18.2.12
+Requires: smartmet-library-newbase >= 18.2.8
+Requires: smartmet-library-spine >= 18.2.27
+Requires: smartmet-server >= 17.11.10
 Requires: xerces-c
 Requires: xqilla
 Provides: %{SPECNAME}
@@ -88,6 +88,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Tue Feb 27 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.2.27-1.fmi
+- Metadata URLs are now more configurable
+
 * Wed Nov  1 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.11.1-2.fmi
 - Rebuilt due to GIS-library API change
 
