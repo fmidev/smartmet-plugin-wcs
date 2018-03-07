@@ -256,15 +256,6 @@ void DescribeCoverage::execute(std::ostream& output) const
     cov["grid_offset_y"][0] = (swapCoord ? blBrX : blTlX);
     cov["grid_offset_y"][1] = (swapCoord ? blBrY : blTlY);
 
-    // BoundedBy Envelope
-    // auto qMeta = metaList.front();
-    // const NFmiPoint envMin = NFmiPoint(qMeta.envelope.minX,qMeta.envelope.minY);
-    // const NFmiPoint envMax = NFmiPoint(qMeta.envelope.maxX,qMeta.envelope.maxY);
-    // cov["bbox_bl"][0] = (swapCoord ? envMin.Y() : envMin.X());
-    // cov["bbox_bl"][1] = (swapCoord ? envMin.X() : envMin.Y());
-    // cov["bbox_tr"][0] = (swapCoord ? envMax.Y() : envMax.X());
-    // cov["bbox_tr"][1] = (swapCoord ? envMax.X() : envMax.Y());
-
     cov["bbox_bl"][0] = bottomLeft.X();
     cov["bbox_bl"][1] = bottomLeft.Y();
     cov["bbox_tr"][0] = topRight.X();
