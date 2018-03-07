@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 18.2.27
+Version: 18.3.7
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -19,12 +19,12 @@ BuildRequires: libcurl-devel
 BuildRequires: libpqxx-devel
 BuildRequires: netcdf-cxx-devel
 BuildRequires: postgresql95-libs
-BuildRequires: smartmet-engine-gis-devel >= 18.2.20
-BuildRequires: smartmet-engine-querydata-devel >= 18.2.27
-BuildRequires: smartmet-library-gis-devel >= 18.2.8
+BuildRequires: smartmet-engine-gis-devel >= 18.3.7
+BuildRequires: smartmet-engine-querydata-devel >= 18.3.1
+BuildRequires: smartmet-library-gis-devel >= 18.3.7
 BuildRequires: smartmet-library-macgyver-devel >= 18.2.12
-BuildRequires: smartmet-library-newbase-devel >= 18.2.8
-BuildRequires: smartmet-library-spine-devel >= 18.2.27
+BuildRequires: smartmet-library-newbase-devel >= 18.3.7
+BuildRequires: smartmet-library-spine-devel >= 18.3.7
 BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: bzip2-devel
@@ -43,12 +43,12 @@ Requires: libconfig
 Requires: libcurl
 Requires: libpqxx
 Requires: netcdf-cxx
-Requires: smartmet-engine-gis >= 18.2.20
-Requires: smartmet-engine-gis >= 18.2.20
-Requires: smartmet-engine-querydata >= 18.2.27
+Requires: smartmet-engine-gis >= 18.3.7
+Requires: smartmet-engine-gis >= 18.3.7
+Requires: smartmet-engine-querydata >= 18.3.1
 Requires: smartmet-library-macgyver >= 18.2.12
-Requires: smartmet-library-newbase >= 18.2.8
-Requires: smartmet-library-spine >= 18.2.27
+Requires: smartmet-library-newbase >= 18.3.7
+Requires: smartmet-library-spine >= 18.3.7
 Requires: smartmet-server >= 17.11.10
 Requires: xerces-c
 Requires: xqilla
@@ -88,6 +88,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Wed Mar  7 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.3.7-1.fmi
+- Fixed axis label ordering
+
 * Tue Feb 27 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.2.27-1.fmi
 - Metadata URLs are now more configurable
 
