@@ -8,3 +8,4 @@ lib*.a
 /files.list
 /cnf/LocalXMLGrammarPool.dump
 .gdbinit
+compile_commands.json
