@@ -251,10 +251,10 @@ void DescribeCoverage::execute(std::ostream& output) const
     double blBrX = (bottomRight.X() - bottomLeft.X()) / maxXInd;
     double blBrY = (bottomRight.Y() - bottomLeft.Y()) / maxXInd;
 
-    cov["grid_offset_x"][0] = blBrX;
-    cov["grid_offset_x"][1] = blBrY;
-    cov["grid_offset_y"][0] = blTlX;
-    cov["grid_offset_y"][1] = blTlY;
+    cov["grid_offset_x"][0] = (swapCoord ? blTlX : blBrX);
+    cov["grid_offset_x"][1] = (swapCoord ? blTlY : blBrY);
+    cov["grid_offset_y"][0] = (swapCoord ? blBrX : blTlX);
+    cov["grid_offset_y"][1] = (swapCoord ? blBrY : blTlY);
 
     // BoundedBy Envelope
     // auto qMeta = metaList.front();
