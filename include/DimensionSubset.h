@@ -59,6 +59,6 @@ class DimensionSlice : public DimensionSubset
   void setSubset(const xercesc::DOMElement* element);
   void setSubset(const std::string& subset);
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

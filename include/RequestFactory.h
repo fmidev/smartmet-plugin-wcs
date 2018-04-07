@@ -98,6 +98,6 @@ class RequestFactory
 
   PluginData& mPluginData;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

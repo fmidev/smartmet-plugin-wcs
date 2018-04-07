@@ -150,9 +150,9 @@ std::vector<boost::shared_ptr<DataSetDef> > Config::readDataSetDefs()
 
   return result;
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet
 
 /**
 

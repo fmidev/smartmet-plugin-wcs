@@ -11,9 +11,7 @@ namespace Plugin
 {
 namespace WCS
 {
-void NetcdfResponse::get(std::ostream& output)
-{
-}
+void NetcdfResponse::get(std::ostream& output) {}
 
 void NetcdfResponse::setEngine(const Spine::SmartMetEngine* engine)
 {
@@ -222,6 +220,6 @@ NetcdfResponse::RangeT NetcdfResponse::solveRangeT(QdataShared q)
 
   return std::make_pair(low, high);
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

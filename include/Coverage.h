@@ -44,6 +44,6 @@ class CoverageDescription : protected AbstractGeometry
   ParameterNameType mParameterName;
   boost::shared_ptr<DataSetDef> mDataSetDef;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

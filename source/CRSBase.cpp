@@ -9,9 +9,7 @@ namespace Plugin
 {
 namespace WCS
 {
-CRSBase::CRSBase() : mDimensionSize(0)
-{
-}
+CRSBase::CRSBase() : mDimensionSize(0) {}
 
 void CRSBase::setAbbrev(const Abbrev& abbrev)
 {
@@ -62,6 +60,6 @@ void CRSBase::parse(boost::shared_ptr<SmartMet::Spine::ConfigBase> config,
   CRSBase::setIdentifier(identifier);
   CRSBase::setAbbrev(abbrev);
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

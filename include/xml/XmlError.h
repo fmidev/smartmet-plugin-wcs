@@ -38,7 +38,7 @@ class XmlError : public std::runtime_error
   std::list<std::string> messages;
   error_level_t error_level;
 };
-}
-}
-}
-}
+}  // namespace Xml
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

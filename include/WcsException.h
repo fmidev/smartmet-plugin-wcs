@@ -78,6 +78,6 @@ inline std::ostream& operator<<(std::ostream& output, const WcsException& err)
   err.printOn(output);
   return output;
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

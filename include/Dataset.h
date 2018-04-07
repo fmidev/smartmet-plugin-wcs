@@ -44,6 +44,6 @@ class Dataset
   boost::optional<Ns> mIdNs;
   boost::optional<Uuid> mUuid;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

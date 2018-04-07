@@ -51,6 +51,6 @@ std::string UniqueTemporaryPath::get() const
     throw Spine::Exception(BCP, "Return of UniqueTemporaryPath as a string failed.", NULL);
   }
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

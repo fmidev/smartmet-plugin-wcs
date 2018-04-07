@@ -35,6 +35,6 @@ class VerticalCRS : public CRSBase
                                         "http://www.opengis.net/def/crs/EPSG/0/5715",
                                         "pressure"};
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

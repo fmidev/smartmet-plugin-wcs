@@ -93,8 +93,8 @@ DestIntType castIntType(const SourceIntType value)
   }
 }
 
-using SmartMet::Spine::string2ptime;
 using SmartMet::Spine::string2bool;
+using SmartMet::Spine::string2ptime;
 
 std::string getMandatoryHeader(const SmartMet::Spine::HTTP::Request& request,
                                const std::string& name);
@@ -144,8 +144,8 @@ const std::string rotLatLonWKT =
     "PARAMETER[\"false_northing\",1473324],"
     "EXTENSION[\"PROJ4\",\"+proj=ob_tran +o_proj=eqc +lon_0=0 +o_lat_p=30 +a=57.29578 +wktext\"],"
     "UNIT[\"Degree\",0.017453292519943295]]";
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet
 
 #define ASSERT_UNREACHABLE assertUnreachable(__FILE__, __LINE__)

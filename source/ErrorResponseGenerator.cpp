@@ -15,13 +15,9 @@ namespace WCS
 namespace ba = boost::algorithm;
 namespace pt = boost::posix_time;
 
-ErrorResponseGenerator::ErrorResponseGenerator(PluginData& pluginData) : mPluginData(pluginData)
-{
-}
+ErrorResponseGenerator::ErrorResponseGenerator(PluginData& pluginData) : mPluginData(pluginData) {}
 
-ErrorResponseGenerator::~ErrorResponseGenerator()
-{
-}
+ErrorResponseGenerator::~ErrorResponseGenerator() {}
 ErrorResponseGenerator::ErrorResponse ErrorResponseGenerator::createErrorResponse(
     ProcessingPhaseT phase)
 {
@@ -163,6 +159,6 @@ std::string ErrorResponseGenerator::formatLogMessage(CTPP::CDT& hash)
   msg << SmartMet::Spine::log_time_str() << ": ERROR: " << content << std::endl;
   return msg.str();
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

@@ -59,6 +59,6 @@ class ErrorResponseGenerator
  private:
   PluginData& mPluginData;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

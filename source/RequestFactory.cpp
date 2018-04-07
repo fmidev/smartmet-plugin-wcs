@@ -17,12 +17,8 @@ namespace WCS
 {
 namespace ba = boost::algorithm;
 
-RequestFactory::RequestFactory(PluginData& pluginData) : mPluginData(pluginData)
-{
-}
-RequestFactory::~RequestFactory()
-{
-}
+RequestFactory::RequestFactory(PluginData& pluginData) : mPluginData(pluginData) {}
+RequestFactory::~RequestFactory() {}
 RequestFactory& RequestFactory::registerRequestType(const std::string& name,
                                                     const RequestType& requestType,
                                                     ParseKvpType createFromKvp,
@@ -185,6 +181,6 @@ const RequestFactory::TypeRec& RequestFactory::getTypeRec(const std::string& nam
   }
   return itemIt->second;
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

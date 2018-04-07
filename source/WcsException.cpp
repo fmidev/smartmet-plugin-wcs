@@ -43,9 +43,7 @@ WcsException::WcsException(WcsException::ExceptionCode exceptionCode, const std:
   }
 }
 
-WcsException::~WcsException() throw()
-{
-}
+WcsException::~WcsException() throw() {}
 std::string WcsException::exceptionCodeString() const
 {
   switch (mExceptionCode)
@@ -146,6 +144,6 @@ void WcsException::setTimestamp(const boost::posix_time::ptime& timestamp)
 {
   mTimestamp = timestamp;
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

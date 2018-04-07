@@ -28,9 +28,7 @@ WcsCapabilities::WcsCapabilities() : mVersions({"2.0.1", "2.0.0"}), mHighestVers
     throw std::runtime_error(msg.str());
   }
 }
-WcsCapabilities::~WcsCapabilities()
-{
-}
+WcsCapabilities::~WcsCapabilities() {}
 
 bool WcsCapabilities::registerOperation(const std::string& operation)
 {
@@ -145,6 +143,6 @@ void WcsCapabilities::registerServiceMetaData(const Language& language,
     throw std::runtime_error(msg.str());
   }
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

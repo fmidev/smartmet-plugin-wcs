@@ -52,6 +52,6 @@ class Abbreviations
 
   Vector mAbbreviations;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

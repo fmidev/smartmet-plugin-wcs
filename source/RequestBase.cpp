@@ -16,12 +16,8 @@ namespace WCS
 {
 namespace ba = boost::algorithm;
 
-RequestBase::RequestBase() : mSoapRequest(false), mStatus(SmartMet::Spine::HTTP::not_a_status)
-{
-}
-RequestBase::~RequestBase()
-{
-}
+RequestBase::RequestBase() : mSoapRequest(false), mStatus(SmartMet::Spine::HTTP::not_a_status) {}
+RequestBase::~RequestBase() {}
 void RequestBase::setIsSoapRequest(bool value)
 {
   mSoapRequest = value;
@@ -216,12 +212,8 @@ void RequestBase::checkServiceName(const xercesc::DOMDocument& document, const s
   }
 }
 
-void RequestBase::checkXmlAttributes(const xercesc::DOMDocument& document)
-{
-}
-void RequestBase::checkKvpAttributes(const SmartMet::Spine::HTTP::Request& request)
-{
-}
+void RequestBase::checkXmlAttributes(const xercesc::DOMDocument& document) {}
+void RequestBase::checkKvpAttributes(const SmartMet::Spine::HTTP::Request& request) {}
 void RequestBase::checkOutputFormatAttribute(const std::string& value)
 {
   namespace ba = boost::algorithm;
@@ -281,6 +273,6 @@ void RequestBase::checkWcsVersion(const xercesc::DOMDocument& document,
     }
   }
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

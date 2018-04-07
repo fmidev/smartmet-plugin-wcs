@@ -61,9 +61,7 @@ Parser::Parser(bool stop_on_error, xercesc::XMLGrammarPool *grammar_pool)
   setErrorHandler(error_handler.get());
 }
 
-Parser::~Parser()
-{
-}
+Parser::~Parser() {}
 boost::shared_ptr<xercesc::DOMDocument> Parser::parse_file(
     const std::string &file_name, Parser::root_element_cb_t root_element_cb)
 {
@@ -248,9 +246,7 @@ ParserMT::ParserMT(const std::string &grammar_pool_file_name, bool stop_on_error
   }
 }
 
-ParserMT::~ParserMT()
-{
-}
+ParserMT::~ParserMT() {}
 Parser *ParserMT::get()
 {
   Parser *parser = t_parser.get();
@@ -310,7 +306,7 @@ boost::shared_ptr<xercesc::DOMDocument> str2xmldom(const std::string &src,
   boost::shared_ptr<xercesc::DOMDocument> result(parser.adoptDocument());
   return result;
 }
-}
-}
-}
-}
+}  // namespace Xml
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

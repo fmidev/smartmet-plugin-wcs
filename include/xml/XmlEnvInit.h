@@ -19,7 +19,7 @@ class EnvInit : virtual private boost::noncopyable
 
   virtual ~EnvInit();
 };
-}
-}
-}
-}
+}  // namespace Xml
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

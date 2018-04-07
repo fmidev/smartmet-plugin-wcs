@@ -37,6 +37,6 @@ Element::Element(const Value& value, const NameType& name) : mValue(value), mNam
     throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
   }
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

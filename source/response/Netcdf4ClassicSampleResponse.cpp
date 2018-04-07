@@ -109,6 +109,6 @@ void Netcdf4ClassicSampleResponse::get(std::ostream& output)
   else
     output << "";
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

@@ -15,6 +15,6 @@ class Netcdf4ClassicResponse : public NetcdfResponse
   ~Netcdf4ClassicResponse() {}
   void get(std::ostream& output);
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

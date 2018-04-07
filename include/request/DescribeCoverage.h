@@ -67,7 +67,7 @@ class DescribeCoverage : public RequestBase
   boost::optional<std::string> mRequestedLanguage;
   RequestBase::SupportedFormatsType mSupportedFormats;
 };
-}
-}
-}
-}
+}  // namespace Request
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

@@ -40,7 +40,7 @@ class XmlErrorHandler : public xercesc::ErrorHandler
   int num_errors;
   int num_fatal_errors;
 };
-}
-}
-}
-}
+}  // namespace Xml
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

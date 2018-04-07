@@ -27,8 +27,8 @@ namespace Plugin
 namespace WCS
 {
 namespace ba = boost::algorithm;
-using boost::str;
 using boost::format;
+using boost::str;
 namespace Request
 {
 GetCoverage::GetCoverage(PluginData& pluginData)
@@ -41,9 +41,7 @@ GetCoverage::GetCoverage(PluginData& pluginData)
     throw std::runtime_error("GetCoverage request does not support any output format");
 }
 
-GetCoverage::~GetCoverage()
-{
-}
+GetCoverage::~GetCoverage() {}
 RequestType GetCoverage::getType() const
 {
   return GET_COVERAGE;
@@ -394,7 +392,7 @@ void GetCoverage::setOutputFormat(const RequestBase::FormatType& format)
 
   mOutputFormat = format;
 }
-}
-}
-}
-}
+}  // namespace Request
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

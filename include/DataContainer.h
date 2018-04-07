@@ -32,6 +32,6 @@ class DataContainer
   Size mSize;
   SharedArray mData;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

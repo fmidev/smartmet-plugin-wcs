@@ -15,9 +15,7 @@ XmlError::XmlError(const std::string& text, error_level_t error_level = XmlError
 {
 }
 
-XmlError::~XmlError() throw()
-{
-}
+XmlError::~XmlError() throw() {}
 void XmlError::add_messages(const std::list<std::string>& messages)
 {
   this->messages = messages;
@@ -25,8 +23,8 @@ void XmlError::add_messages(const std::list<std::string>& messages)
 
 const char* XmlError::error_level_name(enum error_level_t error_level)
 {
-  using boost::str;
   using boost::format;
+  using boost::str;
   switch (error_level)
   {
     case ERROR:
@@ -37,7 +35,7 @@ const char* XmlError::error_level_name(enum error_level_t error_level)
       throw std::runtime_error(str(format("XmlError: unknown error level %2%") % (int)error_level));
   }
 }
-}
-}
-}
-}
+}  // namespace Xml
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

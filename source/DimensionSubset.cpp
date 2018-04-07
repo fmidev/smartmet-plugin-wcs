@@ -28,9 +28,7 @@ DimensionSubset::DimensionSubset(const ChildrenNameSet& allowedChildrens)
 {
 }
 
-DimensionSubset::~DimensionSubset()
-{
-}
+DimensionSubset::~DimensionSubset() {}
 
 void DimensionSubset::setAbbreviations(const Abbreviations::Shared& abbreviations)
 {
@@ -68,9 +66,7 @@ void DimensionSubset::setSubset(const xercesc::DOMElement* element)
   }
 }
 
-void DimensionSubset::setSubset(const std::string&)
-{
-}
+void DimensionSubset::setSubset(const std::string&) {}
 
 Element::Value DimensionSubset::get(const std::string& name) const
 {
@@ -86,13 +82,9 @@ void DimensionSubset::setElement(const Element&& element)
   mElements.emplace(element.getName(), std::move(element));
 }
 
-DimensionSlice::DimensionSlice() : DimensionSubset({"Dimension", "SlicePoint"})
-{
-}
+DimensionSlice::DimensionSlice() : DimensionSubset({"Dimension", "SlicePoint"}) {}
 
-DimensionSlice::~DimensionSlice()
-{
-}
+DimensionSlice::~DimensionSlice() {}
 
 void DimensionSlice::setSubset(const xercesc::DOMElement* element)
 {
@@ -109,14 +101,14 @@ void DimensionSlice::setSubset(const std::string& ss)
   }
   msg << "Invalid DimensionSlice subset '" << ss << "'.";
 
-  using boost::spirit::qi::phrase_parse;
+  using boost::phoenix::ref;
   using boost::spirit::qi::_1;
-  using boost::spirit::qi::string;
   using boost::spirit::qi::char_;
   using boost::spirit::qi::double_;
   using boost::spirit::qi::int_;
   using boost::spirit::qi::lexeme;
-  using boost::phoenix::ref;
+  using boost::spirit::qi::phrase_parse;
+  using boost::spirit::qi::string;
   using phoenix::push_back;
 
   std::string valueStr;
@@ -179,13 +171,9 @@ void DimensionSlice::setSubset(const std::string& ss)
   }
 }
 
-DimensionTrim::DimensionTrim() : DimensionSubset({"Dimension", "TrimLow", "TrimHigh"})
-{
-}
+DimensionTrim::DimensionTrim() : DimensionSubset({"Dimension", "TrimLow", "TrimHigh"}) {}
 
-DimensionTrim::~DimensionTrim()
-{
-}
+DimensionTrim::~DimensionTrim() {}
 
 void DimensionTrim::setSubset(const xercesc::DOMElement* element)
 {
@@ -203,14 +191,14 @@ void DimensionTrim::setSubset(const std::string& ss)
   }
   msg << "Invalid DimensionTrim subset '" << ss << "'.";
 
-  using boost::spirit::qi::phrase_parse;
+  using boost::phoenix::ref;
   using boost::spirit::qi::_1;
-  using boost::spirit::qi::string;
   using boost::spirit::qi::char_;
   using boost::spirit::qi::double_;
   using boost::spirit::qi::int_;
   using boost::spirit::qi::lexeme;
-  using boost::phoenix::ref;
+  using boost::spirit::qi::phrase_parse;
+  using boost::spirit::qi::string;
   using phoenix::push_back;
 
   std::string name;
@@ -285,6 +273,6 @@ void DimensionTrim::setSubset(const std::string& ss)
     throw WcsException(WcsException::INVALID_SUBSETTING, msg.str());
   }
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

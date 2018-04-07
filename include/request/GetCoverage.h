@@ -65,7 +65,7 @@ class GetCoverage : public RequestBase
   boost::optional<RequestBase::FormatType> mOutputFormat;
   bool mFast;
 };
-}
-}
-}
-}
+}  // namespace Request
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

@@ -69,9 +69,7 @@ PluginData::PluginData(Spine::Reactor *reactor, const char *config)
   }
 }
 
-PluginData::~PluginData()
-{
-}
+PluginData::~PluginData() {}
 boost::posix_time::ptime PluginData::getTimeStamp() const
 {
   if (mLockedTimeStamp)
@@ -206,6 +204,6 @@ void PluginData::createServiceMetaData()
                        "Failed to read or set ServiceMetaData setting from main configuration.");
   }
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

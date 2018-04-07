@@ -27,9 +27,7 @@ GetCapabilities::GetCapabilities(const PluginData& pluginData)
 {
 }
 
-GetCapabilities::~GetCapabilities()
-{
-}
+GetCapabilities::~GetCapabilities() {}
 RequestType GetCapabilities::getType() const
 {
   return GET_CAPABILITIES;
@@ -302,7 +300,7 @@ int Request::GetCapabilities::getResponseExpiresSeconds() const
 {
   return mPluginData.getConfig().getDefaultExpiresSeconds();
 }
-}
-}
-}
-}
+}  // namespace Request
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

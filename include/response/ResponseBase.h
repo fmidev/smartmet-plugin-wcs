@@ -26,6 +26,6 @@ class ResponseBase
  private:
   std::shared_ptr<OptionsBase> mOptionsBase;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

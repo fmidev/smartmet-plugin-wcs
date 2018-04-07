@@ -10,9 +10,7 @@ namespace Plugin
 {
 namespace WCS
 {
-Abbreviations::Abbreviations()
-{
-}
+Abbreviations::Abbreviations() {}
 
 Abbreviations::Abbreviations(const Vector& valueVector)
 {
@@ -20,9 +18,7 @@ Abbreviations::Abbreviations(const Vector& valueVector)
     insert(value);
 }
 
-Abbreviations::~Abbreviations()
-{
-}
+Abbreviations::~Abbreviations() {}
 
 Abbreviations::Abbreviation Abbreviations::getAbbreviation(const Distance& distance) const
 {
@@ -71,6 +67,6 @@ void Abbreviations::insert(const Abbreviation& value)
   }
   mAbbreviations.push_back(value);
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

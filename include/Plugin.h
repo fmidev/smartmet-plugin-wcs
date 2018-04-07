@@ -89,6 +89,6 @@ class Plugin : public SmartMetPlugin, virtual private boost::noncopyable, privat
 
   const char* mConfig;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

@@ -29,9 +29,7 @@ ParamConfig::ParamConfig(const FilePathType& filePath) : mFilePath(filePath)
   }
 }
 
-ParamConfig::~ParamConfig()
-{
-}
+ParamConfig::~ParamConfig() {}
 
 void ParamConfig::addParamMetaItem(const ParamMetaItemType& paramItem)
 {
@@ -64,9 +62,7 @@ NetcdfParamConfig::NetcdfParamConfig(const FilePathType& filePath) : ParamConfig
     addParamMetaItem(item);
 }
 
-NetcdfParamConfig::~NetcdfParamConfig()
-{
-}
+NetcdfParamConfig::~NetcdfParamConfig() {}
 
 // ======================================================================
 /*!
@@ -335,6 +331,6 @@ ParamChangeTable readParamConfig(const boost::filesystem::path& configFilePath, 
 
   return paramChangeTable;
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

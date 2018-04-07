@@ -17,6 +17,6 @@ class OptionsBase
   OptionsBase(const OptionsBase& other) = delete;
   OptionsBase& operator=(const OptionsBase& other) = delete;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

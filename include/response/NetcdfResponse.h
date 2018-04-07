@@ -57,6 +57,6 @@ class NetcdfResponse : public ResponseBase
   ParamConfig::Shared mParamConfig;
   DebugLevelType mDebugLevel;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

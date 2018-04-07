@@ -14,5 +14,5 @@ enum RequestType
   UNDEFINED  // UNDEFINED indicates the end of enum list.
 };
 }
-}
-}
+}  // namespace Plugin
+}  // namespace SmartMet

@@ -21,6 +21,6 @@ class QueryBase
   QueryBase();
   virtual ~QueryBase();
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

@@ -74,6 +74,6 @@ class ConfigHash
   Language mDefaultLanguage;
   Language mLanguage;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

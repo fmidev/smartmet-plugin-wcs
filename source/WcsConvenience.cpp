@@ -175,6 +175,6 @@ NFmiPoint swap(const NFmiPoint& p, const bool& swap)
 {
   return (swap ? NFmiPoint(p.Y(), p.X()) : p);
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

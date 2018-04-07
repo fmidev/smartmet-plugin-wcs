@@ -51,6 +51,6 @@ typename DataContainer<T>::Size DataContainer<T>::size() const
 
 // Explicit template instantiation
 template class DataContainer<>;
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

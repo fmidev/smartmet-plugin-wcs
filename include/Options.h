@@ -62,6 +62,6 @@ class Options : public OptionsBase
   boost::shared_ptr<Transformation> mTransformation;
   SwapType mSwap;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

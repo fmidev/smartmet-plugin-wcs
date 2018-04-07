@@ -20,6 +20,6 @@ Dataset::Dataset(boost::shared_ptr<SmartMet::Spine::ConfigBase> config, libconfi
   if (not uuid.empty())
     mUuid = uuid;
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

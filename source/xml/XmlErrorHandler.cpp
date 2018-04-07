@@ -17,9 +17,7 @@ XmlErrorHandler::XmlErrorHandler(bool throw_on_error) : throw_on_error(throw_on_
   resetErrors();
 }
 
-XmlErrorHandler::~XmlErrorHandler()
-{
-}
+XmlErrorHandler::~XmlErrorHandler() {}
 void XmlErrorHandler::warning(const xercesc::SAXParseException& exc)
 {
   add_message("WARNING", exc);
@@ -75,7 +73,7 @@ void XmlErrorHandler::check_terminate(const std::string& prefix,
     throw XmlError(prefix + " while parsing XML input. Parsing terminated", error_level);
   }
 }
-}
-}
-}
-}
+}  // namespace Xml
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

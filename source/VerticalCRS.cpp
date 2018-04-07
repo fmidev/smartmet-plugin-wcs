@@ -23,6 +23,6 @@ VerticalCRS::VerticalCRS(boost::shared_ptr<SmartMet::Spine::ConfigBase> config,
     throw std::runtime_error(msg.str());
   }
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

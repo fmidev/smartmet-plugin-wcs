@@ -45,6 +45,6 @@ class CompoundCRS : public CRSBase
   VerticalCRS::Optional mVerticalCRS;
   TemporalCRS::Optional mTemporalCRS;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

@@ -35,7 +35,7 @@ EnvInit::~EnvInit()
 {
   XQillaPlatformUtils::terminate();
 }
-}
-}
-}
-}
+}  // namespace Xml
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

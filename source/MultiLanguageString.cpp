@@ -80,9 +80,7 @@ MultiLanguageString::Shared MultiLanguageString::create(const Language& defaultL
   }
 }
 
-MultiLanguageString::~MultiLanguageString()
-{
-}
+MultiLanguageString::~MultiLanguageString() {}
 
 const MultiLanguageString::Message& MultiLanguageString::get() const
 {
@@ -108,6 +106,6 @@ const MultiLanguageString::Message& MultiLanguageString::get(const Language& lan
     throw SmartMet::Spine::Exception(BCP, "Operation failed!", NULL);
   }
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

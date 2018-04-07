@@ -103,9 +103,7 @@ void Plugin::init()
   }
 }
 
-Plugin::~Plugin()
-{
-}
+Plugin::~Plugin() {}
 const std::string& Plugin::getPluginName() const
 {
   return mModuleName;
@@ -536,9 +534,9 @@ RequestBaseP Plugin::parseXmlGetCoverageRequest(const xercesc::DOMDocument& docu
   (void)root;
   return Request::GetCoverage::createFromXml(document, *mPluginData, *mQueryCache);
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet
 
 /*
  * Server knows us through the 'SmartMetPlugin' virtual interface, which

@@ -24,6 +24,6 @@ class Element
   Value mValue;
   NameType mName;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

@@ -38,6 +38,6 @@ class UniqueTemporaryPath
   boost::filesystem::path mUniquePath;
   AutoRemove mAutoRemove;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

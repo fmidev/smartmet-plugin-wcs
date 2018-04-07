@@ -56,6 +56,6 @@ class Config : private boost::noncopyable, public SmartMet::Spine::ConfigBase
   std::string mXmlGrammarPoolDump;
   bool mValidateOutput;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

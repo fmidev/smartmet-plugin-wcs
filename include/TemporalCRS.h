@@ -36,6 +36,6 @@ class TemporalCRS : public CRSBase
       "http://www.opengis.net/def/crs/OGC/0/JulianDate",
       "http://www.opengis.net/def/crs/OGC/0/UnixTime"};
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

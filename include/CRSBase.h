@@ -31,6 +31,6 @@ class CRSBase
   Abbrev mAbbrev;
   DimensionSize mDimensionSize;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

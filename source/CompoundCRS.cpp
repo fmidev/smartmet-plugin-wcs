@@ -47,9 +47,7 @@ CompoundCRS::CompoundCRS(boost::shared_ptr<SmartMet::Spine::ConfigBase> config,
   }
 }
 
-CompoundCRS::~CompoundCRS()
-{
-}
+CompoundCRS::~CompoundCRS() {}
 
 Abbreviations::Shared CompoundCRS::getAbbreviations() const
 {
@@ -69,6 +67,6 @@ Abbreviations::Shared CompoundCRS::getAbbreviations() const
   Abbreviations::Shared result(new Abbreviations(abbrVector));
   return result;
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

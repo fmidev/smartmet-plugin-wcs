@@ -49,9 +49,7 @@ DataSetDef::DataSetDef(const std::string& defaultLanguage,
   }
 }
 
-DataSetDef::~DataSetDef()
-{
-}
+DataSetDef::~DataSetDef() {}
 
 boost::optional<DataSetDef::Message> DataSetDef::getAbstract(const Language& language) const
 {
@@ -99,6 +97,6 @@ bool DataSetDef::process(const Engine::Querydata::Engine& engine)
 
   return true;
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

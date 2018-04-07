@@ -10,18 +10,14 @@ namespace Plugin
 {
 namespace WCS
 {
-ConfigHash::ConfigHash() : mHash(CTPP::CDT()), mDefaultLanguage(""), mLanguage("")
-{
-}
+ConfigHash::ConfigHash() : mHash(CTPP::CDT()), mDefaultLanguage(""), mLanguage("") {}
 
 ConfigHash::ConfigHash(const ConfigHash& other)
     : mHash(other.getHash()), mDefaultLanguage(other.mDefaultLanguage), mLanguage(other.mLanguage)
 {
 }
 
-ConfigHash::~ConfigHash()
-{
-}
+ConfigHash::~ConfigHash() {}
 
 const CTPP::CDT& ConfigHash::getHash() const
 {
@@ -202,6 +198,6 @@ void ConfigHash::store(const libconfig::Setting& setting, CTPP::CDT& targetHash)
     throw SmartMet::Spine::Exception(BCP, msg.str(), NULL);
   }
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

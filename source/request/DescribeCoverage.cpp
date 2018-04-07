@@ -35,9 +35,7 @@ void DescribeCoverage::setCoverageIds(const std::vector<std::string>& ids)
   std::sort(mIds.begin(), mIds.end());
 }
 
-DescribeCoverage::~DescribeCoverage()
-{
-}
+DescribeCoverage::~DescribeCoverage() {}
 RequestType DescribeCoverage::getType() const
 {
   return DESCRIBE_COVERAGE;
@@ -490,7 +488,7 @@ std::string DescribeCoverage::epochToString(const pt::ptime&& epoch,
     return Fmi::to_string(sEpoch);
   }
 }
-}
-}
-}
-}
+}  // namespace Request
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

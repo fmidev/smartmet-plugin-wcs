@@ -43,7 +43,7 @@ class Parser : public xercesc::XercesDOMParser
    *   @param stop_on_error Specifies whether to terminate parsing XML
    *          input on the first error (prefered for production server.
    *          It could however be useful to set it to false for development.
-*   @param grammar_pool XML grammar pool to use
+   *   @param grammar_pool XML grammar pool to use
    */
   Parser(bool stop_on_error = true, xercesc::XMLGrammarPool* grammar_pool = NULL);
 
@@ -112,7 +112,7 @@ class ParserMT : public boost::noncopyable
  */
 boost::shared_ptr<xercesc::DOMDocument> str2xmldom(const std::string& src,
                                                    const std::string& doc_id);
-}
-}
-}
-}
+}  // namespace Xml
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

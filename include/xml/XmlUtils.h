@@ -98,7 +98,7 @@ xercesc::DOMElement* append_child_text_element(xercesc::DOMElement& parent,
                                                const std::string& content);
 
 void set_attr(xercesc::DOMElement& element, const std::string& name, const std::string& value);
-}
-}
-}
-}
+}  // namespace Xml
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

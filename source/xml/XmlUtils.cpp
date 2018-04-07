@@ -324,6 +324,6 @@ void Xml::set_attr(xercesc::DOMElement& element, const std::string& name, const 
   xercesc::Janitor<XMLCh> x_value(xercesc::XMLString::transcode(value.c_str()));
   element.setAttribute(x_name.get(), x_value.get());
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

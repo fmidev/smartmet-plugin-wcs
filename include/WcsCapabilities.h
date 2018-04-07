@@ -70,6 +70,6 @@ class WcsCapabilities
    */
   mutable Spine::MutexType mutex;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

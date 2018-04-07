@@ -106,6 +106,6 @@ class PluginData : public boost::noncopyable
    */
   boost::optional<boost::posix_time::ptime> mLockedTimeStamp;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

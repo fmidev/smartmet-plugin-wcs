@@ -77,6 +77,6 @@ class DataSetDef
   Dataset::Optional mDataset;
   boost::optional<Envelope> mWGS84BBox;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

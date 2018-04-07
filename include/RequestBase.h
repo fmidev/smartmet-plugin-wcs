@@ -177,6 +177,6 @@ class RequestBase
 };
 
 using RequestBaseP = boost::shared_ptr<RequestBase>;
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

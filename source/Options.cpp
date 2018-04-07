@@ -84,6 +84,6 @@ boost::optional<DimensionTrim> Options::getDimensionTrim(const NameType& name) c
   else
     return boost::optional<DimensionTrim>();
 }
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

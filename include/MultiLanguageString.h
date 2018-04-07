@@ -36,6 +36,6 @@ class MultiLanguageString
   const Language mDefaultLanguage;
   Content mData;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet

@@ -88,6 +88,6 @@ class NetcdfParamConfig : public ParamConfig
   NetcdfParamConfig(const NetcdfParamConfig& other) = delete;
   NetcdfParamConfig& operator=(const NetcdfParamConfig& other) = delete;
 };
-}
-}
-}
+}  // namespace WCS
+}  // namespace Plugin
+}  // namespace SmartMet
