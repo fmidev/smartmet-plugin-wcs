@@ -57,6 +57,13 @@ class GetCoverage : public RequestBase
 
   void executeSingleQuery(std::ostream& ost) const;
 
+  void setProducer();
+  void setParameterName();
+  void setAbbreviations();
+  void setTransformation();
+
+  boost::shared_ptr<DataSetDef> getDataSetDef() const;
+
  private:
   PluginData& mPluginData;
   boost::optional<QueryResponseCache&> mQueryCache;

@@ -155,6 +155,9 @@ boost::shared_ptr<GetCoverage> GetCoverage::createFromKvp(const Spine::HTTP::Req
   getcoverage->checkKvpAttributes(httpRequest);
   getcoverage->checkCoverageIds(ids);
   getcoverage->setCoverageIds(ids);
+  getcoverage->setAbbreviations();
+  getcoverage->setProducer();
+  getcoverage->setParameterName();
 
   auto subsets = httpRequest.getParameterList("subset");
   auto slices = httpRequest.getParameterList("DimensionSlice");
@@ -167,6 +170,8 @@ boost::shared_ptr<GetCoverage> GetCoverage::createFromKvp(const Spine::HTTP::Req
 
   if (auto outputCrs = httpRequest.getParameter("outputCrs"))
     getcoverage->getOptions()->setOutputCrs(ba::trim_copy(*outputCrs));
+
+  getcoverage->setTransformation();
 
   auto abbreviations = getcoverage->getOptions()->getAbbreviations();
   for (auto& ss : subsets)
@@ -240,6 +245,9 @@ boost::shared_ptr<GetCoverage> GetCoverage::createFromXml(const xercesc::DOMDocu
 
   getcoverage->checkCoverageIds(ids);
   getcoverage->setCoverageIds(ids);
+  getcoverage->setAbbreviations();
+  getcoverage->setProducer();
+  getcoverage->setParameterName();
 
   for (const xercesc::DOMElement* child : children)
   {
@@ -298,6 +306,8 @@ boost::shared_ptr<GetCoverage> GetCoverage::createFromXml(const xercesc::DOMDocu
     }
   }
 
+  getcoverage->setTransformation();
+
   return getcoverage;
 }
 
@@ -342,6 +352,16 @@ void GetCoverage::setCoverageIds(const CoverageIdsType& ids)
 {
   mCoverageIds = ids;
   std::sort(mCoverageIds.begin(), mCoverageIds.end());
+}
+
+void GetCoverage::setProducer()
+{
+  if (mCoverageIds.empty())
+  {
+    WcsException wcsException(WcsException::NO_SUCH_COVERAGE,
+                              "Coverage id is not set.");
+    throw wcsException;
+  }
 
   const auto& capabilities = mPluginData.getCapabilities();
   const auto& dataSetMap = capabilities.getSupportedDatasets();
@@ -355,24 +375,54 @@ void GetCoverage::setCoverageIds(const CoverageIdsType& ids)
   }
 
   mOptions->setProducer(it->second.getProducer());
-  mOptions->setParameterName(it->second.getParameterName());
+}
 
+void GetCoverage::setParameterName()
+{
+  if (mCoverageIds.empty())
+  {
+    WcsException wcsException(WcsException::NO_SUCH_COVERAGE,
+                              "Coverage id is not set.");
+    throw wcsException;
+  }
+
+  const auto& capabilities = mPluginData.getCapabilities();
+  const auto& dataSetMap = capabilities.getSupportedDatasets();
+  WcsCapabilities::DatasetMap::const_iterator it = dataSetMap.find(mCoverageIds.at(0));
+  if (it == dataSetMap.end())
+  {
+    WcsException wcsException(WcsException::NO_SUCH_COVERAGE,
+                              "Identifier passed does not match with any of the "
+                              "coverages offered by this server.");
+    throw wcsException;
+  }
+
+  mOptions->setParameterName(it->second.getParameterName());
+}
+
+void GetCoverage::setAbbreviations()
+{
+  auto dataSetDef = getDataSetDef();
+  const CompoundCRS& compoundcrs = dataSetDef->getCompoundcrs();
+  mOptions->setAbbreviations(compoundcrs.getAbbreviations());
+}
+
+void GetCoverage::setTransformation()
+{
   // Create SRS transformation
-  auto& defaultCrs = mPluginData.getConfig().getDefaultCrs();
-  const CompoundCRS& compoundcrs = it->second.getDataSetDef()->getCompoundcrs();
-  std::string crsName = compoundcrs.getIdentifier();
+  auto dataSetDef = getDataSetDef();
+  const CompoundCRS& compoundcrs = dataSetDef->getCompoundcrs();
+  std::string targetCrsName = compoundcrs.getIdentifier();
 
   if (auto outputCrs = mOptions->getOutputCrs())
-    crsName = *outputCrs;
+    targetCrsName = *outputCrs;
 
   auto& crs_registry = mPluginData.getCrsRegistry();
-  auto transformation = crs_registry.create_transformation(defaultCrs, crsName);
+  auto transformation = crs_registry.create_transformation(compoundcrs.getIdentifier(), targetCrsName);
   mOptions->setTransformation(transformation);
 
-  mOptions->setAbbreviations(compoundcrs.getAbbreviations());
-
   bool swapCoord = false;
-  crs_registry.get_attribute(crsName, "swapCoord", &swapCoord);
+  crs_registry.get_attribute(compoundcrs.getIdentifier(), "swapCoord", &swapCoord);
   mOptions->setSwap(swapCoord);
 }
 
@@ -391,6 +441,29 @@ void GetCoverage::setOutputFormat(const RequestBase::FormatType& format)
   }
 
   mOutputFormat = format;
+}
+
+boost::shared_ptr<DataSetDef> GetCoverage::getDataSetDef() const
+{
+    if (mCoverageIds.empty())
+    {
+      WcsException wcsException(WcsException::NO_SUCH_COVERAGE,
+                                "Coverage id is not set.");
+      throw wcsException;
+    }
+
+    const auto& capabilities = mPluginData.getCapabilities();
+    const auto& dataSetMap = capabilities.getSupportedDatasets();
+    WcsCapabilities::DatasetMap::const_iterator it = dataSetMap.find(mCoverageIds.at(0));
+    if (it == dataSetMap.end())
+    {
+      WcsException wcsException(WcsException::NO_SUCH_COVERAGE,
+                                "Identifier passed does not match with any of the "
+                                "coverages offered by this server.");
+      throw wcsException;
+    }
+
+    return it->second.getDataSetDef();
 }
 }  // namespace Request
 }  // namespace WCS
