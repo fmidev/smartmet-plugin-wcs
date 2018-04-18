@@ -358,8 +358,7 @@ void GetCoverage::setProducer()
 {
   if (mCoverageIds.empty())
   {
-    WcsException wcsException(WcsException::NO_SUCH_COVERAGE,
-                              "Coverage id is not set.");
+    WcsException wcsException(WcsException::NO_SUCH_COVERAGE, "Coverage id is not set.");
     throw wcsException;
   }
 
@@ -381,8 +380,7 @@ void GetCoverage::setParameterName()
 {
   if (mCoverageIds.empty())
   {
-    WcsException wcsException(WcsException::NO_SUCH_COVERAGE,
-                              "Coverage id is not set.");
+    WcsException wcsException(WcsException::NO_SUCH_COVERAGE, "Coverage id is not set.");
     throw wcsException;
   }
 
@@ -418,7 +416,8 @@ void GetCoverage::setTransformation()
     targetCrsName = *outputCrs;
 
   auto& crs_registry = mPluginData.getCrsRegistry();
-  auto transformation = crs_registry.create_transformation(compoundcrs.getIdentifier(), targetCrsName);
+  auto transformation =
+      crs_registry.create_transformation(compoundcrs.getIdentifier(), targetCrsName);
   mOptions->setTransformation(transformation);
 
   bool swapCoord = false;
@@ -445,25 +444,24 @@ void GetCoverage::setOutputFormat(const RequestBase::FormatType& format)
 
 boost::shared_ptr<DataSetDef> GetCoverage::getDataSetDef() const
 {
-    if (mCoverageIds.empty())
-    {
-      WcsException wcsException(WcsException::NO_SUCH_COVERAGE,
-                                "Coverage id is not set.");
-      throw wcsException;
-    }
+  if (mCoverageIds.empty())
+  {
+    WcsException wcsException(WcsException::NO_SUCH_COVERAGE, "Coverage id is not set.");
+    throw wcsException;
+  }
 
-    const auto& capabilities = mPluginData.getCapabilities();
-    const auto& dataSetMap = capabilities.getSupportedDatasets();
-    WcsCapabilities::DatasetMap::const_iterator it = dataSetMap.find(mCoverageIds.at(0));
-    if (it == dataSetMap.end())
-    {
-      WcsException wcsException(WcsException::NO_SUCH_COVERAGE,
-                                "Identifier passed does not match with any of the "
-                                "coverages offered by this server.");
-      throw wcsException;
-    }
+  const auto& capabilities = mPluginData.getCapabilities();
+  const auto& dataSetMap = capabilities.getSupportedDatasets();
+  WcsCapabilities::DatasetMap::const_iterator it = dataSetMap.find(mCoverageIds.at(0));
+  if (it == dataSetMap.end())
+  {
+    WcsException wcsException(WcsException::NO_SUCH_COVERAGE,
+                              "Identifier passed does not match with any of the "
+                              "coverages offered by this server.");
+    throw wcsException;
+  }
 
-    return it->second.getDataSetDef();
+  return it->second.getDataSetDef();
 }
 }  // namespace Request
 }  // namespace WCS
