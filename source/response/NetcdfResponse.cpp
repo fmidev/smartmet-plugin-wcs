@@ -109,8 +109,6 @@ NetcdfResponse::IdValueXPair NetcdfResponse::solveNearestX(QdataShared q, const 
   if (not transformation)
     throw std::runtime_error("Transformation missing!");
 
-  bool swapCoord = opt->getSwap();
-
   q->firstTime();
   q->firstLevel();
 
@@ -123,12 +121,12 @@ NetcdfResponse::IdValueXPair NetcdfResponse::solveNearestX(QdataShared q, const 
 
   auto nearestLocIndex = startId;
   auto nearestLocValue = q->latLon(startId);
-  NFmiPoint tLoc = swap(transformation->transform(swap(nearestLocValue, true)), swapCoord);
+  NFmiPoint tLoc = nearestLocValue;
   ValueX distanceToNearestLoc = std::abs(tLoc.X() - xValue);
 
   while (id < startId + xNumber)
   {
-    tLoc = swap(transformation->transform(swap(q->latLon(id), true)), swapCoord);
+    tLoc = q->latLon(id);
     ValueX distanceCandidate = std::abs(tLoc.X() - xValue);
     if (distanceCandidate < distanceToNearestLoc)
     {
@@ -159,8 +157,6 @@ NetcdfResponse::IdValueYPair NetcdfResponse::solveNearestY(QdataShared q, const 
   if (not transformation)
     throw std::runtime_error("Transformation missing!");
 
-  bool swapCoord = opt->getSwap();
-
   q->firstTime();
   q->firstLevel();
   Id xNumber = q->grid().XNumber();
@@ -172,11 +168,11 @@ NetcdfResponse::IdValueYPair NetcdfResponse::solveNearestY(QdataShared q, const 
 
   Id nearestLocIndex = startId;
   NFmiPoint nearestLocValue = q->latLon(startId);
-  NFmiPoint tLoc = swap(transformation->transform(swap(nearestLocValue, true)), swapCoord);
+  NFmiPoint tLoc = nearestLocValue;
   ValueY distanceToNearestLoc = std::abs(tLoc.Y() - yValue);
   while (id < maxNumber)
   {
-    tLoc = swap(transformation->transform(swap(q->latLon(id), true)), swapCoord);
+    tLoc = q->latLon(id);
     ValueY distanceCandidate = std::abs(tLoc.Y() - yValue);
     if (distanceCandidate < distanceToNearestLoc)
     {
