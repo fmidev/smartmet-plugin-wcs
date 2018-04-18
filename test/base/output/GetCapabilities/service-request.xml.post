@@ -218,6 +218,8 @@ Applications containing aviation weather reports (METAR) should contain the foll
     <wcs:Extension>
       <wcscrs:supportedCrs>http://www.opengis.net/def/crs/EPSG/0/4258</wcscrs:supportedCrs>
       <wcscrs:supportedCrs>http://www.opengis.net/def/crs/EPSG/0/4326</wcscrs:supportedCrs>
+      <wcscrs:supportedCrs>http://www.opengis.net/def/crs/EPSG/0/3067</wcscrs:supportedCrs>
+      <wcscrs:supportedCrs>http://www.opengis.net/def/crs/EPSG/0/3035</wcscrs:supportedCrs>
     </wcs:Extension>
   </wcs:ServiceMetadata>
   <wcs:Contents>
