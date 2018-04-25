@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 18.4.7
+Version: 18.4.25
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -88,6 +88,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Wed Apr 25 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.4.25-1.fmi
+- Split setCoverageIds and fix outputCrs support
+
 * Sat Apr  7 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.4.7-1.fmi
 - Upgrade to boost 1.66
 
