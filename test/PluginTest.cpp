@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
     {
       return SmartMet::Spine::PluginTest::test(options, prelude);
     }
-    catch (libconfig::ParseException& err)
+    catch (const libconfig::ParseException& err)
     {
       std::cerr << "Exception '" << Fmi::current_exception_type()
                 << "' thrown while parsing configuration file " << options.configfile

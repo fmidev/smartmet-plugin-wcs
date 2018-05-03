@@ -388,7 +388,7 @@ void Plugin::realRequestHandler(SmartMet::Spine::Reactor& /* reactor */,
       }
     }
   }
-  catch (SmartMet::Spine::Exception& exception)
+  catch (const SmartMet::Spine::Exception& exception)
   {
     WcsException err(WcsException::NO_APPLICABLE_CODE, exception.what());
 

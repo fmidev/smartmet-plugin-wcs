@@ -90,7 +90,7 @@ boost::shared_ptr<xercesc::DOMDocument> Parser::parse_input(
     this->root_element_cb = root_element_cb;
     this->parse(input);
   }
-  catch (XmlError &error)
+  catch (XmlError &error)  // cannot be const
   {
     // Add messages to the exception object if an exception
     // has been thrown while parsing and messages are not yet added
@@ -289,7 +289,7 @@ boost::shared_ptr<xercesc::DOMDocument> str2xmldom(const std::string &src,
   {
     parser.parse(input);
   }
-  catch (XmlError &error)
+  catch (XmlError &error)  // cannot be const
   {
     // Add messages to the exception object if an exception
     // has been thrown while parsing and messages are not yet added
