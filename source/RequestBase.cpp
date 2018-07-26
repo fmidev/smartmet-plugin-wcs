@@ -233,7 +233,7 @@ void RequestBase::checkOutputFormatAttribute(const std::string& value)
 const xercesc::DOMElement* RequestBase::getXmlRoot(const xercesc::DOMDocument& document)
 {
   xercesc::DOMElement* root = document.getDocumentElement();
-  if (root == NULL)
+  if (root == nullptr)
   {
     std::ostringstream msg;
     throw WcsException(

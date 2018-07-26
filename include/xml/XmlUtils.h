@@ -28,12 +28,12 @@ std::pair<std::string, std::string> get_name_info(const xercesc::DOMNode* node);
 void check_name_info(const xercesc::DOMNode* node,
                      const std::string& ns,
                      const std::string& name,
-                     const char* given_location = NULL);
+                     const char* given_location = nullptr);
 
 std::string check_name_info(const xercesc::DOMNode* node,
                             const std::string& ns,
                             const std::set<std::string>& allowed_name,
-                            const char* given_location = NULL);
+                            const char* given_location = nullptr);
 
 std::pair<std::string, bool> get_attr(const xercesc::DOMElement& elem,
                                       const std::string& ns,

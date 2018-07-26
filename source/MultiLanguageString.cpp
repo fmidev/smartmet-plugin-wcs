@@ -62,7 +62,7 @@ MultiLanguageString::MultiLanguageString(const Language& defaultLanguage,
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception(BCP, "Operation failed!", NULL);
+    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -76,7 +76,7 @@ MultiLanguageString::Shared MultiLanguageString::create(const Language& defaultL
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception(BCP, "Operation failed!", NULL);
+    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -103,7 +103,7 @@ const MultiLanguageString::Message& MultiLanguageString::get(const Language& lan
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception(BCP, "Operation failed!", NULL);
+    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
   }
 }
 }  // namespace WCS

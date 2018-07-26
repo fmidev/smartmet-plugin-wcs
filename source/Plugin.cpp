@@ -99,7 +99,7 @@ void Plugin::init()
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception(BCP, "Init failed!", NULL);
+    throw SmartMet::Spine::Exception::Trace(BCP, "Init failed!");
   }
 }
 
@@ -155,7 +155,7 @@ class Plugin::RequestResult : public Spine::HTTP::ContentStreamer
     }
     catch (...)
     {
-      throw SmartMet::Spine::Exception(BCP, "Init failed!", NULL);
+      throw SmartMet::Spine::Exception::Trace(BCP, "Init failed!");
     }
   }
 

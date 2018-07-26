@@ -76,7 +76,7 @@ ParamChangeItem::ParamChangeItem()
           0, "", kFloatMissing, kFloatMissing, kFloatMissing, kFloatMissing, "%.1f", kLinearly),
       mConversionBase(0),
       mConversionScale(1.0),
-      mLevel(NULL),
+      mLevel(nullptr),
       mPeriodLengthMinutes(0),
       mTemplateNumber(0)
 {
@@ -93,7 +93,7 @@ ParamChangeItem::ParamChangeItem(const ParamChangeItem& theOther)
       mWantedParam(theOther.mWantedParam),
       mConversionBase(theOther.mConversionBase),
       mConversionScale(theOther.mConversionScale),
-      mLevel(theOther.mLevel ? new NFmiLevel(*theOther.mLevel) : NULL),
+      mLevel(theOther.mLevel ? new NFmiLevel(*theOther.mLevel) : nullptr),
       mStepType(theOther.mStepType),
       mPeriodLengthMinutes(theOther.mPeriodLengthMinutes),
       mUnit(theOther.mUnit),
@@ -112,7 +112,7 @@ ParamChangeItem& ParamChangeItem::operator=(const ParamChangeItem& theOther)
     mWantedParam = theOther.mWantedParam;
     mConversionBase = theOther.mConversionBase;
     mConversionScale = theOther.mConversionScale;
-    mLevel = theOther.mLevel ? new NFmiLevel(*theOther.mLevel) : NULL;
+    mLevel = theOther.mLevel ? new NFmiLevel(*theOther.mLevel) : nullptr;
     mStepType = theOther.mStepType;
     mPeriodLengthMinutes = theOther.mPeriodLengthMinutes;
     mUnit = theOther.mUnit;

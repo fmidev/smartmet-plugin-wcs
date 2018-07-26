@@ -18,11 +18,11 @@ UniqueTemporaryPath::UniqueTemporaryPath(const AutoRemove& autoRemove) : mAutoRe
   }
   catch (const boost::filesystem::filesystem_error& err)
   {
-    throw Spine::Exception(BCP, err.what(), NULL);
+    throw Spine::Exception::Trace(BCP, err.what());
   }
   catch (...)
   {
-    throw Spine::Exception(BCP, "Construction of UniqueTemporaryPath object failed.", NULL);
+    throw Spine::Exception::Trace(BCP, "Construction of UniqueTemporaryPath object failed.");
   }
 }
 
@@ -44,11 +44,11 @@ std::string UniqueTemporaryPath::get() const
   }
   catch (const boost::filesystem::filesystem_error& err)
   {
-    throw Spine::Exception(BCP, err.what(), NULL);
+    throw Spine::Exception::Trace(BCP, err.what());
   }
   catch (...)
   {
-    throw Spine::Exception(BCP, "Return of UniqueTemporaryPath as a string failed.", NULL);
+    throw Spine::Exception::Trace(BCP, "Return of UniqueTemporaryPath as a string failed.");
   }
 }
 }  // namespace WCS

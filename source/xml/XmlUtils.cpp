@@ -42,7 +42,7 @@ std::string Xml::to_string(const XMLCh* src)
   }
   else
   {
-    throw std::runtime_error("Xml::to_string: XML string expected but got NULL");
+    throw std::runtime_error("Xml::to_string: XML string expected but got nullptr");
   }
 }
 
@@ -51,7 +51,7 @@ std::pair<std::string, std::string> Xml::get_name_info(const xercesc::DOMNode* n
   if (node)
   {
     const XMLCh* x_name = node->getLocalName();
-    if (x_name == NULL)
+    if (x_name == nullptr)
       x_name = node->getNodeName();
     const std::string name = to_string(x_name);
     const std::string ns_info = to_opt_string(node->getNamespaceURI()).first;
@@ -59,7 +59,7 @@ std::pair<std::string, std::string> Xml::get_name_info(const xercesc::DOMNode* n
   }
   else
   {
-    throw std::runtime_error("Xml::get_name_info(): NULL is not permitted as the argument");
+    throw std::runtime_error("Xml::get_name_info(): nullptr is not permitted as the argument");
   }
 }
 
@@ -68,10 +68,10 @@ void Xml::check_name_info(const xercesc::DOMNode* node,
                           const std::string& name,
                           const char* given_location)
 {
-  if (node == NULL)
+  if (node == nullptr)
   {
     std::ostringstream msg;
-    msg << __PRETTY_FUNCTION__ << ": no XML DOM node aavailble (NULL specified)";
+    msg << __PRETTY_FUNCTION__ << ": no XML DOM node aavailble (nullptr specified)";
     throw std::runtime_error(msg.str());
   }
 
@@ -190,7 +190,7 @@ std::string Xml::extract_text(const xercesc::DOMElement& element)
     else if (type == xercesc::DOMNode::TEXT_NODE or type == xercesc::DOMNode::CDATA_SECTION_NODE)
     {
       const XMLCh* data = curr->getNodeValue();
-      // Should not be NULL, but let us play safe
+      // Should not be nullptr, but let us play safe
       const std::string tmp_str = to_opt_string(data).first;
       text << tmp_str;
     }
@@ -209,16 +209,16 @@ xercesc::DOMLSSerializer* Xml::create_dom_serializer()
 {
   xercesc::Janitor<XMLCh> features(xercesc::XMLString::transcode("LS"));
 
-  xercesc::DOMImplementationLS* impl = NULL;
+  xercesc::DOMImplementationLS* impl = nullptr;
   xercesc::DOMImplementation* impl_base =
       xercesc::DOMImplementationRegistry::getDOMImplementation(features.get());
 
-  if (impl_base != NULL)
+  if (impl_base != nullptr)
   {
     impl = dynamic_cast<xercesc::DOMImplementationLS*>(impl_base);
   }
 
-  if (impl == NULL)
+  if (impl == nullptr)
   {
     throw std::runtime_error("Failed to get instance of xercesc::DOMImplementationLS");
   }
@@ -273,7 +273,7 @@ boost::shared_ptr<xercesc::DOMDocument> Xml::create_dom_document(const std::stri
   xercesc::DOMImplementation* impl =
       xercesc::DOMImplementationRegistry::getDOMImplementation(features.get());
 
-  if (impl == NULL)
+  if (impl == nullptr)
   {
     throw std::runtime_error("Failed to get xercesc::DOMImplementation instance");
   }

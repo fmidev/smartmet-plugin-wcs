@@ -16,20 +16,20 @@ namespace pt = boost::posix_time;
 PluginData::PluginData(Spine::Reactor *reactor, const char *config)
     : mConfig(config), mWcsCapabilities(new WcsCapabilities)
 {
-  if (config == NULL)
+  if (config == nullptr)
   {
     std::ostringstream msg;
     msg << "ERROR: No configuration provided for WCS plugin";
     throw std::runtime_error(msg.str());
   }
 
-  Spine::Reactor::EngineInstance engine = reactor->getSingleton("Querydata", NULL);
-  if (engine == NULL)
+  Spine::Reactor::EngineInstance engine = reactor->getSingleton("Querydata", nullptr);
+  if (engine == nullptr)
     throw std::runtime_error("No Querydata Engine available");
   mQuerydataEngine = reinterpret_cast<Engine::Querydata::Engine *>(engine);
 
-  engine = reactor->getSingleton("Gis", NULL);
-  if (engine == NULL)
+  engine = reactor->getSingleton("Gis", nullptr);
+  if (engine == nullptr)
     throw std::runtime_error("No GisEngine available");
   mGisEngine = reinterpret_cast<Engine::Gis::Engine *>(engine);
 

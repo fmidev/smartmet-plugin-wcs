@@ -399,7 +399,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   }
 
   UniqueTemporaryPath::Unique name1(new UniqueTemporaryPath());
-  NcFile dataFile(name1->get().c_str(), NcFile::FileMode::Replace, NULL, 0, NcFile::Netcdf4Classic);
+  NcFile dataFile(name1->get().c_str(), NcFile::FileMode::Replace, nullptr, 0, NcFile::Netcdf4Classic);
   if (not dataFile.is_valid())
   {
     std::ostringstream msg;
@@ -417,7 +417,7 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   dataFile.add_att("comment", "<undefined>");
 
   const NcType ncType = ncFloat;
-  NcVar* var = NULL;
+  NcVar* var = nullptr;
   const std::string grid_mapping_name = "latitude_longitude";
   if (grid_mapping_name == "latitude_longitude")
   {

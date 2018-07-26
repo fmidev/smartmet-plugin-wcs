@@ -34,7 +34,7 @@ class NetcdfResponse : public ResponseBase
   using RangeZ = std::pair<ValueZ, ValueZ>;
   using QdataShared = boost::shared_ptr<SmartMet::Engine::Querydata::QImpl>;
 
-  NetcdfResponse() : mEngine(NULL), mDebugLevel(0) {}
+  NetcdfResponse() : mEngine(nullptr), mDebugLevel(0) {}
   virtual ~NetcdfResponse() {}
   void setDebugLevel(const DebugLevelType& debugLevel) { mDebugLevel = debugLevel; }
   void setEngine(const SmartMet::Spine::SmartMetEngine* engine);

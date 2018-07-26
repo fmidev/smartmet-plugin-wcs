@@ -28,7 +28,7 @@ EnvInit::EnvInit()
   }
 
   // Disable Xerces-C net accessor for now
-  xercesc::XMLPlatformUtils::fgNetAccessor = NULL;
+  xercesc::XMLPlatformUtils::fgNetAccessor = nullptr;
 }
 
 EnvInit::~EnvInit()

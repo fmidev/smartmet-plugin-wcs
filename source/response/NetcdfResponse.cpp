@@ -15,7 +15,7 @@ void NetcdfResponse::get(std::ostream& output) {}
 
 void NetcdfResponse::setEngine(const Spine::SmartMetEngine* engine)
 {
-  if (engine == NULL)
+  if (engine == nullptr)
     throw std::runtime_error("No Engine available");
 
   if (const Engine::Querydata::Engine* e = dynamic_cast<const Engine::Querydata::Engine*>(engine))

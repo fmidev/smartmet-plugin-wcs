@@ -33,7 +33,7 @@ namespace fs = boost::filesystem;
 
 Parser::Parser(bool stop_on_error, xercesc::XMLGrammarPool *grammar_pool)
 
-    : xercesc::XercesDOMParser(NULL, xercesc::XMLPlatformUtils::fgMemoryManager, grammar_pool),
+    : xercesc::XercesDOMParser(nullptr, xercesc::XMLPlatformUtils::fgMemoryManager, grammar_pool),
       error_handler(new XmlErrorHandler(stop_on_error))
 {
   // Enable XML namespace handling
@@ -183,7 +183,7 @@ class ParserMT::EntityResolver : public xercesc::XMLEntityResolver
     }
     else if (system_id == "")
     {
-      return NULL;
+      return nullptr;
     }
     else if ((*system_id.begin() == '/') or (*base_uri.begin() == '/'))
     {
@@ -193,7 +193,7 @@ class ParserMT::EntityResolver : public xercesc::XMLEntityResolver
     {
       std::size_t pos = base_uri.find_last_of("/");
       if (pos == std::string::npos)
-        return NULL;
+        return nullptr;
       remote_uri = base_uri.substr(0, pos + 1) + system_id;
     }
 
@@ -210,7 +210,7 @@ class ParserMT::EntityResolver : public xercesc::XMLEntityResolver
     }
     else
     {
-      return NULL;
+      return nullptr;
     }
   }
 
@@ -250,7 +250,7 @@ ParserMT::~ParserMT() {}
 Parser *ParserMT::get()
 {
   Parser *parser = t_parser.get();
-  if (parser == NULL)
+  if (parser == nullptr)
   {
     t_parser.reset(new Parser(stop_on_error, grammar_pool.get()));
     parser = t_parser.get();

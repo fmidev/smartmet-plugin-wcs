@@ -43,7 +43,7 @@ void Netcdf4ClassicSampleResponse::get(std::ostream& output)
       dataOut[i][j] = 0.1 * i * NY + j;
 
   UniqueTemporaryPath::Unique name1(new UniqueTemporaryPath());
-  NcFile dataFile(name1->get().c_str(), NcFile::FileMode::Replace, NULL, 0, NcFile::Netcdf4Classic);
+  NcFile dataFile(name1->get().c_str(), NcFile::FileMode::Replace, nullptr, 0, NcFile::Netcdf4Classic);
 
   dataFile.add_att("Conventions", "CF-1.6");
   dataFile.add_att("title", "Dummy data file");
@@ -51,7 +51,7 @@ void Netcdf4ClassicSampleResponse::get(std::ostream& output)
   dataFile.add_att("source", "Dummy generator");
 
   const NcType ncType = ncFloat;
-  NcVar* var = NULL;
+  NcVar* var = nullptr;
 
   var = dataFile.add_var("crs", ncShort);
   var->add_att("grid_mapping_name", "latitude_longitude");

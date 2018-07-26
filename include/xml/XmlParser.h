@@ -45,7 +45,7 @@ class Parser : public xercesc::XercesDOMParser
    *          It could however be useful to set it to false for development.
    *   @param grammar_pool XML grammar pool to use
    */
-  Parser(bool stop_on_error = true, xercesc::XMLGrammarPool* grammar_pool = NULL);
+  Parser(bool stop_on_error = true, xercesc::XMLGrammarPool* grammar_pool = nullptr);
 
   virtual ~Parser();
 
