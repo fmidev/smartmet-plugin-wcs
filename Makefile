@@ -179,16 +179,12 @@ html::
 objdir:
 	@mkdir -p $(objdir)
 
-rpm: clean file-list
-	if [ -e $(SPEC).spec ]; \
-	then \
-	  tar -czvf $(SPEC).tar.gz \
-		--transform "s,^,plugins/$(SPEC)/," $(shell cat files.list) ; \
-	  rpmbuild -ta $(SPEC).tar.gz ; \
-	  rm -f $(SPEC).tar.gz ; \
-	else \
-	  echo $(SPEC).spec missing; \
-	fi;
+rpm: clean file-list $(SPEC).spec
+	rm -f $(SPEC).tar.gz # Clean a possible leftover from previous attempt
+	tar -czvf $(SPEC).tar.gz \
+		--transform "s,^,plugins/$(SPEC)/," $(shell cat files.list)
+	rpmbuild -ta $(SPEC).tar.gz
+	rm -f $(SPEC).tar.gz
 
 file-list:	cnf/XMLGrammarPool.dump
 	find . -name '.gitignore' >files.list.new
