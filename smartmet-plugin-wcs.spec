@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 18.7.26
+Version: 18.8.13
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -21,11 +21,11 @@ BuildRequires: libpqxx-devel
 BuildRequires: netcdf-cxx-devel
 BuildRequires: postgresql95-libs
 BuildRequires: smartmet-engine-gis-devel >= 18.7.25
-BuildRequires: smartmet-engine-querydata-devel >= 18.7.25
-BuildRequires: smartmet-library-gis-devel >= 18.7.23
-BuildRequires: smartmet-library-macgyver-devel >= 18.7.26
-BuildRequires: smartmet-library-newbase-devel >= 18.7.23
-BuildRequires: smartmet-library-spine-devel >= 18.7.23
+BuildRequires: smartmet-engine-querydata-devel >= 18.8.13
+BuildRequires: smartmet-library-gis-devel >= 18.8.2
+BuildRequires: smartmet-library-macgyver-devel >= 18.8.4
+BuildRequires: smartmet-library-newbase-devel >= 18.8.6
+BuildRequires: smartmet-library-spine-devel >= 18.8.13
 BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: bzip2-devel
@@ -46,11 +46,11 @@ Requires: libpqxx
 Requires: netcdf-cxx
 Requires: smartmet-engine-gis >= 18.7.25
 Requires: smartmet-engine-gis >= 18.7.25
-Requires: smartmet-engine-querydata >= 18.7.25
-Requires: smartmet-library-macgyver >= 18.7.26
-Requires: smartmet-library-newbase >= 18.7.23
-Requires: smartmet-library-spine >= 18.7.23
-Requires: smartmet-server >= 18.7.25
+Requires: smartmet-engine-querydata >= 18.8.13
+Requires: smartmet-library-macgyver >= 18.8.4
+Requires: smartmet-library-newbase >= 18.8.6
+Requires: smartmet-library-spine >= 18.8.13
+Requires: smartmet-server >= 18.8.8
 Requires: xerces-c
 Requires: xqilla
 Provides: %{SPECNAME}
@@ -89,6 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Mon Aug 13 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.8.13-1.fmi
+- Repackaged since Spine::Location size changed
+
 * Thu Jul 26 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.7.26-1.fmi
 - Prefer nullptr over NULL
 
