@@ -145,7 +145,7 @@ release: all
 profile: all
 
 $(LIBFILE): $(OBJS)
-	$(CC) -shared -rdynamic $(CFLAGS) -o $(LIBFILE) $(OBJS) -Wl,--rpath=$(libdir) $(LIBS)
+	$(CC) -shared -rdynamic $(CFLAGS) -o $(LIBFILE) $(OBJS) $(LIBS)
 
 clean:	clean-templates
 	rm -f $(LIBFILE) obj/*.o obj/*.d *~ source/*~ include/*~ cnf/templates/*.c2t
