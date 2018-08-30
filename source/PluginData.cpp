@@ -128,7 +128,7 @@ void PluginData::createXmlParser()
 void PluginData::createParameterConfigs()
 {
   const ParamConfig::FilePathType &netcdfParamConfigPath =
-      mConfig.get_mandatory_config_param<std::string>("netcdfParamConfigPath");
+      mConfig.get_mandatory_path("netcdfParamConfigPath");
   mNetcdfParamConfig.reset(new NetcdfParamConfig(netcdfParamConfigPath));
 }
 

@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 18.8.13
+Version: 18.8.30
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -21,11 +21,11 @@ BuildRequires: libpqxx-devel
 BuildRequires: netcdf-cxx-devel
 BuildRequires: postgresql95-libs
 BuildRequires: smartmet-engine-gis-devel >= 18.7.25
-BuildRequires: smartmet-engine-querydata-devel >= 18.8.13
-BuildRequires: smartmet-library-gis-devel >= 18.8.2
-BuildRequires: smartmet-library-macgyver-devel >= 18.8.4
-BuildRequires: smartmet-library-newbase-devel >= 18.8.6
-BuildRequires: smartmet-library-spine-devel >= 18.8.13
+BuildRequires: smartmet-engine-querydata-devel >= 18.8.20
+BuildRequires: smartmet-library-gis-devel >= 18.8.15
+BuildRequires: smartmet-library-macgyver-devel >= 18.8.20
+BuildRequires: smartmet-library-newbase-devel >= 18.8.28
+BuildRequires: smartmet-library-spine-devel >= 18.8.30
 BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: bzip2-devel
@@ -46,11 +46,11 @@ Requires: libpqxx
 Requires: netcdf-cxx
 Requires: smartmet-engine-gis >= 18.7.25
 Requires: smartmet-engine-gis >= 18.7.25
-Requires: smartmet-engine-querydata >= 18.8.13
-Requires: smartmet-library-macgyver >= 18.8.4
-Requires: smartmet-library-newbase >= 18.8.6
-Requires: smartmet-library-spine >= 18.8.13
-Requires: smartmet-server >= 18.8.8
+Requires: smartmet-engine-querydata >= 18.8.20
+Requires: smartmet-library-macgyver >= 18.8.20
+Requires: smartmet-library-newbase >= 18.8.28
+Requires: smartmet-library-spine >= 18.8.30
+Requires: smartmet-server >= 18.8.22
 Requires: xerces-c
 Requires: xqilla
 Provides: %{SPECNAME}
@@ -89,6 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Thu Aug 30 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.8.30-1.fmi
+- dataSetDir and netcdfParamConfigPath can now be relative paths
+
 * Mon Aug 13 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.8.13-1.fmi
 - Repackaged since Spine::Location size changed
 

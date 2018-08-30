@@ -89,7 +89,7 @@ Config::Config(const std::string& configfile)
 
 std::vector<boost::shared_ptr<DataSetDef> > Config::readDataSetDefs()
 {
-  fs::path dataSetDir(get_mandatory_config_param<std::string>("dataSetDir"));
+  fs::path dataSetDir(get_mandatory_path("dataSetDir"));
 
   if (not fs::exists(dataSetDir))
   {
