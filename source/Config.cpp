@@ -84,7 +84,7 @@ Config::Config(const std::string& configfile)
 
   // Verify that template directory exists
   fs::path sqtd(templateDir);
-  mTemplateDirectory.reset(new Fmi::TemplateDirectory(templateDir));
+  mTemplateDirectory = sqtd;
 }
 
 std::vector<boost::shared_ptr<DataSetDef> > Config::readDataSetDefs()

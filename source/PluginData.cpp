@@ -33,7 +33,7 @@ PluginData::PluginData(Spine::Reactor *reactor, const char *config)
     throw std::runtime_error("No GisEngine available");
   mGisEngine = reinterpret_cast<Engine::Gis::Engine *>(engine);
 
-  createTemplateFormatters();
+  createTemplateFormatterPaths();
   createXmlParser();
   createParameterConfigs();
   createServiceMetaData();
@@ -94,7 +94,7 @@ boost::posix_time::ptime PluginData::getLocalTimeStamp() const
   }
 }
 
-void PluginData::createTemplateFormatters()
+void PluginData::createTemplateFormatterPaths()
 {
   const std::string gctn =
       mConfig.get_mandatory_config_param<std::string>("getCapabilitiesTemplate");
@@ -104,11 +104,11 @@ void PluginData::createTemplateFormatters()
   const std::string etn = mConfig.get_mandatory_config_param<std::string>("exceptionTemplate");
   const std::string dfn = mConfig.get_mandatory_config_param<std::string>("ctppDumpTemplate");
 
-  mGetCapabilitiesFormatter = mConfig.getTemplateDirectory().create_template_formatter(gctn);
-  mDescribeCoverageFormatter = mConfig.getTemplateDirectory().create_template_formatter(dcovtn);
-  mGetCoverageFormatter = mConfig.getTemplateDirectory().create_template_formatter(gcovtn);
-  mExceptionFormatter = mConfig.getTemplateDirectory().create_template_formatter(etn);
-  mCtppDumpFormatter = mConfig.getTemplateDirectory().create_template_formatter(dfn);
+  mGetCapabilitiesFormatterPath = mConfig.getTemplateDirectory() / gctn;
+  mDescribeCoverageFormatterPath = mConfig.getTemplateDirectory() / dcovtn;
+  mGetCoverageFormatterPath = mConfig.getTemplateDirectory() / gcovtn;
+  mExceptionFormatterPath = mConfig.getTemplateDirectory() / etn;
+  mCtppDumpFormatterPath = mConfig.getTemplateDirectory() / dfn;
 }
 
 void PluginData::createXmlParser()

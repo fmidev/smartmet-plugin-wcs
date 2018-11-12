@@ -2,14 +2,10 @@
 
 #include "PluginData.h"
 #include "RequestFactory.h"
+#include <ctpp2/CDT.hpp>
 #include <spine/HTTP.h>
 #include <spine/Reactor.h>
 #include <spine/SmartMetPlugin.h>
-
-#include <ctpp2/CDT.hpp>
-
-#include <macgyver/TemplateFormatterMT.h>
-
 #include <iostream>
 #include <list>
 #include <map>

@@ -139,7 +139,7 @@ std::string ErrorResponseGenerator::formatMessage(CTPP::CDT& hash)
   try
   {
     auto exceptionFormatter = mPluginData.getExceptionFormatter();
-    exceptionFormatter->get()->process(hash, output, logMessages);
+    exceptionFormatter->process(hash, output, logMessages);
   }
   catch (const std::exception& err)
   {

@@ -131,10 +131,10 @@ void GetCapabilities::execute(std::ostream& output) const
   std::ostringstream logMessages;
   try
   {
-    auto formatter = mPluginData.getGetCapabilitiesFormater();
+    auto formatter = mPluginData.getGetCapabilitiesFormatter();
     assert(formatter != 0);
     std::ostringstream response;
-    formatter->get()->process(hash, response, logMessages);
+    formatter->process(hash, response, logMessages);
     substituteAll(response.str(), output);
   }
   catch (const std::exception&)

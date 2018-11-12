@@ -126,10 +126,10 @@ void GetCoverage::executeSingleQuery(std::ostream& ost) const
   std::ostringstream logMessages;
   try
   {
-    auto formatter = mPluginData.getGetCoverageFormater();
+    auto formatter = mPluginData.getGetCoverageFormatter();
     assert(formatter != 0);
     std::ostringstream response;
-    formatter->get()->process(hash, response, logMessages);
+    formatter->process(hash, response, logMessages);
     substituteAll(response.str(), ost);
   }
   catch (const std::exception&)

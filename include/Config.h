@@ -1,11 +1,10 @@
 #pragma once
 
 #include "DataSetDef.h"
+#include <boost/optional.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/utility.hpp>
 #include <engines/gis/CRSRegistry.h>
-#include <macgyver/TemplateDirectory.h>
-#include <macgyver/TemplateFormatter.h>
 #include <spine/ConfigBase.h>
 #include <libconfig.h++>
 #include <string>
@@ -31,7 +30,7 @@ class Config : private boost::noncopyable, public SmartMet::Spine::ConfigBase
   const std::string getXMLGrammarPoolDumpFn() const { return mXmlGrammarPoolDump; }
   bool getValidateXmlOutput() const { return mValidateOutput; }
   int getDefaultExpiresSeconds() const { return mDefaultExpiresSeconds; }
-  const Fmi::TemplateDirectory& getTemplateDirectory() const { return *mTemplateDirectory; }
+  const boost::filesystem::path& getTemplateDirectory() const { return *mTemplateDirectory; }
   const std::vector<std::string>& getLanguages() const { return mLanguages; }
   const std::vector<std::string>& getCswLanguages() const { return mCswLanguages; }
   const std::vector<std::string>& getSupportedCrss() const { return mSupportedCrss; }
@@ -52,7 +51,7 @@ class Config : private boost::noncopyable, public SmartMet::Spine::ConfigBase
   std::vector<std::string> mSupportedCrss;
   std::vector<std::string> mCswLanguages;
   std::string mCompoundcrsUri;
-  std::unique_ptr<Fmi::TemplateDirectory> mTemplateDirectory;
+  boost::optional<boost::filesystem::path> mTemplateDirectory;
   std::string mXmlGrammarPoolDump;
   bool mValidateOutput;
 };

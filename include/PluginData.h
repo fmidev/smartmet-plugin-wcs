@@ -1,10 +1,5 @@
 #pragma once
 
-#include <engines/gis/CRSRegistry.h>
-#include <engines/gis/Engine.h>
-#include <engines/querydata/Engine.h>
-#include <spine/Reactor.h>
-
 #include "Config.h"
 #include "ParamConfig.h"
 #include "WcsCapabilities.h"
@@ -12,8 +7,12 @@
 #include "xml/XmlParser.h"
 #include <boost/date_time/posix_time/ptime.hpp>
 #include <boost/shared_ptr.hpp>
+#include <engines/gis/CRSRegistry.h>
+#include <engines/gis/Engine.h>
+#include <engines/querydata/Engine.h>
 #include <macgyver/Cache.h>
-#include <macgyver/TemplateFormatterMT.h>
+#include <macgyver/TemplateFactory.h>
+#include <spine/Reactor.h>
 #include <memory>
 
 namespace SmartMet
@@ -37,29 +36,30 @@ class PluginData : public boost::noncopyable
   inline Engine::Gis::CRSRegistry& getCrsRegistry() const { return mGisEngine->getCRSRegistry(); }
   inline Config& getConfig() { return mConfig; }
   inline const Config& getConfig() const { return mConfig; }
-  inline boost::shared_ptr<Fmi::TemplateFormatterMT> getGetCapabilitiesFormater() const
+
+  inline boost::shared_ptr<Fmi::TemplateFormatter> getGetCapabilitiesFormatter() const
   {
-    return mGetCapabilitiesFormatter;
+    return mTemplateFactory.get(mGetCapabilitiesFormatterPath);
   }
 
-  inline boost::shared_ptr<Fmi::TemplateFormatterMT> getDescribeCoverageFormater() const
+  inline boost::shared_ptr<Fmi::TemplateFormatter> getDescribeCoverageFormatter() const
   {
-    return mDescribeCoverageFormatter;
+    return mTemplateFactory.get(mDescribeCoverageFormatterPath);
   }
 
-  inline boost::shared_ptr<Fmi::TemplateFormatterMT> getGetCoverageFormater() const
+  inline boost::shared_ptr<Fmi::TemplateFormatter> getGetCoverageFormatter() const
   {
-    return mGetCoverageFormatter;
+    return mTemplateFactory.get(mGetCoverageFormatterPath);
   }
 
-  inline boost::shared_ptr<Fmi::TemplateFormatterMT> getExceptionFormatter() const
+  inline boost::shared_ptr<Fmi::TemplateFormatter> getExceptionFormatter() const
   {
-    return mExceptionFormatter;
+    return mTemplateFactory.get(mExceptionFormatterPath);
   }
 
-  inline boost::shared_ptr<Fmi::TemplateFormatterMT> getCtppDumpFormatter() const
+  inline boost::shared_ptr<Fmi::TemplateFormatter> getCtppDumpFormatter() const
   {
-    return mCtppDumpFormatter;
+    return mTemplateFactory.get(mCtppDumpFormatterPath);
   }
 
   inline std::shared_ptr<NetcdfParamConfig> getNetcdfParamConfig() const
@@ -81,7 +81,7 @@ class PluginData : public boost::noncopyable
   inline const Engine::Gis::Engine* getGisEngine() const { return mGisEngine; }
 
  private:
-  void createTemplateFormatters();
+  void createTemplateFormatterPaths();
   void createXmlParser();
   void createParameterConfigs();
   void createServiceMetaData();
@@ -92,11 +92,12 @@ class PluginData : public boost::noncopyable
   SmartMet::Engine::Querydata::Engine* mQuerydataEngine;
   SmartMet::Engine::Gis::Engine* mGisEngine;
 
-  boost::shared_ptr<Fmi::TemplateFormatterMT> mGetCapabilitiesFormatter;
-  boost::shared_ptr<Fmi::TemplateFormatterMT> mDescribeCoverageFormatter;
-  boost::shared_ptr<Fmi::TemplateFormatterMT> mGetCoverageFormatter;
-  boost::shared_ptr<Fmi::TemplateFormatterMT> mExceptionFormatter;
-  boost::shared_ptr<Fmi::TemplateFormatterMT> mCtppDumpFormatter;
+  Fmi::TemplateFactory mTemplateFactory;
+  boost::filesystem::path mGetCapabilitiesFormatterPath;
+  boost::filesystem::path mDescribeCoverageFormatterPath;
+  boost::filesystem::path mGetCoverageFormatterPath;
+  boost::filesystem::path mExceptionFormatterPath;
+  boost::filesystem::path mCtppDumpFormatterPath;
   boost::shared_ptr<Xml::ParserMT> mXmlParser;
   std::unique_ptr<WcsCapabilities> mWcsCapabilities;
   std::shared_ptr<NetcdfParamConfig> mNetcdfParamConfig;

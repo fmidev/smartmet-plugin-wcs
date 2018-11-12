@@ -4,7 +4,6 @@
 #include "RequestBase.h"
 #include <boost/shared_ptr.hpp>
 #include <engines/querydata/Engine.h>
-#include <macgyver/TemplateFormatterMT.h>
 
 namespace SmartMet
 {
