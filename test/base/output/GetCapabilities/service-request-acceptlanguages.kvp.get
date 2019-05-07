@@ -231,8 +231,8 @@ Sovelluksissa, joissa käytetään lentosäähavaintosanomia (METAReita), tulisi
         <ows:Type>string</ows:Type>
       </ows:Keywords>
       <ows:WGS84BoundingBox dimensions="2">
-        <ows:LowerCorner>9.041 53.025</ows:LowerCorner>
-        <ows:UpperCorner>30.291 65.875</ows:UpperCorner>
+        <ows:LowerCorner>9.041 53.2095556679</ows:LowerCorner>
+        <ows:UpperCorner>30.291 66.0179944864</ows:UpperCorner>
       </ows:WGS84BoundingBox>
       <wcs:CoverageId>hbm-salinity</wcs:CoverageId>
       <wcs:CoverageSubtype>RectifiedGridCoverage</wcs:CoverageSubtype>
@@ -246,8 +246,8 @@ Sovelluksissa, joissa käytetään lentosäähavaintosanomia (METAReita), tulisi
         <ows:Type>string</ows:Type>
       </ows:Keywords>
       <ows:WGS84BoundingBox dimensions="2">
-        <ows:LowerCorner>9.041 53.025</ows:LowerCorner>
-        <ows:UpperCorner>30.291 65.875</ows:UpperCorner>
+        <ows:LowerCorner>9.041 53.2095556679</ows:LowerCorner>
+        <ows:UpperCorner>30.291 66.0179944864</ows:UpperCorner>
       </ows:WGS84BoundingBox>
       <wcs:CoverageId>hbm-temperaturesea</wcs:CoverageId>
       <wcs:CoverageSubtype>RectifiedGridCoverage</wcs:CoverageSubtype>

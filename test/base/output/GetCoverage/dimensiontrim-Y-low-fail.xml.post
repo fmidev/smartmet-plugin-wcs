@@ -7,7 +7,7 @@
 
   <Exception exceptionCode="InvalidParameterValue"
                    locator="DimensionTrim">
-    <ExceptionText>DimensionTrim range &apos;[52,52.8]&apos; is out of y range [53.025,65.875]</ExceptionText>
+    <ExceptionText>DimensionTrim range &apos;[52,52.8]&apos; is out of y range [53.2096,66.018]</ExceptionText>
     
   </Exception>
 

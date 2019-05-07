@@ -7,7 +7,7 @@
 
   <Exception exceptionCode="InvalidParameterValue"
                    locator="DimensionSlice">
-    <ExceptionText>SlicePoint &apos;52.8&apos; is out of y range [52.975,65.925]</ExceptionText>
+    <ExceptionText>SlicePoint &apos;52.8&apos; is out of y range [53.1597,66.0678]</ExceptionText>
     
   </Exception>
 
