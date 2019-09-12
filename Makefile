@@ -18,7 +18,8 @@ FLAGS = -std=c++11 -fPIC -Wall -W -Wno-unused-parameter \
       -Woverloaded-virtual  \
       -Wpointer-arith \
       -Wredundant-decls \
-      -Wwrite-strings
+      -Wwrite-strings \
+	-Wnon-virtual-dtor
 
 # Compile options in detault, debug and profile modes
 
