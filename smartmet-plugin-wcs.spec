@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 18.11.12
+Version: 19.9.26
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -20,12 +20,12 @@ BuildRequires: libcurl-devel
 BuildRequires: libpqxx-devel
 BuildRequires: netcdf-cxx-devel
 BuildRequires: postgresql95-libs
-BuildRequires: smartmet-engine-gis-devel >= 18.10.1
-BuildRequires: smartmet-engine-querydata-devel >= 18.10.19
-BuildRequires: smartmet-library-gis-devel >= 18.9.29
-BuildRequires: smartmet-library-macgyver-devel >= 18.11.12
-BuildRequires: smartmet-library-newbase-devel >= 18.10.23
-BuildRequires: smartmet-library-spine-devel >= 18.11.9
+BuildRequires: smartmet-engine-gis-devel >= 19.9.26
+BuildRequires: smartmet-engine-querydata-devel >= 19.9.26
+BuildRequires: smartmet-library-gis-devel >= 19.9.26
+BuildRequires: smartmet-library-macgyver-devel >= 19.9.26
+BuildRequires: smartmet-library-newbase-devel >= 19.9.26
+BuildRequires: smartmet-library-spine-devel >= 19.9.26
 BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: bzip2-devel
@@ -44,13 +44,13 @@ Requires: libconfig
 Requires: libcurl
 Requires: libpqxx
 Requires: netcdf-cxx
-Requires: smartmet-engine-gis >= 18.10.1
-Requires: smartmet-engine-gis >= 18.10.1
-Requires: smartmet-engine-querydata >= 18.10.19
-Requires: smartmet-library-macgyver >= 18.11.12
-Requires: smartmet-library-newbase >= 18.10.23
-Requires: smartmet-library-spine >= 18.11.9
-Requires: smartmet-server >= 18.11.8
+Requires: smartmet-engine-gis >= 19.9.26
+Requires: smartmet-engine-gis >= 19.9.26
+Requires: smartmet-engine-querydata >= 19.9.26
+Requires: smartmet-library-macgyver >= 19.9.26
+Requires: smartmet-library-newbase >= 19.9.26
+Requires: smartmet-library-spine >= 19.9.26
+Requires: smartmet-server >= 19.9.26
 Requires: xerces-c
 Requires: xqilla
 Provides: %{SPECNAME}
@@ -89,6 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Thu Sep 26 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.9.26-1.fmi
+- Repackaged due to ABI changes
+
 * Mon Nov 12 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.11.12-1.fmi
 - Use TemplateFactory for thread safety
 
