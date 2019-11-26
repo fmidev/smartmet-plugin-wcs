@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 19.10.31
+Version: 19.11.20
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -20,12 +20,12 @@ BuildRequires: libcurl-devel
 BuildRequires: libpqxx-devel
 BuildRequires: netcdf-cxx-devel
 BuildRequires: postgresql95-libs
-BuildRequires: smartmet-engine-gis-devel >= 19.10.31
-BuildRequires: smartmet-engine-querydata-devel >= 19.10.31
+BuildRequires: smartmet-engine-gis-devel >= 19.11.20
+BuildRequires: smartmet-engine-querydata-devel >= 19.11.20
 BuildRequires: smartmet-library-gis-devel >= 19.9.26
 BuildRequires: smartmet-library-macgyver-devel >= 19.9.26
-BuildRequires: smartmet-library-newbase-devel >= 19.10.31
-BuildRequires: smartmet-library-spine-devel >= 19.10.31
+BuildRequires: smartmet-library-newbase-devel >= 19.11.20
+BuildRequires: smartmet-library-spine-devel >= 19.11.20
 BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: bzip2-devel
@@ -44,12 +44,12 @@ Requires: libconfig
 Requires: libcurl
 Requires: libpqxx
 Requires: netcdf-cxx
-Requires: smartmet-engine-gis >= 19.10.31
-Requires: smartmet-engine-gis >= 19.10.31
-Requires: smartmet-engine-querydata >= 19.10.31
+Requires: smartmet-engine-gis >= 19.11.20
+Requires: smartmet-engine-gis >= 19.11.20
+Requires: smartmet-engine-querydata >= 19.11.20
 Requires: smartmet-library-macgyver >= 19.9.26
-Requires: smartmet-library-newbase >= 19.10.31
-Requires: smartmet-library-spine >= 19.10.31
+Requires: smartmet-library-newbase >= 19.11.20
+Requires: smartmet-library-spine >= 19.11.20
 Requires: smartmet-server >= 19.10.1
 Requires: xerces-c
 Requires: xqilla
@@ -89,6 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Wed Nov 20 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.11.20-1.fmi
+- Rebuilt due to newbase API changes
+
 * Thu Oct 31 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.10.31-1.fmi
 - Rebuilt due to newbase API/ABI changes
 
