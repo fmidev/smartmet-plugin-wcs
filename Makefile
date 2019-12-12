@@ -62,7 +62,8 @@ objdir = obj
 
 INCLUDES = -I$(includedir) \
 	-I$(includedir)/jsoncpp \
-	-I$(includedir)/smartmet
+	-I$(includedir)/smartmet \
+	-I$(PREFIX)/gdal30/include
 
 LIBS = -L$(libdir) \
 	-lsmartmet-spine \
@@ -79,7 +80,7 @@ LIBS = -L$(libdir) \
         -ljsoncpp \
         -lxqilla \
 	-lxerces-c \
-	-lgdal \
+	-L$(PREFIX)/gdal30/lib -lgdal \
 	-lconfig++ \
 	-lconfig \
 	-lctpp2 \
