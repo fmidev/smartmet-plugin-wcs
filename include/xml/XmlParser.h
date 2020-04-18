@@ -5,6 +5,7 @@
 #include <boost/function.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/thread.hpp>
+#include <boost/utility.hpp>
 #include <xercesc/parsers/XercesDOMParser.hpp>
 #include <list>
 #include <stdexcept>
