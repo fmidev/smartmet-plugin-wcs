@@ -15,11 +15,8 @@ FLAGS = -std=c++11 -fPIC -Wall -W -Wno-unused-parameter \
       -Wno-inline \
       -Wno-multichar \
       -Wno-pmf-conversions \
-      -Woverloaded-virtual  \
       -Wpointer-arith \
-      -Wredundant-decls \
-      -Wwrite-strings \
-	-Wnon-virtual-dtor
+      -Wwrite-strings
 
 # Compile options in detault, debug and profile modes
 
@@ -60,11 +57,18 @@ objdir = obj
 
 #
 
-INCLUDES = -I$(includedir) \
+# Boost 1.69
+
+ifneq "$(wildcard /usr/include/boost169)" ""
+  INCLUDES += -I/usr/include/boost169
+  LIBS += -L/usr/lib64/boost169
+endif
+
+INCLUDES += -I$(includedir) \
 	-I$(includedir)/jsoncpp \
 	-I$(includedir)/smartmet
 
-LIBS = -L$(libdir) \
+LIBS += -L$(libdir) \
 	-lsmartmet-spine \
 	-lsmartmet-newbase \
 	-lsmartmet-macgyver \
