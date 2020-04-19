@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 19.12.13
+Version: 20.4.18
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -12,7 +12,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: rpm-build
 BuildRequires: gcc-c++
 BuildRequires: make
-BuildRequires: boost-devel
+BuildRequires: boost169-devel
 BuildRequires: ctpp2-devel
 BuildRequires: jsoncpp-devel
 BuildRequires: libconfig-devel
@@ -20,37 +20,37 @@ BuildRequires: libcurl-devel
 BuildRequires: libpqxx-devel
 BuildRequires: netcdf-cxx-devel
 BuildRequires: postgresql95-libs
-BuildRequires: smartmet-engine-gis-devel >= 19.11.20
-BuildRequires: smartmet-engine-querydata-devel >= 19.11.20
-BuildRequires: smartmet-library-gis-devel >= 19.9.26
-BuildRequires: smartmet-library-macgyver-devel >= 19.9.26
-BuildRequires: smartmet-library-newbase-devel >= 19.11.20
-BuildRequires: smartmet-library-spine-devel >= 19.11.20
+BuildRequires: smartmet-engine-gis-devel >= 20.4.18
+BuildRequires: smartmet-engine-querydata-devel >= 20.4.18
+BuildRequires: smartmet-library-gis-devel >= 20.4.18
+BuildRequires: smartmet-library-macgyver-devel >= 20.4.18
+BuildRequires: smartmet-library-newbase-devel >= 20.4.18
+BuildRequires: smartmet-library-spine-devel >= 20.4.18
 BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: bzip2-devel
 BuildRequires: openssl-devel
-Requires: boost-chrono
-Requires: boost-date-time
-Requires: boost-filesystem
-Requires: boost-iostreams
-Requires: boost-regex
-Requires: boost-serialization
-Requires: boost-system
-Requires: boost-thread
+Requires: boost169-chrono
+Requires: boost169-date-time
+Requires: boost169-filesystem
+Requires: boost169-iostreams
+Requires: boost169-regex
+Requires: boost169-serialization
+Requires: boost169-system
+Requires: boost169-thread
 Requires: ctpp2
 Requires: jsoncpp
 Requires: libconfig
 Requires: libcurl
 Requires: libpqxx
 Requires: netcdf-cxx
-Requires: smartmet-engine-gis >= 19.11.20
-Requires: smartmet-engine-gis >= 19.11.20
-Requires: smartmet-engine-querydata >= 19.11.20
-Requires: smartmet-library-macgyver >= 19.9.26
-Requires: smartmet-library-newbase >= 19.11.20
-Requires: smartmet-library-spine >= 19.11.20
-Requires: smartmet-server >= 19.10.1
+Requires: smartmet-engine-gis >= 20.4.18
+Requires: smartmet-engine-gis >= 20.4.18
+Requires: smartmet-engine-querydata >= 20.4.18
+Requires: smartmet-library-macgyver >= 20.4.18
+Requires: smartmet-library-newbase >= 20.4.18
+Requires: smartmet-library-spine >= 20.4.18
+Requires: smartmet-server >= 20.4.18
 Requires: xerces-c
 Requires: xqilla
 Provides: %{SPECNAME}
@@ -89,6 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Sat Apr 18 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.4.18-1.fmi
+- Upgraded to Boost 1.69
+
 * Fri Dec 13 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.12.13-1.fmi
 - Repackaged due to NFmiArea API changes
 
