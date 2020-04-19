@@ -378,8 +378,8 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
     {
       q->levelIndex(lId);
 
-      NFmiDataMatrix<float> dataMatrix;
-      q->croppedValues(dataMatrix, minXId, minYId, maxXId, maxYId, dem, flags);
+      NFmiDataMatrix<float> dataMatrix =
+          q->croppedValues(minXId, minYId, maxXId, maxYId, dem, flags);
 
       if (dataMatrix.NX() != xDelta or dataMatrix.NY() != yDelta)
         throw WcsException(WcsException::NO_APPLICABLE_CODE, "Data size error.");
@@ -399,7 +399,8 @@ void Netcdf4ClassicResponse::get(std::ostream& output)
   }
 
   UniqueTemporaryPath::Unique name1(new UniqueTemporaryPath());
-  NcFile dataFile(name1->get().c_str(), NcFile::FileMode::Replace, nullptr, 0, NcFile::Netcdf4Classic);
+  NcFile dataFile(
+      name1->get().c_str(), NcFile::FileMode::Replace, nullptr, 0, NcFile::Netcdf4Classic);
   if (not dataFile.is_valid())
   {
     std::ostringstream msg;
