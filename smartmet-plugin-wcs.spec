@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 20.4.18
+Version: 20.5.8
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -25,7 +25,7 @@ BuildRequires: smartmet-engine-querydata-devel >= 20.4.18
 BuildRequires: smartmet-library-gis-devel >= 20.4.18
 BuildRequires: smartmet-library-macgyver-devel >= 20.4.18
 BuildRequires: smartmet-library-newbase-devel >= 20.4.18
-BuildRequires: smartmet-library-spine-devel >= 20.4.18
+BuildRequires: smartmet-library-spine-devel >= 20.5.7
 BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: bzip2-devel
@@ -89,6 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Fri May  8 2020 Andris Pavenis <andris.pavenis@fmi.fi> - 20.5.8-1.fmi
+- Use CRSRegistry from smartmet-library-spine
+
 * Sat Apr 18 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.4.18-1.fmi
 - Upgraded to Boost 1.69
 

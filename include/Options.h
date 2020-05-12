@@ -3,8 +3,8 @@
 #include "Abbreviations.h"
 #include "DimensionSubset.h"
 #include "OptionsBase.h"
-#include <engines/gis/CRSRegistry.h>
 #include <engines/querydata/Producer.h>
+#include <spine/CRSRegistry.h>
 #include <spine/Value.h>
 #include <xercesc/dom/DOMDocument.hpp>
 
@@ -24,7 +24,7 @@ class Options : public OptionsBase
   using OutputCrsType = std::string;
   using ProducerType = SmartMet::Engine::Querydata::Producer;
   using ParameterNameType = std::string;
-  using Transformation = SmartMet::Engine::Gis::CRSRegistry::Transformation;
+  using Transformation = SmartMet::Spine::CRSRegistry::Transformation;
   using SwapType = bool;
 
   Options() : mSwap(false) {}

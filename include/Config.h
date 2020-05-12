@@ -4,7 +4,7 @@
 #include <boost/optional.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/utility.hpp>
-#include <engines/gis/CRSRegistry.h>
+#include <spine/CRSRegistry.h>
 #include <spine/ConfigBase.h>
 #include <libconfig.h++>
 #include <string>

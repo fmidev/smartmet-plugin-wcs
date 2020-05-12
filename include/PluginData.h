@@ -7,11 +7,11 @@
 #include "xml/XmlParser.h"
 #include <boost/date_time/posix_time/ptime.hpp>
 #include <boost/shared_ptr.hpp>
-#include <engines/gis/CRSRegistry.h>
 #include <engines/gis/Engine.h>
 #include <engines/querydata/Engine.h>
 #include <macgyver/Cache.h>
 #include <macgyver/TemplateFactory.h>
+#include <spine/CRSRegistry.h>
 #include <spine/Reactor.h>
 #include <memory>
 
@@ -33,7 +33,7 @@ class PluginData : public boost::noncopyable
   PluginData(SmartMet::Spine::Reactor* reactor, const char* config);
   virtual ~PluginData();
 
-  inline Engine::Gis::CRSRegistry& getCrsRegistry() const { return mGisEngine->getCRSRegistry(); }
+  inline Spine::CRSRegistry& getCrsRegistry() const { return mGisEngine->getCRSRegistry(); }
   inline Config& getConfig() { return mConfig; }
   inline const Config& getConfig() const { return mConfig; }
 
