@@ -20,12 +20,12 @@ BuildRequires: libcurl-devel
 BuildRequires: libpqxx-devel
 BuildRequires: netcdf-cxx-devel
 BuildRequires: postgresql12-libs
-BuildRequires: smartmet-engine-gis-devel >= 20.4.18
-BuildRequires: smartmet-engine-querydata-devel >= 20.4.18
-BuildRequires: smartmet-library-gis-devel >= 20.4.18
+BuildRequires: smartmet-engine-gis-devel >= 20.5.7
+BuildRequires: smartmet-engine-querydata-devel >= 20.5.5
+BuildRequires: smartmet-library-gis-devel >= 20.4.28
 BuildRequires: smartmet-library-macgyver-devel >= 20.4.18
-BuildRequires: smartmet-library-newbase-devel >= 20.4.18
-BuildRequires: smartmet-library-spine-devel >= 20.5.7
+BuildRequires: smartmet-library-newbase-devel >= 20.4.23
+BuildRequires: smartmet-library-spine-devel >= 20.5.12
 BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: bzip2-devel
@@ -44,12 +44,12 @@ Requires: libconfig
 Requires: libcurl
 Requires: libpqxx
 Requires: netcdf-cxx
-Requires: smartmet-engine-gis >= 20.4.18
-Requires: smartmet-engine-gis >= 20.4.18
-Requires: smartmet-engine-querydata >= 20.4.18
+Requires: smartmet-engine-gis >= 20.5.7
+Requires: smartmet-engine-gis >= 20.5.7
+Requires: smartmet-engine-querydata >= 20.5.5
 Requires: smartmet-library-macgyver >= 20.4.18
-Requires: smartmet-library-newbase >= 20.4.18
-Requires: smartmet-library-spine >= 20.4.18
+Requires: smartmet-library-newbase >= 20.4.23
+Requires: smartmet-library-spine >= 20.5.12
 Requires: smartmet-server >= 20.4.18
 Requires: xerces-c
 Requires: xqilla
