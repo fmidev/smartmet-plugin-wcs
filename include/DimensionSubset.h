@@ -3,7 +3,6 @@
 #include "Abbreviations.h"
 #include "Element.h"
 
-#include <engines/gis/CRSRegistry.h>
 #include <engines/querydata/Producer.h>
 #include <xercesc/dom/DOMDocument.hpp>
 
