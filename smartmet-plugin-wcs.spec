@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 20.5.8
+Version: 20.8.21
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -20,12 +20,12 @@ BuildRequires: libcurl-devel
 BuildRequires: libpqxx-devel
 BuildRequires: netcdf-cxx-devel
 BuildRequires: postgresql95-libs
-BuildRequires: smartmet-engine-gis-devel >= 20.4.18
-BuildRequires: smartmet-engine-querydata-devel >= 20.4.18
-BuildRequires: smartmet-library-gis-devel >= 20.4.18
-BuildRequires: smartmet-library-macgyver-devel >= 20.4.18
-BuildRequires: smartmet-library-newbase-devel >= 20.4.18
-BuildRequires: smartmet-library-spine-devel >= 20.5.7
+BuildRequires: smartmet-engine-gis-devel >= 20.8.21
+BuildRequires: smartmet-engine-querydata-devel >= 20.8.21
+BuildRequires: smartmet-library-gis-devel >= 20.8.21
+BuildRequires: smartmet-library-macgyver-devel >= 20.8.21
+BuildRequires: smartmet-library-newbase-devel >= 20.8.21
+BuildRequires: smartmet-library-spine-devel >= 20.8.21
 BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: bzip2-devel
@@ -44,13 +44,13 @@ Requires: libconfig
 Requires: libcurl
 Requires: libpqxx
 Requires: netcdf-cxx
-Requires: smartmet-engine-gis >= 20.4.18
-Requires: smartmet-engine-gis >= 20.4.18
-Requires: smartmet-engine-querydata >= 20.4.18
-Requires: smartmet-library-macgyver >= 20.4.18
-Requires: smartmet-library-newbase >= 20.4.18
-Requires: smartmet-library-spine >= 20.4.18
-Requires: smartmet-server >= 20.4.18
+Requires: smartmet-engine-gis >= 20.8.21
+Requires: smartmet-engine-gis >= 20.8.21
+Requires: smartmet-engine-querydata >= 20.8.21
+Requires: smartmet-library-macgyver >= 20.8.21
+Requires: smartmet-library-newbase >= 20.8.21
+Requires: smartmet-library-spine >= 20.8.21
+Requires: smartmet-server >= 20.8.21
 Requires: xerces-c
 Requires: xqilla
 Provides: %{SPECNAME}
@@ -89,6 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Fri Aug 21 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.21-1.fmi
+- Upgrade to fmt 6.2
+
 * Fri May  8 2020 Andris Pavenis <andris.pavenis@fmi.fi> - 20.5.8-1.fmi
 - Use CRSRegistry from smartmet-library-spine
 
