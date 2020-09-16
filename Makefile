@@ -14,7 +14,6 @@ FLAGS = -std=c++11 -fPIC -Wall -W -Wno-unused-parameter \
       -Wcast-qual \
       -Wno-inline \
       -Wno-multichar \
-      -Wno-pmf-conversions \
       -Wpointer-arith \
       -Wwrite-strings
 
