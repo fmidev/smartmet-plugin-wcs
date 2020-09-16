@@ -60,21 +60,21 @@ objdir = obj
 # Boost 1.69
 
 ifneq "$(wildcard /usr/include/boost169)" ""
-  INCLUDES += -I/usr/include/boost169
+  INCLUDES += -isystem /usr/include/boost169
   LIBS += -L/usr/lib64/boost169
 endif
 
 ifneq "$(wildcard /usr/gdal30/include)" ""
-  INCLUDES += -I/usr/gdal30/include
+  INCLUDES += -isystem /usr/gdal30/include
   LIBS += -L/usr/gdal30/lib
 else
-  INCLUDES += -I/usr/include/gdal
+  INCLUDES += -isystem /usr/include/gdal
 endif
 
 
-INCLUDES += -I$(includedir) \
-	-I$(includedir)/jsoncpp \
-	-I$(includedir)/smartmet
+INCLUDES += \
+	-I$(includedir)/smartmet \
+	-isystem $(includedir)/jsoncpp
 
 LIBS += -L$(libdir) \
 	-lsmartmet-spine \
@@ -158,7 +158,7 @@ release: all
 profile: all
 
 $(LIBFILE): $(OBJS)
-	$(CC) -shared -rdynamic $(CFLAGS) -o $(LIBFILE) $(OBJS) $(LIBS)
+	$(CC) -shared -rdynamic $(LDFLAGS) -o $(LIBFILE) $(OBJS) $(LIBS)
 
 clean:	clean-templates
 	rm -f $(LIBFILE) obj/*.o obj/*.d *~ source/*~ include/*~ cnf/templates/*.c2t
@@ -232,7 +232,7 @@ headertest:
 	echo $$hdr; \
 	echo "#include \"$$hdr\"" > /tmp/$(SPEC).cpp; \
 	echo "int main() { return 0; }" >> /tmp/$(SPEC).cpp; \
-	$(CC) $(CFLAGS) $(INCLUDES) -o /dev/null /tmp/$(SPEC).cpp $(LIBS); \
+	$(CXX) $(CFLAGS) $(INCLUDES) -o /dev/null /tmp/$(SPEC).cpp $(LIBS); \
 	done
 
 cnf/templates/%.c2t: cnf/templates/%.template ; ( cd cnf/templates && $(PREFIX)/bin/ctpp2c $(notdir $<) $(notdir $@) )
