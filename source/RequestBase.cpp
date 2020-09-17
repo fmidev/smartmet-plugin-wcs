@@ -1,11 +1,14 @@
 #include "RequestBase.h"
+
 #include "QueryBase.h"
 #include "WcsConst.h"
 #include "WcsException.h"
 #include "xml/XmlUtils.h"
+
 #include <boost/algorithm/string.hpp>
 #include <macgyver/StringConversion.h>
 #include <macgyver/TypeName.h>
+
 #include <sstream>
 
 namespace SmartMet
@@ -205,10 +208,10 @@ void RequestBase::checkServiceName(const xercesc::DOMDocument& document, const s
   }
   catch (const std::exception& err)
   {
-    WcsException err(WcsException::INVALID_PARAMETER_VALUE,
-                     "Operation contains an invalid parameter value.");
-    err.setLocation("service");
-    throw err;
+    WcsException ex(WcsException::INVALID_PARAMETER_VALUE,
+                    "Operation contains an invalid parameter value.");
+    ex.setLocation("service");
+    throw ex;
   }
 }
 

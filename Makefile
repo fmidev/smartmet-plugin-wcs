@@ -103,7 +103,7 @@ LIBS += -L$(libdir) \
 
 obj/%.o : %.cpp ; @echo Compiling $<
 	@mkdir -p obj
-	$(CXX) $(CFLAGS) $(INCLUDES) $(LIBS) -c -MD -MF $(patsubst obj/%.o, obj/%.d.new, $@) -o $@ $<
+	$(CXX) $(CFLAGS) $(INCLUDES) -c -MD -MF $(patsubst obj/%.o, obj/%.d.new, $@) -o $@ $<
 	@sed -e "s|^$(notdir $@):|$@:|" $(patsubst obj/%.o, obj/%.d.new, $@) >$(patsubst obj/%.o, obj/%.d, $@)
 	@rm -f $(patsubst obj/%.o, obj/%.d.new, $@)
 
@@ -111,9 +111,7 @@ obj/%.o : %.cpp ; @echo Compiling $<
 INCLUDES += -I$(TOP)/include \
 	-I$(TOP)/include/request \
 	-I$(TOP)/include/response \
-	-I$(TOP)/include/xml \
-	-isystem
-
+	-I$(TOP)/include/xml
 
 # What to install
 
@@ -231,7 +229,7 @@ headertest:
 	echo $$hdr; \
 	echo "#include \"$$hdr\"" > /tmp/$(SPEC).cpp; \
 	echo "int main() { return 0; }" >> /tmp/$(SPEC).cpp; \
-	$(CXX) $(CFLAGS) $(INCLUDES) -o /dev/null /tmp/$(SPEC).cpp $(LIBS); \
+	$(CXX) $(CFLAGS) $(INCLUDES) -o /dev/null /tmp/$(SPEC).cpp; \
 	done
 
 cnf/templates/%.c2t: cnf/templates/%.template ; ( cd cnf/templates && $(PREFIX)/bin/ctpp2c $(notdir $<) $(notdir $@) )
