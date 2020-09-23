@@ -44,11 +44,11 @@ bool ConfigHash::exists(const Path& path)
   }
   catch (const CTPP::CTPPException& err)
   {
-    throw Spine::Exception::Trace(BCP, err.what());
+    throw Fmi::Exception::Trace(BCP, err.what());
   }
   catch (...)
   {
-    throw Spine::Exception::Trace(BCP, "Unknown error while trying to find a path from hash");
+    throw Fmi::Exception::Trace(BCP, "Unknown error while trying to find a path from hash");
   }
 }
 
@@ -63,7 +63,7 @@ void ConfigHash::process(const libconfig::Config& config)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Config set to ConfigHash failed!");
+    throw Fmi::Exception::Trace(BCP, "Config set to ConfigHash failed!");
   }
 }
 
@@ -76,7 +76,7 @@ void ConfigHash::process(const libconfig::Setting& setting)
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Setting set to ConfigHash failed!");
+    throw Fmi::Exception::Trace(BCP, "Setting set to ConfigHash failed!");
   }
 }
 
@@ -195,7 +195,7 @@ void ConfigHash::store(const libconfig::Setting& setting, CTPP::CDT& targetHash)
     if (const char* name = setting.getName())
       msg << " name: '" << name << "'.";
 
-    throw SmartMet::Spine::Exception::Trace(BCP, msg.str());
+    throw Fmi::Exception::Trace(BCP, msg.str());
   }
 }
 }  // namespace WCS

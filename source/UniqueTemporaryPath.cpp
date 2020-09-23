@@ -1,5 +1,5 @@
 #include "UniqueTemporaryPath.h"
-#include <spine/Exception.h>
+#include <macgyver/Exception.h>
 
 namespace SmartMet
 {
@@ -18,11 +18,11 @@ UniqueTemporaryPath::UniqueTemporaryPath(const AutoRemove& autoRemove) : mAutoRe
   }
   catch (const boost::filesystem::filesystem_error& err)
   {
-    throw Spine::Exception::Trace(BCP, err.what());
+    throw Fmi::Exception::Trace(BCP, err.what());
   }
   catch (...)
   {
-    throw Spine::Exception::Trace(BCP, "Construction of UniqueTemporaryPath object failed.");
+    throw Fmi::Exception::Trace(BCP, "Construction of UniqueTemporaryPath object failed.");
   }
 }
 
@@ -44,11 +44,11 @@ std::string UniqueTemporaryPath::get() const
   }
   catch (const boost::filesystem::filesystem_error& err)
   {
-    throw Spine::Exception::Trace(BCP, err.what());
+    throw Fmi::Exception::Trace(BCP, err.what());
   }
   catch (...)
   {
-    throw Spine::Exception::Trace(BCP, "Return of UniqueTemporaryPath as a string failed.");
+    throw Fmi::Exception::Trace(BCP, "Return of UniqueTemporaryPath as a string failed.");
   }
 }
 }  // namespace WCS

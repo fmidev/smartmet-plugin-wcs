@@ -2,7 +2,7 @@
 #include <boost/algorithm/string.hpp>
 #include <macgyver/StringConversion.h>
 #include <macgyver/TypeName.h>
-#include <spine/Exception.h>
+#include <macgyver/Exception.h>
 #include <sstream>
 
 namespace SmartMet
@@ -25,7 +25,7 @@ MultiLanguageString::MultiLanguageString(const Language& defaultLanguage,
       msg << "Libconfig group expected instead of '";
       SmartMet::Spine::ConfigBase::dump_setting(msg, setting);
       msg << "'";
-      throw SmartMet::Spine::Exception(BCP, msg.str());
+      throw Fmi::Exception(BCP, msg.str());
     }
 
     const int num_items = setting.getLength();
@@ -40,7 +40,7 @@ MultiLanguageString::MultiLanguageString(const Language& defaultLanguage,
         msg << "' while reading item '";
         SmartMet::Spine::ConfigBase::dump_setting(msg, setting);
         msg << "'";
-        throw SmartMet::Spine::Exception(BCP, msg.str());
+        throw Fmi::Exception(BCP, msg.str());
       }
 
       const Message value = item;
@@ -57,12 +57,12 @@ MultiLanguageString::MultiLanguageString(const Language& defaultLanguage,
       msg << "The string for the default language '" << this->mDefaultLanguage
           << "' is not found in '";
       SmartMet::Spine::ConfigBase::dump_setting(msg, setting);
-      throw SmartMet::Spine::Exception(BCP, msg.str());
+      throw Fmi::Exception(BCP, msg.str());
     }
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -76,7 +76,7 @@ MultiLanguageString::Shared MultiLanguageString::create(const Language& defaultL
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 
@@ -103,7 +103,7 @@ const MultiLanguageString::Message& MultiLanguageString::get(const Language& lan
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Operation failed!");
+    throw Fmi::Exception::Trace(BCP, "Operation failed!");
   }
 }
 }  // namespace WCS

@@ -19,7 +19,7 @@ namespace WCS
  *  The data in file path will be automatically removed
  *  after lifesycle of an instance.
  *
- *  The class throws SmartMet::Spine::Exception
+ *  The class throws Fmi::Exception
  *  exception when temporary path generation fails.
  */
 class UniqueTemporaryPath

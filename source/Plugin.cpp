@@ -99,7 +99,7 @@ void Plugin::init()
   }
   catch (...)
   {
-    throw SmartMet::Spine::Exception::Trace(BCP, "Init failed!");
+    throw Fmi::Exception::Trace(BCP, "Init failed!");
   }
 }
 
@@ -155,7 +155,7 @@ class Plugin::RequestResult : public Spine::HTTP::ContentStreamer
     }
     catch (...)
     {
-      throw SmartMet::Spine::Exception::Trace(BCP, "Init failed!");
+      throw Fmi::Exception::Trace(BCP, "Init failed!");
     }
   }
 
@@ -388,7 +388,7 @@ void Plugin::realRequestHandler(SmartMet::Spine::Reactor& /* reactor */,
       }
     }
   }
-  catch (const SmartMet::Spine::Exception& exception)
+  catch (const Fmi::Exception& exception)
   {
     WcsException err(WcsException::NO_APPLICABLE_CODE, exception.what());
 
