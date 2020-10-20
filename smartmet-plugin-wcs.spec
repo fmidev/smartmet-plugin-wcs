@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 20.9.23
+Version: 20.10.20
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -15,7 +15,7 @@ BuildRequires: make
 BuildRequires: boost169-devel
 BuildRequires: ctpp2-devel
 BuildRequires: jsoncpp-devel
-BuildRequires: libconfig-devel
+BuildRequires: libconfig-devel >= 1.7.2
 BuildRequires: libcurl-devel
 BuildRequires: libpqxx-devel
 BuildRequires: netcdf-cxx-devel
@@ -25,7 +25,7 @@ BuildRequires: smartmet-engine-querydata-devel >= 20.9.23
 BuildRequires: smartmet-library-gis-devel >= 20.8.21
 BuildRequires: smartmet-library-macgyver-devel >= 20.9.18
 BuildRequires: smartmet-library-newbase-devel >= 20.9.11
-BuildRequires: smartmet-library-spine-devel >= 20.9.23
+BuildRequires: smartmet-library-spine-devel >= 20.10.20
 BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: bzip2-devel
@@ -40,7 +40,7 @@ Requires: boost169-system
 Requires: boost169-thread
 Requires: ctpp2
 Requires: jsoncpp
-Requires: libconfig
+Requires: libconfig >= 1.7.2
 Requires: libcurl
 Requires: libpqxx
 Requires: netcdf-cxx
@@ -49,7 +49,7 @@ Requires: smartmet-engine-gis >= 20.8.23
 Requires: smartmet-engine-querydata >= 20.9.23
 Requires: smartmet-library-macgyver >= 20.9.18
 Requires: smartmet-library-newbase >= 20.9.11
-Requires: smartmet-library-spine >= 20.9.23
+Requires: smartmet-library-spine >= 20.10.20
 Requires: smartmet-server >= 20.9.23
 Requires: xerces-c
 Requires: xqilla
@@ -89,6 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Tue Oct 20 2020 Andris Pavenis <andris.pavenis@fmi.fi> - 20.10.20-1.fmi
+- Rebuild due to libconfig upgrade to version 1.7.2
+
 * Wed Sep 23 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.9.23-1.fmi
 - Use Fmi::Exception instead of Spine::Exception
 
