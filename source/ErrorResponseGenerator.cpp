@@ -135,7 +135,7 @@ void ErrorResponseGenerator::addHttpRequestInfo(CTPP::CDT& hash,
 
 std::string ErrorResponseGenerator::formatMessage(CTPP::CDT& hash)
 {
-  std::ostringstream output, logMessages;
+  std::string output, logMessages;
   try
   {
     auto exceptionFormatter = mPluginData.getExceptionFormatter();
@@ -144,12 +144,11 @@ std::string ErrorResponseGenerator::formatMessage(CTPP::CDT& hash)
   catch (const std::exception& err)
   {
     std::cerr << METHOD_NAME
-              << ": failed to format error message. CTTP2 error messages are:" << logMessages.str()
+              << ": failed to format error message. CTTP2 error messages are:" << logMessages
               << std::endl;
     return "INTERNAL ERROR";
   }
-  const std::string content = output.str();
-  return content;
+  return output;
 }
 
 std::string ErrorResponseGenerator::formatLogMessage(CTPP::CDT& hash)

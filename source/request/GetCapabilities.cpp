@@ -128,20 +128,20 @@ void GetCapabilities::execute(std::ostream& output) const
   if (metadataHash.Size() > 0)
     hash.MergeCDT(metadataHash);
 
-  std::ostringstream logMessages;
+  std::string logMessages;
   try
   {
     auto formatter = mPluginData.getGetCapabilitiesFormatter();
     assert(formatter != 0);
-    std::ostringstream response;
+    std::string response;
     formatter->process(hash, response, logMessages);
-    substituteAll(response.str(), output);
+    substituteAll(response, output);
   }
   catch (const std::exception&)
   {
     std::ostringstream msg;
     msg << METHOD_NAME << ": template formatter exception '" << Fmi::current_exception_type()
-        << "' catched: " << logMessages.str();
+        << "' catched: " << logMessages;
     throw WcsException(WcsException::OPERATION_PROCESSING_FAILED, msg.str());
   }
 }

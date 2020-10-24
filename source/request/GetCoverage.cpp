@@ -123,20 +123,20 @@ void GetCoverage::executeSingleQuery(std::ostream& ost) const
   auto hostname = getHostname();
   hash["hostname"] = hostname ? *hostname : mPluginData.getConfig().getFallbackHostname();
 
-  std::ostringstream logMessages;
+  std::string logMessages;
   try
   {
     auto formatter = mPluginData.getGetCoverageFormatter();
     assert(formatter != 0);
-    std::ostringstream response;
+    std::string response;
     formatter->process(hash, response, logMessages);
-    substituteAll(response.str(), ost);
+    substituteAll(response, ost);
   }
   catch (const std::exception&)
   {
     std::ostringstream msg;
     msg << METHOD_NAME << ": template formatter exception '" << Fmi::current_exception_type()
-        << "' catched: " << logMessages.str();
+        << "' catched: " << logMessages;
     throw WcsException(WcsException::OPERATION_PROCESSING_FAILED, msg.str());
   }
 }

@@ -288,20 +288,20 @@ void DescribeCoverage::execute(std::ostream& output) const
   hash["language"] =
       (mAcceptLanguages.size() ? mAcceptLanguages.at(0) : mPluginData.getLanguages().at(0));
 
-  std::ostringstream logMessages;
+  std::string logMessages;
   try
   {
     auto formatter = mPluginData.getDescribeCoverageFormatter();
     assert(formatter != 0);
-    std::ostringstream response;
+    std::string response;
     formatter->process(hash, response, logMessages);
-    substituteAll(response.str(), output);
+    substituteAll(response, output);
   }
   catch (const std::exception&)
   {
     std::ostringstream msg;
     msg << METHOD_NAME << ": template formatter exception '" << Fmi::current_exception_type()
-        << "' catched: " << logMessages.str();
+        << "' catched: " << logMessages;
     throw WcsException(WcsException::OPERATION_PROCESSING_FAILED, msg.str());
   }
 }
