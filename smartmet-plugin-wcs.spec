@@ -53,14 +53,12 @@ Requires: smartmet-server >= 21.1.14
 Requires: xerces-c
 Requires: xqilla
 Provides: %{SPECNAME}
-#TestRequires: libpqxx < 1:7.0
-#TestRequires: libconfig >= 1.7.2
+#TestRequires: libpqxx-devel < 1:7.0
+#TestRequires: libconfig-devel >= 1.7.2
+#TestRequires: jsoncpp-devel
 #TestRequires: smartmet-engine-querydata >= 21.1.14
 #TestRequires: smartmet-engine-gis >= 21.1.14
 #TestRequires: smartmet-library-macgyver-devel >= 21.1.14
-# Should not actually need but otherwise makefile.inc gives an error
-#TestRequires: jsoncpp
-#TestRequires: libconfig >= 1.7.2
 
 %description
 SmartMet WCS plugin
