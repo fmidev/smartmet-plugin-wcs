@@ -3,7 +3,7 @@
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/optional.hpp>
-#include <gdal/ogr_spatialref.h>
+#include <ogr_spatialref.h>
 #include <newbase/NFmiParameterName.h>
 #include <newbase/NFmiPoint.h>
 #include <spine/HTTP.h>
