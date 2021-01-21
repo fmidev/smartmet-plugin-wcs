@@ -2,7 +2,7 @@
 %define SPECNAME smartmet-plugin-%{DIRNAME}
 Summary: SmartMet WCS plugin
 Name: %{SPECNAME}
-Version: 20.10.23
+Version: 21.1.21
 Release: 1%{?dist}.fmi
 License: FMI
 Group: SmartMet/Plugins
@@ -95,6 +95,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/smartmet/plugins/%{DIRNAME}/XMLSchemas.cache
 
 %changelog
+* Thu Jan 21 2021 Andris Pavenis <andris.pavenis@fmi.fi> - 21.1.21-1.fmi
+- Build update (use makefile.inc)
+
 * Fri Oct 23 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.10.23-1.fmi
 - Use new TemplateFormatter API
 
