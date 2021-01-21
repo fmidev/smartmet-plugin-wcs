@@ -131,7 +131,6 @@ file-list:	cnf/XMLGrammarPool.dump
 	find test/base/xml -name '*.xml' >>files.list.new
 	find test -name '*.pl' >>files.list.new
 	find test -name '*.cpp' >>files.list.new
-	echo ./test/PluginTest.cpp >>files.list.new
 	find tools/xml_samples -name '*.xml' >>files.list.new
 	cat files.list.new | sed -e 's:^\./::' | sort | uniq >files.list
 	rm -f files.list.new
