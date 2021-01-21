@@ -59,6 +59,7 @@ Provides: %{SPECNAME}
 #TestRequires: smartmet-engine-querydata >= 21.1.14
 #TestRequires: smartmet-engine-gis >= 21.1.14
 #TestRequires: smartmet-library-macgyver-devel >= 21.1.14
+#TestRequires: install smartmet-test-data
 
 %description
 SmartMet WCS plugin
