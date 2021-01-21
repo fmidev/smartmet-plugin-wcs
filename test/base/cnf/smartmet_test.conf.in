@@ -44,7 +44,7 @@ plugins:
 	wcs:
 	{
 		configfile      = "wcs_plugin_test.conf";
-		libfile         = "../../../wcs.so";
+		libfile         = "@WCS_SO@";
 	};
 };
 

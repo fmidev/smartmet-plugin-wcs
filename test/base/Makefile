@@ -16,7 +16,10 @@ clean:
 	rm -f $(shell find input -type f -a -name '*.xml.post')
 	rm -rf failures
 
-test:	$(XML_POST_TESTS)
+test: WCS_PLUGIN := ../../../wcs.so
+test-installed: WCS_PLUGIN := /usr/share/smartmet/plugins/wcs.so
+
+test test-installed: $(XML_POST_TESTS) cnf/smartmet_test.conf
 	@mkdir -p failures
 	@$(TEST_RUNNER) smartmet-plugin-test --handler /wcs \
 		--reactor-config cnf/smartmet_test.conf \
@@ -28,5 +31,9 @@ input-files: $(XML_POST_TESTS)
 input/%.xml.post : xml/%.xml ; @mkdir -p $(shell dirname $@)
 	@perl ../MakeXMLPOST.pl $< $@ /wfs
 
-../PluginTest:
-	$(MAKE) -C .. PluginTest
+cnf/smartmet_test.conf: cnf/smartmet_test.conf.in
+	sed \
+		-e "s:@WCS_SO@:$(WCS_PLUGIN):" \
+		$< >$@
+
+.PHONY: cnf/smartmet_test.conf
