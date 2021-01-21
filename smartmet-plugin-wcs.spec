@@ -53,6 +53,11 @@ Requires: smartmet-server >= 21.1.14
 Requires: xerces-c
 Requires: xqilla
 Provides: %{SPECNAME}
+#TestRequires: libpqxx < 1:7.0
+#TestRequires: libconfig >= 1.7.2
+#TestRequires: smartmet-engine-querydata >= 21.1.14
+#TestRequires: smartmet-engine-gis >= 21.1.14
+#TestRequires: smartmet-library-macgyver >= 21.1.14
 
 %description
 SmartMet WCS plugin
