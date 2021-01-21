@@ -8,19 +8,20 @@ VALGRIND = valgrind \
 	--suppressions=../../../../data/valgrind/valgrind_libclntsh.supp \
 	--suppressions=../../../../data/valgrind/valgrind_brainstorm.supp
 
+TEST_RUNNER =
+
 all:
 
 clean:
 	rm -f $(shell find input -type f -a -name '*.xml.post')
 	rm -rf failures
 
-test:	../PluginTest $(XML_POST_TESTS)
+test:	$(XML_POST_TESTS)
 	@mkdir -p failures
-	@../PluginTest cnf/smartmet_test.conf
-
-valgrind: ../PluginTest input-files
-	@mkdir -p failures
-	@$(VALGRIND) ../PluginTest cnf/smartmet_test.conf
+	@$(TEST_RUNNER) smartmet-plugin-test --handler /wcs \
+		--reactor-config cnf/smartmet_test.conf \
+		--failures-dir failures \
+		--timeout 300
 
 input-files: $(XML_POST_TESTS)
 
