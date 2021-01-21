@@ -17,15 +17,15 @@ BuildRequires: ctpp2-devel
 BuildRequires: jsoncpp-devel
 BuildRequires: libconfig-devel >= 1.7.2
 BuildRequires: libcurl-devel
-BuildRequires: libpqxx-devel
+BuildRequires: libpqxx-devel < 1:7.0
 BuildRequires: netcdf-cxx-devel
 BuildRequires: postgresql12-libs
-BuildRequires: smartmet-engine-gis-devel >= 20.8.23
-BuildRequires: smartmet-engine-querydata-devel >= 20.9.23
-BuildRequires: smartmet-library-gis-devel >= 20.8.21
-BuildRequires: smartmet-library-macgyver-devel >= 20.9.18
-BuildRequires: smartmet-library-newbase-devel >= 20.9.11
-BuildRequires: smartmet-library-spine-devel >= 20.10.20
+BuildRequires: smartmet-engine-gis-devel >= 21.1.14
+BuildRequires: smartmet-engine-querydata-devel >= 21.1.14
+BuildRequires: smartmet-library-gis-devel >= 21.1.14
+BuildRequires: smartmet-library-macgyver-devel >= 21.1.14
+BuildRequires: smartmet-library-newbase-devel >= 21.1.14
+BuildRequires: smartmet-library-spine-devel >= 21.1.14
 BuildRequires: xerces-c-devel
 BuildRequires: xqilla-devel
 BuildRequires: bzip2-devel
@@ -42,15 +42,14 @@ Requires: ctpp2
 Requires: jsoncpp
 Requires: libconfig >= 1.7.2
 Requires: libcurl
-Requires: libpqxx
+Requires: libpqxx < 1:7.0
 Requires: netcdf-cxx
-Requires: smartmet-engine-gis >= 20.8.23
-Requires: smartmet-engine-gis >= 20.8.23
-Requires: smartmet-engine-querydata >= 20.9.23
-Requires: smartmet-library-macgyver >= 20.9.18
-Requires: smartmet-library-newbase >= 20.9.11
-Requires: smartmet-library-spine >= 20.10.20
-Requires: smartmet-server >= 20.9.23
+Requires: smartmet-engine-gis >= 21.1.14
+Requires: smartmet-engine-querydata >= 21.1.14
+Requires: smartmet-library-macgyver >= 21.1.14
+Requires: smartmet-library-newbase >= 21.1.14
+Requires: smartmet-library-spine >= 21.1.14
+Requires: smartmet-server >= 21.1.14
 Requires: xerces-c
 Requires: xqilla
 Provides: %{SPECNAME}
