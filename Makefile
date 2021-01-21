@@ -3,77 +3,15 @@ SPEC = smartmet-plugin-$(SUBNAME)
 INCDIR = smartmet/plugins/$(SUBNAME)
 TOP = $(shell pwd)
 
-# Compiler options
+REQUIRES = configpp ctpp2 gdal jsoncpp
+
+include $(shell echo $${PREFIX-/usr})/share/smartmet/devel/makefile.inc
 
 DEFINES = -DUNIX -D_REENTRANT
-
-FLAGS = -std=c++11 -fPIC -Wall -W -Wno-unused-parameter \
-	-fno-omit-frame-pointer \
-	-Wno-unknown-pragmas \
-      -Wcast-align \
-      -Wcast-qual \
-      -Wno-inline \
-      -Wno-multichar \
-      -Wpointer-arith \
-      -Wwrite-strings
-
-# Compile options in detault, debug and profile modes
-
-CFLAGS_RELEASE = $(DEFINES) $(FLAGS) -DNDEBUG -O2 -g
-CFLAGS_DEBUG   = $(DEFINES) $(FLAGS) -Werror  -O0 -g
-
 ARFLAGS = -r
-DEFINES = -DUNIX -D_REENTRANT
-
-ifneq (,$(findstring debug,$(MAKECMDGOALS)))
-  override CFLAGS += $(CFLAGS_DEBUG)
-else
-  override CFLAGS += $(CFLAGS_RELEASE)
-endif
-
-# Installation directories
-
-processor := $(shell uname -p)
-
-ifeq ($(origin PREFIX), undefined)
-  PREFIX = /usr
-else
-  PREFIX = $(PREFIX)
-endif
-
-ifeq ($(processor), x86_64)
-  libdir = $(PREFIX)/lib64
-else
-  libdir = $(PREFIX)/lib
-endif
-
-bindir = $(PREFIX)/bin
-includedir = $(PREFIX)/include
-datadir = $(PREFIX)/share
-enginedir = $(datadir)/smartmet/engines
-plugindir = $(datadir)/smartmet/plugins
-objdir = obj
-
-#
-
-# Boost 1.69
-
-ifneq "$(wildcard /usr/include/boost169)" ""
-  INCLUDES += -isystem /usr/include/boost169
-  LIBS += -L/usr/lib64/boost169
-endif
-
-ifneq "$(wildcard /usr/gdal30/include)" ""
-  INCLUDES += -isystem /usr/gdal30/include
-  LIBS += -L/usr/gdal30/lib
-else
-  INCLUDES += -isystem /usr/include/gdal
-endif
-
 
 INCLUDES += \
 	-I$(includedir)/smartmet \
-	-isystem $(includedir)/jsoncpp
 
 LIBS += -L$(libdir) \
 	-lsmartmet-spine \
@@ -87,13 +25,9 @@ LIBS += -L$(libdir) \
 	-lboost_filesystem \
         -lboost_chrono \
 	-lboost_system \
-        -ljsoncpp \
         -lxqilla \
 	-lxerces-c \
-	-lgdal \
-	-lconfig++ \
-	-lconfig \
-	-lctpp2 \
+	$(REQUIRED_LIBS) \
 	-lcurl \
 	-lcrypto \
 	-lnetcdf_c++ \
@@ -116,21 +50,6 @@ INCLUDES += -I$(TOP)/include \
 # What to install
 
 LIBFILE = $(SUBNAME).so
-
-# How to install
-
-INSTALL_PROG = install -p -m 775
-INSTALL_DATA = install -p -m 664
-
-# Compile option overrides
-
-ifneq (,$(findstring debug,$(MAKECMDGOALS)))
-  CFLAGS = $(CFLAGS_DEBUG)
-endif
-
-ifneq (,$(findstring profile,$(MAKECMDGOALS)))
-  CFLAGS = $(CFLAGS_PROFILE)
-endif
 
 # Compilation directories
 
