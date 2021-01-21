@@ -19,7 +19,7 @@ BuildRequires: libconfig-devel >= 1.7.2
 BuildRequires: libcurl-devel
 BuildRequires: libpqxx-devel
 BuildRequires: netcdf-cxx-devel
-BuildRequires: postgresql95-libs
+BuildRequires: postgresql12-libs
 BuildRequires: smartmet-engine-gis-devel >= 20.8.23
 BuildRequires: smartmet-engine-querydata-devel >= 20.9.23
 BuildRequires: smartmet-library-gis-devel >= 20.8.21
